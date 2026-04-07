@@ -5,112 +5,121 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Upload Photos | MidWestern Construction</title>
   <meta name="robots" content="noindex, nofollow" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Cloudinary Upload Widget -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --orange: #E07318;
-      --orange-dark: #B85C10;
-      --orange-light: #FEF3EA;
-      --text: #1A1A1A;
-      --text-muted: #6B7280;
-      --border: #E5E7EB;
-      --bg: #F9F8F6;
+      --orange: #E07318; --orange-dark: #B85C10;
+      --orange-light: #FEF3EA; --orange-mid: #FDDFC4;
+      --text: #111111; --text-muted: #6B7280; --text-light: #9CA3AF;
+      --bg: #F5F5F5; --border: #E5E7EB; --radius: 8px;
     }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    /* ── LOGIN SCREEN ── */
-    .login-screen {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      padding: 24px;
-    }
-    .login-card {
-      background: #fff; border-radius: 20px; padding: 48px 40px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.1); width: 100%; max-width: 420px;
-      text-align: center;
-    }
-    .login-logo {
-      width: 64px; height: 64px; background: var(--orange); border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 32px; margin: 0 auto 24px;
-    }
-    .login-card h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+    /* ── LOGIN ── */
+    .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .login-card { background: #fff; border-radius: 16px; padding: 48px 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+    .login-logo { width: 60px; height: 60px; background: var(--orange); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 24px; }
+    .login-card h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
     .login-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
-    .login-card input[type=password] {
-      width: 100%; padding: 15px 18px; border: 1.5px solid var(--border);
-      border-radius: 10px; font-size: 16px; font-family: 'Inter', sans-serif;
-      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-      text-align: center; letter-spacing: 4px; margin-bottom: 16px;
-    }
-    .login-card input[type=password]:focus { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-light); }
-    .login-btn {
-      width: 100%; padding: 15px; background: var(--orange); color: #fff;
-      border: none; border-radius: 10px; font-size: 16px; font-weight: 700;
-      cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s;
-    }
+    .login-card input[type=password] { width: 100%; padding: 14px 18px; border: 1.5px solid var(--border); border-radius: var(--radius); font-size: 16px; font-family: 'DM Sans', sans-serif; outline: none; text-align: center; letter-spacing: 4px; margin-bottom: 14px; transition: border-color 0.2s; }
+    .login-card input:focus { border-color: var(--orange); }
+    .login-btn { width: 100%; padding: 14px; background: var(--orange); color: #fff; border: none; border-radius: var(--radius); font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
     .login-btn:hover { background: var(--orange-dark); }
     .login-error { color: #E63946; font-size: 13px; margin-top: 12px; display: none; }
 
-    /* ── UPLOAD SCREEN ── */
-    .upload-screen { display: none; padding: 24px; max-width: 600px; margin: 0 auto; }
-    .upload-header {
-      display: flex; align-items: center; gap: 14px;
-      padding: 20px 0 28px; border-bottom: 1px solid var(--border); margin-bottom: 32px;
-    }
-    .upload-header-logo { width: 44px; height: 44px; background: var(--orange); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
-    .upload-header-text h2 { font-size: 18px; font-weight: 800; }
-    .upload-header-text p { font-size: 13px; color: var(--text-muted); }
-    .logout-btn { margin-left: auto; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 13px; color: var(--text-muted); cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
-    .logout-btn:hover { border-color: var(--orange); color: var(--orange); }
+    /* ── MAIN ── */
+    .main { display: none; max-width: 560px; margin: 0 auto; padding: 24px 20px 80px; }
+    .top-bar { display: flex; align-items: center; gap: 12px; padding: 20px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
+    .top-bar-logo { width: 40px; height: 40px; background: var(--orange); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .top-bar-text h2 { font-size: 17px; font-weight: 800; }
+    .top-bar-text p { font-size: 12px; color: var(--text-muted); }
+    .logout { margin-left: auto; background: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 7px 14px; font-size: 12px; font-weight: 700; color: var(--text-muted); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+    .logout:hover { border-color: var(--orange); color: var(--orange); }
 
-    .upload-section { margin-bottom: 20px; }
-    .upload-section-title { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+    /* ── SECTION TABS ── */
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; display: block; }
 
-    .upload-btn {
-      width: 100%; padding: 28px 24px; border: 2px dashed var(--border);
-      border-radius: 16px; background: #fff; cursor: pointer;
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-      transition: all 0.25s; font-family: 'Inter', sans-serif; text-align: center;
-    }
-    .upload-btn:hover { border-color: var(--orange); background: var(--orange-light); transform: translateY(-2px); }
-    .upload-btn:active { transform: translateY(0); }
-    .upload-btn-icon { font-size: 40px; line-height: 1; }
-    .upload-btn-label { font-size: 17px; font-weight: 800; color: var(--text); }
-    .upload-btn-sub { font-size: 13px; color: var(--text-muted); }
-    .upload-btn-badge {
-      background: var(--orange-light); border: 1px solid #FDDFC4;
-      border-radius: 100px; padding: 4px 12px;
-      font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 1px;
-    }
+    /* ── BEFORE/AFTER PAIR UPLOADER ── */
+    .pair-uploader { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+    .pair-uploader h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .pair-uploader .pair-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
 
-    /* ── RECENT UPLOADS ── */
-    .recent-section { margin-top: 36px; }
-    .recent-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-    .recent-title { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
-    .recent-clear { font-size: 12px; color: var(--text-muted); cursor: pointer; background: none; border: none; font-family: 'Inter', sans-serif; }
+    .pair-job-row { display: flex; gap: 10px; margin-bottom: 20px; }
+    .pair-job-row input {
+      flex: 1; padding: 11px 14px; border: 1.5px solid var(--border);
+      border-radius: var(--radius); font-size: 14px; font-family: 'DM Sans', sans-serif;
+      outline: none; transition: border-color 0.2s; color: var(--text);
+    }
+    .pair-job-row input:focus { border-color: var(--orange); }
+    .pair-job-row select {
+      padding: 11px 14px; border: 1.5px solid var(--border);
+      border-radius: var(--radius); font-size: 13px; font-family: 'DM Sans', sans-serif;
+      outline: none; transition: border-color 0.2s; color: var(--text);
+      background: #fff; cursor: pointer; appearance: none;
+    }
+    .pair-job-row select:focus { border-color: var(--orange); }
+
+    .pair-slots { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .pair-slot { position: relative; }
+    .pair-slot-btn {
+      width: 100%; aspect-ratio: 4/3; border: 2px dashed var(--border);
+      border-radius: 10px; background: var(--bg); display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; cursor: pointer; transition: all 0.22s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .pair-slot-btn:hover { border-color: var(--orange); background: var(--orange-light); }
+    .pair-slot-btn.uploaded { border-color: #2d6a4f; border-style: solid; background: #f0faf5; }
+    .slot-icon { font-size: 28px; }
+    .slot-label { font-size: 13px; font-weight: 800; color: var(--text); }
+    .slot-sub { font-size: 11px; color: var(--text-muted); }
+    .slot-preview { position: absolute; inset: 0; border-radius: 10px; overflow: hidden; display: none; }
+    .slot-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .slot-preview-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.65); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+    .slot-remove { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; border-radius: 50%; background: rgba(230,57,70,0.85); border: none; color: #fff; font-size: 14px; cursor: pointer; display: none; align-items: center; justify-content: center; line-height: 1; }
+    .pair-slot.has-img .slot-remove { display: flex; }
+    .pair-slot.has-img .slot-preview { display: block; }
+
+    .pair-upload-btn {
+      width: 100%; padding: 14px; border: none; border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 800;
+      cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .pair-upload-btn:not(:disabled) { background: var(--orange); color: #fff; }
+    .pair-upload-btn:not(:disabled):hover { background: var(--orange-dark); }
+    .pair-upload-btn:disabled { background: var(--border); color: var(--text-light); cursor: not-allowed; }
+    .pair-upload-btn.done { background: #2d6a4f; color: #fff; }
+
+    /* ── REVIEW UPLOADER ── */
+    .review-uploader { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+    .review-uploader h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .review-uploader .desc { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+    .review-drop-btn {
+      width: 100%; padding: 36px 24px; border: 2px dashed var(--border);
+      border-radius: 10px; background: var(--bg); cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      transition: all 0.22s; font-family: 'DM Sans', sans-serif; text-align: center;
+    }
+    .review-drop-btn:hover { border-color: var(--orange); background: var(--orange-light); }
+    .review-drop-btn .icon { font-size: 36px; }
+    .review-drop-btn .lbl { font-size: 16px; font-weight: 800; color: var(--text); }
+    .review-drop-btn .sub { font-size: 12px; color: var(--text-muted); }
+
+    /* ── RECENT ── */
+    .recent-wrap { margin-top: 32px; }
+    .recent-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .recent-clear { background: none; border: none; font-size: 12px; color: var(--text-muted); cursor: pointer; font-family: 'DM Sans', sans-serif; }
     .recent-clear:hover { color: var(--orange); }
-    .recent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .recent-item { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1; background: var(--border); }
+    .recent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .recent-item { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1; background: var(--border); }
     .recent-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .recent-badge {
-      position: absolute; top: 6px; left: 6px;
-      background: rgba(0,0,0,0.65); color: #fff;
-      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-      padding: 3px 7px; border-radius: 4px; backdrop-filter: blur(4px);
-    }
-    .recent-empty { grid-column: span 3; text-align: center; padding: 32px; color: var(--text-muted); font-size: 14px; }
+    .recent-badge { position: absolute; top: 5px; left: 5px; background: rgba(0,0,0,0.6); color: #fff; font-size: 8px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; }
+    .recent-empty { grid-column: span 3; text-align: center; padding: 28px; font-size: 13px; color: var(--text-muted); }
 
     /* ── TOAST ── */
-    .toast {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
-      background: var(--text); color: #fff; padding: 14px 24px;
-      border-radius: 100px; font-size: 14px; font-weight: 600;
-      display: flex; align-items: center; gap: 8px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      transition: transform 0.3s; z-index: 9999; white-space: nowrap;
-    }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--text); color: #fff; padding: 13px 22px; border-radius: 100px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); transition: transform 0.3s; z-index: 9999; white-space: nowrap; }
     .toast.show { transform: translateX(-50%) translateY(0); }
     .toast.success { background: #2d6a4f; }
     .toast.error { background: #E63946; }
@@ -118,186 +127,261 @@
 </head>
 <body>
 
-<!-- ── LOGIN SCREEN ── -->
+<!-- ── LOGIN ── -->
 <div class="login-screen" id="login-screen">
   <div class="login-card">
     <div class="login-logo">🏠</div>
     <h1>MidWestern Construction</h1>
-    <p>Enter your upload password to continue</p>
-    <input type="password" id="password-input" placeholder="••••••••" autocomplete="current-password" />
+    <p>Enter your upload password to add photos to your website</p>
+    <input type="password" id="pw" placeholder="••••••••" autocomplete="current-password" />
     <button class="login-btn" onclick="checkPassword()">Continue →</button>
     <p class="login-error" id="login-error">Incorrect password. Please try again.</p>
   </div>
 </div>
 
-<!-- ── UPLOAD SCREEN ── -->
-<div class="upload-screen" id="upload-screen">
-  <div class="upload-header">
-    <div class="upload-header-logo">🏠</div>
-    <div class="upload-header-text">
-      <h2>Photo Uploads</h2>
+<!-- ── MAIN ── -->
+<div class="main" id="main">
+  <div class="top-bar">
+    <div class="top-bar-logo">🏠</div>
+    <div class="top-bar-text">
+      <h2>Photo Manager</h2>
       <p>MidWestern Construction</p>
     </div>
-    <button class="logout-btn" onclick="logout()">Sign Out</button>
+    <button class="logout" onclick="logout()">Sign Out</button>
   </div>
 
-  <div class="upload-section">
-    <div class="upload-section-title">Upload To</div>
-    <button class="upload-btn" onclick="openUpload('our-work')">
-      <span class="upload-btn-icon">🏠</span>
-      <span class="upload-btn-label">Our Work</span>
-      <span class="upload-btn-sub">Photos of completed jobs, installs, before & after</span>
-      <span class="upload-btn-badge">PROJECT PHOTOS</span>
+  <!-- BEFORE & AFTER PAIR -->
+  <span class="section-label">Before &amp; After Gallery</span>
+  <div class="pair-uploader">
+    <h3>Add a New Project</h3>
+    <p class="pair-desc">Upload a before and after photo for each job. They'll appear as a draggable slider on the gallery page.</p>
+
+    <div class="pair-job-row">
+      <input type="text" id="job-name" placeholder="Job name, e.g. akron-shingle-2026" />
+      <select id="job-category">
+        <option value="roofing">Roofing</option>
+        <option value="siding">Siding</option>
+        <option value="gutters">Gutters</option>
+        <option value="storm">Storm Damage</option>
+      </select>
+    </div>
+
+    <div class="pair-slots">
+      <!-- Before slot -->
+      <div class="pair-slot" id="slot-before">
+        <button class="pair-slot-btn" onclick="openSlotUpload('before')">
+          <span class="slot-icon">📷</span>
+          <span class="slot-label">Before Photo</span>
+          <span class="slot-sub">Tap to upload</span>
+        </button>
+        <div class="slot-preview">
+          <img id="preview-before" src="" alt="Before" />
+          <span class="slot-preview-badge">Before</span>
+        </div>
+        <button class="slot-remove" onclick="removeSlot('before')" aria-label="Remove">×</button>
+      </div>
+      <!-- After slot -->
+      <div class="pair-slot" id="slot-after">
+        <button class="pair-slot-btn" onclick="openSlotUpload('after')">
+          <span class="slot-icon">✅</span>
+          <span class="slot-label">After Photo</span>
+          <span class="slot-sub">Tap to upload</span>
+        </button>
+        <div class="slot-preview">
+          <img id="preview-after" src="" alt="After" />
+          <span class="slot-preview-badge">After</span>
+        </div>
+        <button class="slot-remove" onclick="removeSlot('after')" aria-label="Remove">×</button>
+      </div>
+    </div>
+
+    <button class="pair-upload-btn" id="pair-save-btn" disabled onclick="savePair()">
+      Upload Both Photos to Gallery →
     </button>
   </div>
 
-  <div class="upload-section">
-    <button class="upload-btn" onclick="openUpload('reviews')">
-      <span class="upload-btn-icon">⭐</span>
-      <span class="upload-btn-label">Customer Reviews</span>
-      <span class="upload-btn-sub">Screenshots of 5-star reviews, thank you messages</span>
-      <span class="upload-btn-badge">REVIEW SCREENSHOTS</span>
+  <!-- REVIEW SCREENSHOTS -->
+  <span class="section-label" style="margin-top:28px;display:block;">Customer Review Screenshots</span>
+  <div class="review-uploader">
+    <h3>Add Review Screenshots</h3>
+    <p class="desc">Screenshot a 5-star Google or Facebook review and upload it here. It'll show on your homepage reviews section.</p>
+    <button class="review-drop-btn" onclick="openReviewUpload()">
+      <span class="icon">⭐</span>
+      <span class="lbl">Upload Review Screenshot</span>
+      <span class="sub">JPG, PNG, or HEIC · Multiple at once</span>
     </button>
   </div>
 
-  <div class="recent-section">
+  <!-- RECENT -->
+  <div class="recent-wrap">
     <div class="recent-header">
-      <span class="recent-title">Recently Uploaded</span>
+      <span class="section-label" style="margin:0;">Recently Added</span>
       <button class="recent-clear" onclick="clearRecent()">Clear</button>
     </div>
     <div class="recent-grid" id="recent-grid">
-      <div class="recent-empty">Photos you upload will appear here</div>
+      <div class="recent-empty">Photos you upload appear here</div>
     </div>
   </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
-  // ── CONFIGURATION ────────────────────────────────────────────────
-  // SETUP: Get your Cloudinary cloud name from cloudinary.com/console
-  // Then add it to Vercel Environment Variables as CLOUDINARY_CLOUD_NAME
-  // and UPLOAD_PASSWORD. This page reads the password from the API.
-  const CLOUD_NAME = '%%CLOUDINARY_CLOUD_NAME%%';    // Injected by Vercel build
-  const UPLOAD_PRESET = 'midwestern_unsigned';        // Create this in Cloudinary > Settings > Upload > Upload Presets
-  // ────────────────────────────────────────────────────────────────
+  // ── CONFIG ───────────────────────────────────────────────────
+  // Set CLOUDINARY_CLOUD_NAME in Vercel environment variables.
+  // Set UPLOAD_PASSWORD in Vercel environment variables.
+  const CLOUD_NAME    = '%%CLOUDINARY_CLOUD_NAME%%';
+  const UPLOAD_PRESET = 'midwestern_unsigned';
+  // ─────────────────────────────────────────────────────────────
 
   const SESSION_KEY = 'mw_upload_auth';
-  const RECENT_KEY = 'mw_recent_uploads';
+  const RECENT_KEY  = 'mw_recent';
+
+  let pendingBefore = null;  // { url, public_id }
+  let pendingAfter  = null;
 
   // ── AUTH ──
   async function checkPassword() {
-    const input = document.getElementById('password-input').value;
-    const error = document.getElementById('login-error');
-    error.style.display = 'none';
+    const input = document.getElementById('pw').value;
+    const err   = document.getElementById('login-error');
+    err.style.display = 'none';
     try {
-      const res = await fetch(`/api/auth?p=${encodeURIComponent(input)}`);
+      const res  = await fetch(`/api/auth?p=${encodeURIComponent(input)}`);
       const data = await res.json();
-      if (data.ok) {
-        sessionStorage.setItem(SESSION_KEY, '1');
-        showUploadScreen();
-      } else {
-        error.style.display = 'block';
-        document.getElementById('password-input').value = '';
-        document.getElementById('password-input').focus();
-      }
-    } catch {
-      error.textContent = 'Connection error. Please try again.';
-      error.style.display = 'block';
-    }
+      if (data.ok) { sessionStorage.setItem(SESSION_KEY, '1'); showMain(); }
+      else { err.style.display = 'block'; document.getElementById('pw').value = ''; document.getElementById('pw').focus(); }
+    } catch { err.textContent = 'Connection error.'; err.style.display = 'block'; }
   }
 
-  function logout() {
-    sessionStorage.removeItem(SESSION_KEY);
-    document.getElementById('upload-screen').style.display = 'none';
-    document.getElementById('login-screen').style.display = 'flex';
-    document.getElementById('password-input').value = '';
-  }
+  function logout() { sessionStorage.removeItem(SESSION_KEY); document.getElementById('main').style.display = 'none'; document.getElementById('login-screen').style.display = 'flex'; document.getElementById('pw').value = ''; }
+  function showMain() { document.getElementById('login-screen').style.display = 'none'; document.getElementById('main').style.display = 'block'; renderRecent(); }
+  if (sessionStorage.getItem(SESSION_KEY)) showMain();
+  document.getElementById('pw').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
 
-  function showUploadScreen() {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('upload-screen').style.display = 'block';
-    renderRecent();
-  }
-
-  // Check if already authenticated this session
-  if (sessionStorage.getItem(SESSION_KEY)) showUploadScreen();
-
-  // Enter key on password
-  document.getElementById('password-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') checkPassword();
-  });
-
-  // ── UPLOAD ──
-  function openUpload(folder) {
-    if (!CLOUD_NAME || CLOUD_NAME === '%%CLOUDINARY_CLOUD_NAME%%') {
-      showToast('⚙️ Cloudinary not configured yet', 'error');
-      return;
-    }
+  // ── BEFORE/AFTER SLOTS ──
+  function openSlotUpload(slot) {
+    if (!CLOUD_NAME || CLOUD_NAME.includes('%%')) { showToast('⚙️ Cloudinary not configured yet', 'error'); return; }
     cloudinary.openUploadWidget({
       cloudName: CLOUD_NAME,
       uploadPreset: UPLOAD_PRESET,
-      folder: folder,
+      folder: 'our-work',
       sources: ['local', 'camera'],
-      multiple: true,
-      maxFiles: 20,
+      multiple: false,
+      maxFiles: 1,
       resourceType: 'image',
-      clientAllowedFormats: ['jpg', 'jpeg', 'png', 'heic', 'webp'],
-      maxImageFileSize: 20000000, // 20MB
+      clientAllowedFormats: ['jpg','jpeg','png','heic','webp'],
+      maxImageFileSize: 20000000,
       showAdvancedOptions: false,
-      showCompletedButton: true,
+      showCompletedButton: false,
       theme: 'minimal',
-      styles: {
-        palette: { window: '#FFFFFF', windowBorder: '#E5E7EB', tabIcon: '#E07318', menuIcons: '#E07318', textDark: '#1A1A1A', textLight: '#FFFFFF', link: '#E07318', action: '#E07318', inactiveTabIcon: '#9CA3AF', error: '#E63946', inProgress: '#E07318', complete: '#2d6a4f', sourceBg: '#F9F8F6' }
-      }
+      styles: { palette: { window:'#FFFFFF', windowBorder:'#E5E7EB', tabIcon:'#E07318', menuIcons:'#E07318', textDark:'#111111', textLight:'#FFFFFF', link:'#E07318', action:'#E07318', inactiveTabIcon:'#9CA3AF', error:'#E63946', inProgress:'#E07318', complete:'#2d6a4f', sourceBg:'#F5F5F5' } },
+      // Rename the file server-side using the job name + slot
+      publicId: buildPublicId(slot),
     }, (error, result) => {
-      if (error) { showToast('Upload failed. Try again.', 'error'); return; }
+      if (error) { showToast('Upload failed — try again', 'error'); return; }
       if (result.event === 'success') {
-        addToRecent(result.info.secure_url, folder);
-        showToast('✅ Photo uploaded successfully!', 'success');
+        const data = { url: result.info.secure_url, public_id: result.info.public_id };
+        if (slot === 'before') { pendingBefore = data; setSlotPreview('before', data.url); }
+        if (slot === 'after')  { pendingAfter  = data; setSlotPreview('after',  data.url); }
+        updateSaveBtn();
+        showToast(`✓ ${slot === 'before' ? 'Before' : 'After'} photo uploaded`, 'success');
       }
     });
   }
 
-  // ── RECENT UPLOADS ──
-  function addToRecent(url, folder) {
-    const recent = getRecent();
-    recent.unshift({ url, folder, ts: Date.now() });
-    localStorage.setItem(RECENT_KEY, JSON.stringify(recent.slice(0, 12)));
+  function buildPublicId(slot) {
+    const name = document.getElementById('job-name').value.trim().replace(/\s+/g, '-').toLowerCase() || 'job';
+    return `our-work/${name}-${slot}`;
+  }
+
+  function setSlotPreview(slot, url) {
+    document.getElementById(`preview-${slot}`).src = url;
+    document.getElementById(`slot-${slot}`).classList.add('has-img');
+  }
+
+  function removeSlot(slot) {
+    if (slot === 'before') pendingBefore = null;
+    if (slot === 'after')  pendingAfter  = null;
+    document.getElementById(`preview-${slot}`).src = '';
+    document.getElementById(`slot-${slot}`).classList.remove('has-img');
+    updateSaveBtn();
+  }
+
+  function updateSaveBtn() {
+    const btn = document.getElementById('pair-save-btn');
+    btn.disabled = !(pendingBefore && pendingAfter);
+  }
+
+  function savePair() {
+    if (!pendingBefore || !pendingAfter) return;
+    const btn = document.getElementById('pair-save-btn');
+    btn.textContent = '✅ Project Added to Gallery!';
+    btn.classList.add('done');
+    btn.disabled = true;
+
+    // Save to recent
+    addToRecent(pendingBefore.url, 'before');
+    addToRecent(pendingAfter.url,  'after');
+
+    // Reset
+    setTimeout(() => {
+      pendingBefore = null; pendingAfter = null;
+      removeSlot('before'); removeSlot('after');
+      document.getElementById('job-name').value = '';
+      btn.textContent = 'Upload Both Photos to Gallery →';
+      btn.classList.remove('done');
+      btn.disabled = true;
+    }, 2500);
+  }
+
+  // ── REVIEWS ──
+  function openReviewUpload() {
+    if (!CLOUD_NAME || CLOUD_NAME.includes('%%')) { showToast('⚙️ Cloudinary not configured yet', 'error'); return; }
+    cloudinary.openUploadWidget({
+      cloudName: CLOUD_NAME,
+      uploadPreset: UPLOAD_PRESET,
+      folder: 'reviews',
+      sources: ['local', 'camera'],
+      multiple: true,
+      maxFiles: 10,
+      resourceType: 'image',
+      clientAllowedFormats: ['jpg','jpeg','png','heic','webp'],
+      maxImageFileSize: 20000000,
+      showAdvancedOptions: false,
+      showCompletedButton: true,
+      theme: 'minimal',
+      styles: { palette: { window:'#FFFFFF', windowBorder:'#E5E7EB', tabIcon:'#E07318', menuIcons:'#E07318', textDark:'#111111', textLight:'#FFFFFF', link:'#E07318', action:'#E07318', inactiveTabIcon:'#9CA3AF', error:'#E63946', inProgress:'#E07318', complete:'#2d6a4f', sourceBg:'#F5F5F5' } },
+    }, (error, result) => {
+      if (error) { showToast('Upload failed — try again', 'error'); return; }
+      if (result.event === 'success') { addToRecent(result.info.secure_url, 'review'); showToast('⭐ Review photo uploaded!', 'success'); }
+    });
+  }
+
+  // ── RECENT ──
+  function addToRecent(url, type) {
+    const r = getRecent();
+    r.unshift({ url, type, ts: Date.now() });
+    localStorage.setItem(RECENT_KEY, JSON.stringify(r.slice(0, 15)));
     renderRecent();
   }
-
-  function getRecent() {
-    try { return JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); } catch { return []; }
-  }
-
-  function clearRecent() {
-    localStorage.removeItem(RECENT_KEY);
-    renderRecent();
-  }
-
+  function getRecent() { try { return JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); } catch { return []; } }
+  function clearRecent() { localStorage.removeItem(RECENT_KEY); renderRecent(); }
   function renderRecent() {
     const grid = document.getElementById('recent-grid');
-    const recent = getRecent();
-    if (!recent.length) {
-      grid.innerHTML = '<div class="recent-empty">Photos you upload will appear here</div>';
-      return;
-    }
-    grid.innerHTML = recent.map(item => `
+    const r = getRecent();
+    if (!r.length) { grid.innerHTML = '<div class="recent-empty">Photos you upload appear here</div>'; return; }
+    grid.innerHTML = r.map(item => `
       <div class="recent-item">
-        <img src="${item.url}" alt="Uploaded photo" loading="lazy" />
-        <span class="recent-badge">${item.folder === 'our-work' ? 'Work' : 'Review'}</span>
-      </div>
-    `).join('');
+        <img src="${item.url}" alt="${item.type}" loading="lazy" />
+        <span class="recent-badge">${item.type}</span>
+      </div>`).join('');
   }
 
   // ── TOAST ──
   function showToast(msg, type = '') {
-    const toast = document.getElementById('toast');
-    toast.textContent = msg;
-    toast.className = `toast ${type} show`;
-    setTimeout(() => toast.classList.remove('show'), 3000);
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.className = `toast ${type} show`;
+    setTimeout(() => t.classList.remove('show'), 3000);
   }
 </script>
 </body>
