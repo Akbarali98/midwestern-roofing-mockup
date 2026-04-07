@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boost Curb Appeal &amp; Home Value with Siding and Gutters | MidWestern Construction</title>
+  <meta name="description" content="New siding and gutters deliver strong ROI while protecting your home from Ohio's freeze-thaw cycles. Expert guidance from Midwestern Construction in Akron, OH." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #E07318; --orange-dark: #B85C10; --orange-light: #FEF3EA;
+      --text: #111111; --text-muted: #6B7280; --text-light: #9CA3AF;
+      --bg: #FFFFFF; --bg-alt: #F5F5F5; --bg-dark: #111111;
+      --border: #E5E7EB;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06); --shadow: 0 4px 24px rgba(0,0,0,0.08); --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --radius: 8px; --container: 1240px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; padding: 15px 32px; border-radius: var(--radius); text-decoration: none; border: 2px solid transparent; transition: all 0.2s; cursor: pointer; white-space: nowrap; }
+    .btn-primary { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .btn-primary:hover { background: var(--orange-dark); border-color: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(224,115,24,0.3); }
+    .btn-ghost-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+    .btn-ghost-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.98); border-bottom: 1px solid transparent; transition: border-color 0.3s, box-shadow 0.3s; }
+    nav.scrolled { border-color: var(--border); box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    .nav-inner { max-width: var(--container); margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-mark { width: 42px; height: 42px; background: var(--orange); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-name { font-size: 16px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; line-height: 1.1; }
+    .nav-logo-sub { font-size: 10px; font-weight: 600; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color 0.2s; position: relative; padding-bottom: 2px; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--orange); transform: scaleX(0); transition: transform 0.2s; transform-origin: left; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-actions { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { display: flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 700; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .nav-phone svg { color: var(--orange); }
+    .nav-phone:hover { color: var(--orange); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; border-radius: 2px; }
+    .mobile-menu { display: none; background: #fff; border-top: 1px solid var(--border); padding: 20px 32px 24px; flex-direction: column; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 13px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--orange); }
+    .article-header { padding: 130px 32px 0; }
+    .article-header-inner { max-width: 800px; margin: 0 auto; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
+    .breadcrumb a { font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--orange); }
+    .breadcrumb-sep { color: var(--border); font-size: 13px; }
+    .breadcrumb-cur { font-size: 13px; font-weight: 600; color: var(--text-light); }
+    .cat-badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); background: var(--orange-light); padding: 5px 12px; border-radius: 100px; margin-bottom: 20px; }
+    .article-header h1 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -0.7px; line-height: 1.15; margin-bottom: 20px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .article-meta span { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+    .dot-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+    .article-hero-img { max-width: 1000px; margin: 0 auto; padding: 40px 32px 0; }
+    .article-hero-img img { width: 100%; border-radius: 16px; display: block; max-height: 520px; object-fit: cover; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 56px 32px 80px; }
+    .article-body p { font-size: 17px; color: #374151; line-height: 1.85; margin-bottom: 24px; }
+    .article-body h2 { font-size: clamp(22px, 2.8vw, 30px); font-weight: 800; letter-spacing: -0.3px; color: var(--text); margin-top: 52px; margin-bottom: 18px; border-top: 3px solid var(--orange-light); padding-top: 4px; }
+    .article-body h3 { font-size: 19px; font-weight: 700; color: var(--text); margin-top: 32px; margin-bottom: 12px; }
+    .article-body ul { margin: 8px 0 24px 24px; }
+    .article-body li { font-size: 17px; color: #374151; line-height: 1.8; margin-bottom: 10px; }
+    .article-body li strong { color: var(--text); font-weight: 700; }
+    .pull-quote { background: var(--bg-alt); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; padding: 28px 32px; margin: 36px 0; }
+    .pull-quote p { font-size: 19px; font-weight: 600; color: var(--text); line-height: 1.6; font-style: italic; margin: 0; }
+    /* 3-col stat strip */
+    .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+    .stat-item { background: var(--bg-alt); border-radius: 12px; padding: 28px 24px; text-align: center; border: 1px solid var(--border); }
+    .stat-item .num { font-size: 36px; font-weight: 900; color: var(--orange); line-height: 1; margin-bottom: 8px; }
+    .stat-item .lbl { font-size: 13px; font-weight: 600; color: var(--text-muted); line-height: 1.4; }
+    .cta-box { background: var(--bg-dark); border-radius: 16px; padding: 48px 48px; margin: 60px 0 0; text-align: center; }
+    .cta-box .eyebrow { color: var(--orange); }
+    .cta-box h3 { font-size: clamp(22px, 3vw, 32px); font-weight: 900; color: #fff; letter-spacing: -0.4px; margin-bottom: 14px; }
+    .cta-box p { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 32px; line-height: 1.7; }
+    .cta-box-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .related { padding: 80px 32px 100px; background: var(--bg-alt); }
+    .related-inner { max-width: var(--container); margin: 0 auto; }
+    .related h2 { font-size: 26px; font-weight: 900; margin-bottom: 32px; letter-spacing: -0.3px; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .rel-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.3s, transform 0.3s; }
+    .rel-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .rel-card-img { aspect-ratio: 16/9; overflow: hidden; }
+    .rel-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+    .rel-card:hover .rel-card-img img { transform: scale(1.05); }
+    .rel-card-body { padding: 22px 22px 26px; }
+    .rel-card-body h3 { font-size: 16px; font-weight: 800; line-height: 1.35; margin-top: 10px; }
+    .read-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--orange); text-decoration: none; margin-top: 14px; transition: gap 0.2s; }
+    .read-link:hover { gap: 10px; }
+    footer { background: var(--bg-dark); padding: 80px 32px 36px; }
+    .footer-inner { max-width: var(--container); margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 20px; }
+    .footer-logo-mark { width: 40px; height: 40px; background: var(--orange); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .footer-logo-name { font-size: 15px; font-weight: 800; color: #fff; }
+    .footer-brand p { font-size: 14px; color: #6B7280; line-height: 1.8; margin-bottom: 24px; max-width: 260px; }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: #6B7280; text-decoration: none; font-size: 13px; font-weight: 700; transition: all 0.2s; }
+    .social-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 22px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col ul a { font-size: 14px; color: #6B7280; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 13px; color: #4B5563; }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { font-size: 13px; color: #4B5563; text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--orange); }
+    @media (max-width: 900px) {
+      .nav-links, .nav-phone { display: none; }
+      .hamburger { display: block; }
+      .stat-strip { grid-template-columns: 1fr 1fr; }
+      .related-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: 110px 20px 0; }
+      .article-hero-img { padding: 28px 20px 0; }
+      .article-wrap { padding: 40px 20px 60px; }
+      .stat-strip { grid-template-columns: 1fr; }
+      .cta-box { padding: 36px 24px; }
+      .related { padding: 56px 20px 72px; }
+      .related-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .nav-inner { padding: 0 20px; height: 64px; }
+      .nav-logo-name { font-size: 14px; }
+      .nav-logo-sub { display: none; }
+      .nav-actions .btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">🏠</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">MIDWESTERN</span>
+        <span class="nav-logo-sub">Construction</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#contact">Contact Us</a></li>
+      <li><a href="/#why">About Us</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="gallery.html">Our Work</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:3302031666" class="nav-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (330) 203-1666
+      </a>
+      <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn btn-primary" style="padding:11px 22px;font-size:13px;">Get an Instant Estimate</a>
+    </div>
+    <button class="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#contact">Contact Us</a>
+    <a href="/#why">About Us</a>
+    <a href="/#services">Services</a>
+    <a href="gallery.html">Our Work</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" style="color:var(--orange);">Get an Instant Estimate →</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="blog.html">Blog</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-cur">Siding &amp; Gutters</span>
+    </nav>
+    <span class="cat-badge">Siding &amp; Gutters</span>
+    <h1>Boost Your Curb Appeal and Home Value: The Power of Siding and Gutters</h1>
+    <div class="article-meta">
+      <span>March 28, 2026</span>
+      <div class="dot-sep"></div>
+      <span>5 min read</span>
+      <div class="dot-sep"></div>
+      <span>By Midwestern Construction Team</span>
+    </div>
+  </div>
+</header>
+
+<div class="article-hero-img">
+  <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&q=85&auto=format&fit=crop" alt="Beautiful home with new siding and gutters" />
+</div>
+
+<main class="article-wrap">
+  <div class="article-body">
+
+    <p>When homeowners think about improving their property value, they usually think roofing, kitchens, or bathrooms. But two of the highest-impact exterior upgrades — new siding and properly functioning gutters — are consistently overlooked. For Northeast Ohio homeowners, these aren't just cosmetic choices. They're critical layers of protection against a climate that swings from 90°F summers to brutal lake-effect winters, with everything in between.</p>
+
+    <p>At Midwestern Construction, we've seen firsthand how siding and gutter upgrades transform a home — both visually and structurally. Here's what you need to know.</p>
+
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="num">~80%</div>
+        <div class="lbl">Average ROI on vinyl siding replacement at resale</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">30%</div>
+        <div class="lbl">Reduction in heating and cooling costs with insulated siding</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">$10K+</div>
+        <div class="lbl">Foundation repair costs from chronic gutter failure</div>
+      </div>
+    </div>
+
+    <h2>More Than a Facelift: The Financial Return of New Siding</h2>
+    <p>New siding consistently ranks among the top home improvement projects for return on investment. But beyond resale value, there are three practical reasons Northeast Ohio homeowners choose to upgrade:</p>
+
+    <h3>Enhanced Durability</h3>
+    <p>Ohio's freeze-thaw cycle is relentless. Older wood siding absorbs moisture, expands, contracts, and eventually warps, cracks, or rots. Modern vinyl and fiber-cement composites are engineered to handle this cycle without degrading. They don't absorb moisture, they resist impact, and they won't become a meal for insects or mold.</p>
+
+    <h3>Improved Energy Efficiency</h3>
+    <p>Insulated vinyl siding creates a continuous thermal envelope around your home, dramatically reducing thermal bridging — the heat loss that occurs at studs and seams in older construction. Many homeowners report noticeable reductions in their heating and cooling bills within the first year after installation.</p>
+
+    <h3>Increased Home Value</h3>
+    <p>Curb appeal directly affects perceived value. A home with fresh, well-maintained siding signals to buyers that the property has been cared for — and that there's less deferred maintenance lurking inside. In competitive markets like Akron and the surrounding Summit County communities, that first impression matters.</p>
+
+    <div class="pull-quote">
+      <p>"New siding is one of the few home improvements where the financial return is nearly immediate — both in energy savings and in buyer perception at resale."</p>
+    </div>
+
+    <h2>The Unsung Hero: How Functional Gutters Protect Your Investment</h2>
+    <p>Gutters may be the most underappreciated component of your home's exterior. When they work, you don't think about them. When they fail, the consequences ripple through your entire home:</p>
+    <ul>
+      <li><strong>Foundation damage</strong> — Water pooling against your foundation from overflowing gutters causes erosion, cracking, and basement flooding. Foundation repair in Northeast Ohio can run into the tens of thousands of dollars.</li>
+      <li><strong>Ice dams</strong> — Clogged gutters prevent proper drainage in winter, contributing directly to ice dam formation. (See our ice dam guide for a full breakdown.)</li>
+      <li><strong>Siding and soffit damage</strong> — Water that can't flow through gutters cascades down your siding, rotting the soffit and fascia and eventually working its way inside.</li>
+      <li><strong>Landscape erosion</strong> — Concentrated water flow from overflows eats away at mulch, soil, and plantings around your home's perimeter.</li>
+    </ul>
+    <p>We recommend seamless aluminum gutters for most Northeast Ohio homes — they have fewer joints, which means fewer failure points and less maintenance than sectional gutters. Gutter guards are worth considering if you have mature trees overhead.</p>
+
+    <h2>A Unified System: The Synergy of Siding and Gutters</h2>
+    <p>Your home's exterior functions best as a unified system. New siding that drains properly into well-functioning gutters, that carry water away from a sound foundation — each component supports the others. When one fails, the others are put under stress.</p>
+    <p>When we assess a home for siding, we always inspect the gutter system as part of the same evaluation. Replacing siding while leaving compromised gutters in place is a false economy — the water damage will undo your investment faster than you'd expect.</p>
+    <p>Conversely, a full exterior upgrade — new roof, new siding, new gutters — done at once is often the smartest financial move. Labor overlaps, materials can be coordinated for color and aesthetic consistency, and you get a cohesive finished look that maximizes both curb appeal and resale value.</p>
+
+  </div>
+
+  <div class="cta-box">
+    <span class="eyebrow">Ready to Upgrade Your Exterior?</span>
+    <h3>Get a Free Consultation on Siding &amp; Gutters</h3>
+    <p>We serve Akron, Cleveland, Canton, and 19 Northeast Ohio communities. Contact us today for a no-obligation assessment.</p>
+    <div class="cta-box-btns">
+      <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn btn-primary">Get an Instant Estimate</a>
+      <a href="tel:3302031666" class="btn btn-ghost-white">Call (330) 203-1666</a>
+    </div>
+  </div>
+</main>
+
+<section class="related">
+  <div class="related-inner">
+    <h2>More From the Blog</h2>
+    <div class="related-grid">
+      <a href="blog-roof-installation.html" class="rel-card">
+        <div class="rel-card-img"><img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=600&q=80&auto=format&fit=crop" alt="Roof installation" loading="lazy" /></div>
+        <div class="rel-card-body">
+          <span class="cat-badge">Roofing Process</span>
+          <h3>Your Roof Installation, Demystified: Our Honest, Step-by-Step Process</h3>
+          <span class="read-link">Read Article <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+      <a href="blog-after-storm.html" class="rel-card">
+        <div class="rel-card-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&auto=format&fit=crop" alt="Storm damage" loading="lazy" /></div>
+        <div class="rel-card-body">
+          <span class="cat-badge">Storm Damage</span>
+          <h3>After the Storm: A Homeowner's Guide to Roof Damage and Insurance Claims</h3>
+          <span class="read-link">Read Article <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+      <a href="blog-ice-dams.html" class="rel-card">
+        <div class="rel-card-img"><img src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=600&q=80&auto=format&fit=crop" alt="Ice dams winter" loading="lazy" /></div>
+        <div class="rel-card-body">
+          <span class="cat-badge">Winter Tips</span>
+          <h3>Your Guide to Preventing Ice Dams and Snow Load Damage This Winter</h3>
+          <span class="read-link">Read Article <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-brand-logo"><div class="footer-logo-mark">🏠</div><span class="footer-logo-name">MidWestern Construction</span></a>
+        <p>Northeast Ohio's trusted roofing partner. Licensed, insured, and committed to quality workmanship with honest pricing.</p>
+        <div class="footer-social"><a href="#" class="social-btn" aria-label="Facebook">f</a><a href="#" class="social-btn" aria-label="Google">G</a></div>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="/#services">Roof Installation</a></li><li><a href="/#services">Roof Repairs</a></li><li><a href="/#services">Storm Damage</a></li><li><a href="/#services">Siding</a></li><li><a href="/#services">Gutters</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="/#why">About Us</a></li><li><a href="gallery.html">Our Work</a></li><li><a href="blog.html">Blog</a></li><li><a href="/#areas">Service Areas</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:3302031666">(330) 203-1666</a></li><li><a href="mailto:support@midwestern.construction">support@midwestern.construction</a></li><li><span style="color:#6B7280">Akron, OH 44305</span></li><li><span style="color:#6B7280">Mon–Sun, Open 24/7</span></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 MidWestern Construction. All rights reserved. Licensed &amp; Insured in Ohio.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+</script>
+</body>
+</html>
