@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>After the Storm: Roof Damage &amp; Insurance Claims Guide | MidWestern Construction</title>
+  <meta name="description" content="Learn how to identify storm damage, document it correctly, and navigate the insurance claim process with confidence. Expert guidance from Midwestern Construction." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #E07318; --orange-dark: #B85C10; --orange-light: #FEF3EA; --orange-mid: #FDDFC4;
+      --text: #111111; --text-muted: #6B7280; --text-light: #9CA3AF;
+      --bg: #FFFFFF; --bg-alt: #F5F5F5; --bg-dark: #111111;
+      --border: #E5E7EB;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06); --shadow: 0 4px 24px rgba(0,0,0,0.08); --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --radius: 8px; --container: 1240px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; padding: 15px 32px; border-radius: var(--radius); text-decoration: none; border: 2px solid transparent; transition: all 0.2s; cursor: pointer; white-space: nowrap; }
+    .btn-primary { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .btn-primary:hover { background: var(--orange-dark); border-color: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(224,115,24,0.3); }
+    .btn-ghost-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+    .btn-ghost-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.98); border-bottom: 1px solid transparent; transition: border-color 0.3s, box-shadow 0.3s; }
+    nav.scrolled { border-color: var(--border); box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    .nav-inner { max-width: var(--container); margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-mark { width: 42px; height: 42px; background: var(--orange); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-name { font-size: 16px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; line-height: 1.1; }
+    .nav-logo-sub { font-size: 10px; font-weight: 600; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color 0.2s; position: relative; padding-bottom: 2px; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--orange); transform: scaleX(0); transition: transform 0.2s; transform-origin: left; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-actions { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { display: flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 700; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .nav-phone svg { color: var(--orange); }
+    .nav-phone:hover { color: var(--orange); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; border-radius: 2px; }
+    .mobile-menu { display: none; background: #fff; border-top: 1px solid var(--border); padding: 20px 32px 24px; flex-direction: column; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 13px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--orange); }
+    .article-header { padding: 130px 32px 0; }
+    .article-header-inner { max-width: 800px; margin: 0 auto; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
+    .breadcrumb a { font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--orange); }
+    .breadcrumb-sep { color: var(--border); font-size: 13px; }
+    .breadcrumb-cur { font-size: 13px; font-weight: 600; color: var(--text-light); }
+    .cat-badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); background: var(--orange-light); padding: 5px 12px; border-radius: 100px; margin-bottom: 20px; }
+    .article-header h1 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -0.7px; line-height: 1.15; margin-bottom: 20px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .article-meta span { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+    .dot-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+    .article-hero-img { max-width: 1000px; margin: 0 auto; padding: 40px 32px 0; }
+    .article-hero-img img { width: 100%; border-radius: 16px; display: block; max-height: 520px; object-fit: cover; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 56px 32px 80px; }
+    .article-body p { font-size: 17px; color: #374151; line-height: 1.85; margin-bottom: 24px; }
+    .article-body h2 { font-size: clamp(22px, 2.8vw, 30px); font-weight: 800; letter-spacing: -0.3px; color: var(--text); margin-top: 52px; margin-bottom: 18px; border-top: 3px solid var(--orange-light); padding-top: 4px; }
+    .article-body h3 { font-size: 19px; font-weight: 700; color: var(--text); margin-top: 32px; margin-bottom: 12px; }
+    .article-body ul, .article-body ol { margin: 8px 0 24px 24px; }
+    .article-body li { font-size: 17px; color: #374151; line-height: 1.8; margin-bottom: 10px; }
+    .article-body li strong { color: var(--text); font-weight: 700; }
+    .pull-quote { background: var(--bg-alt); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; padding: 28px 32px; margin: 36px 0; }
+    .pull-quote p { font-size: 19px; font-weight: 600; color: var(--text); line-height: 1.6; font-style: italic; margin: 0; }
+    .cta-box { background: var(--bg-dark); border-radius: 16px; padding: 48px 48px; margin: 60px 0 0; text-align: center; }
+    .cta-box .eyebrow { color: var(--orange); }
+    .cta-box h3 { font-size: clamp(22px, 3vw, 32px); font-weight: 900; color: #fff; letter-spacing: -0.4px; margin-bottom: 14px; }
+    .cta-box p { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 32px; line-height: 1.7; }
+    .cta-box-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .related { padding: 80px 32px 100px; background: var(--bg-alt); }
+    .related-inner { max-width: var(--container); margin: 0 auto; }
+    .related h2 { font-size: 26px; font-weight: 900; margin-bottom: 32px; letter-spacing: -0.3px; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .rel-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.3s, transform 0.3s; }
+    .rel-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .rel-card-img { aspect-ratio: 16/9; overflow: hidden; }
+    .rel-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+    .rel-card:hover .rel-card-img img { transform: scale(1.05); }
+    .rel-card-body { padding: 22px 22px 26px; }
+    .rel-card-body .cat-badge { margin-bottom: 10px; }
+    .rel-card-body h3 { font-size: 16px; font-weight: 800; line-height: 1.35; }
+    .read-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--orange); text-decoration: none; margin-top: 14px; transition: gap 0.2s; }
+    .read-link:hover { gap: 10px; }
+    footer { background: var(--bg-dark); padding: 80px 32px 36px; }
+    .footer-inner { max-width: var(--container); margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 20px; }
+    .footer-logo-mark { width: 40px; height: 40px; background: var(--orange); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .footer-logo-name { font-size: 15px; font-weight: 800; color: #fff; }
+    .footer-brand p { font-size: 14px; color: #6B7280; line-height: 1.8; margin-bottom: 24px; max-width: 260px; }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: #6B7280; text-decoration: none; font-size: 13px; font-weight: 700; transition: all 0.2s; }
+    .social-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 22px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col ul a { font-size: 14px; color: #6B7280; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 13px; color: #4B5563; }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { font-size: 13px; color: #4B5563; text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--orange); }
+    @media (max-width: 900px) {
+      .nav-links, .nav-phone { display: none; }
+      .hamburger { display: block; }
+      .related-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: 110px 20px 0; }
+      .article-hero-img { padding: 28px 20px 0; }
+      .article-wrap { padding: 40px 20px 60px; }
+      .cta-box { padding: 36px 24px; }
+      .related { padding: 56px 20px 72px; }
+      .related-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .nav-inner { padding: 0 20px; height: 64px; }
+      .nav-logo-name { font-size: 14px; }
+      .nav-logo-sub { display: none; }
+      .nav-actions .btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">🏠</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">MIDWESTERN</span>
+        <span class="nav-logo-sub">Construction</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#contact">Contact Us</a></li>
+      <li><a href="/#why">About Us</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="gallery.html">Our Work</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:3302031666" class="nav-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (330) 203-1666
+      </a>
+      <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn btn-primary" style="padding:11px 22px;font-size:13px;">Get an Instant Estimate</a>
+    </div>
+    <button class="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#contact">Contact Us</a>
+    <a href="/#why">About Us</a>
+    <a href="/#services">Services</a>
+    <a href="gallery.html">Our Work</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" style="color:var(--orange);">Get an Instant Estimate →</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="blog.html">Blog</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-cur">Storm Damage</span>
+    </nav>
+    <span class="cat-badge">Storm Damage</span>
+    <h1>After the Storm: A Homeowner's Guide to Roof Damage and Insurance Claims</h1>
+    <div class="article-meta">
+      <span>March 28, 2026</span>
+      <div class="dot-sep"></div>
+      <span>5 min read</span>
+      <div class="dot-sep"></div>
+      <span>By Midwestern Construction Team</span>
+    </div>
+  </div>
+</header>
+
+<div class="article-hero-img">
+  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=85&auto=format&fit=crop" alt="Roofers assessing storm damage" />
+</div>
+
+<main class="article-wrap">
+  <div class="article-body">
+
+    <p>Northeast Ohio's weather doesn't pull punches. One afternoon you're enjoying a blue sky, and by evening a line of severe thunderstorms or a hail-dropping system has rolled through Akron and left homeowners wondering what just happened to their roofs. At Midwestern Construction, we're a family-owned company built on honesty and integrity — and part of that means being a steady hand when things are stressful. Here's what to do after a storm, step by step.</p>
+
+    <h2>How to Spot Potential Storm Damage From the Ground</h2>
+    <p>Before you call anyone, take a few minutes to do a safe ground-level inspection. You don't need to get on the roof yourself — in fact, we'd prefer you didn't. Here's what to look for from the yard and gutter line:</p>
+    <ul>
+      <li><strong>Missing or damaged shingles</strong> — Look for visible gaps, lifted edges, cracked sections, or shingles that have slid out of place.</li>
+      <li><strong>Granule loss</strong> — Check your gutters and downspout splash zones. A significant amount of dark, sand-like granules is a sign that hail or wind has scoured your shingles.</li>
+      <li><strong>Dents and dings on metal</strong> — Gutters, flashing, and vents are good hail indicators. If your aluminum gutters have circular dents, your shingles likely took a beating too.</li>
+      <li><strong>Fallen branches or debris</strong> — Even if a branch didn't punch through, impact can crack decking or crack shingles in ways not visible from the ground.</li>
+      <li><strong>Interior signs</strong> — Water stains on ceilings or walls after a storm mean water is already getting in somewhere.</li>
+    </ul>
+
+    <div class="pull-quote">
+      <p>"If you're not sure whether you have damage, call us for a free inspection. The worst outcome of calling is peace of mind. The worst outcome of not calling is a small leak becoming a major structural problem."</p>
+    </div>
+
+    <h2>Your First Steps: What to Do Immediately After a Storm</h2>
+    <p>Time matters after storm damage, both for your home's protection and for your insurance claim. Here's the order of operations:</p>
+    <ol>
+      <li><strong>Document everything before anything moves.</strong> Use your phone to photograph and video your roof from the ground, your gutters, any visible interior damage, and your yard. Date and timestamp everything. This documentation is critical for your insurance claim.</li>
+      <li><strong>Prevent further damage safely.</strong> If you have an active leak, use buckets to collect water and place towels to protect flooring. Do not attempt to tarp your roof yourself — wet roofs during or after storms are extremely dangerous. We can handle emergency tarping.</li>
+      <li><strong>Call a trusted local roofer before your insurance company.</strong> We know this sounds counterintuitive, but here's why: a professional assessment from a contractor you trust gives you an independent picture of the damage before an insurance adjuster — who works for the insurance company — does their evaluation. This protects you.</li>
+    </ol>
+
+    <h2>Navigating the Insurance Claim Process with Confidence</h2>
+    <p>Once you have a professional assessment in hand, you're ready to file your claim. Here's what to expect:</p>
+    <h3>Filing the Claim</h3>
+    <p>Contact your homeowner's insurance carrier and file a claim for storm damage. They'll assign an adjuster to inspect your property. Ask for a specific appointment time and request that your contractor be present during the adjuster's visit — a good contractor will know what the adjuster is looking for and can make sure nothing is missed.</p>
+    <h3>The Adjuster Visit</h3>
+    <p>Your adjuster will assess the damage and determine whether it meets your deductible threshold and policy terms. Having your roofing contractor present as an advocate is one of the most valuable things you can do. We've seen legitimate damage overlooked because no one was there to point it out.</p>
+    <h3>Understanding Your Settlement</h3>
+    <p>Your insurance company will issue a scope of loss document and a check for the actual cash value (ACV) of repairs, minus your deductible. If your policy includes replacement cost value (RCV) coverage, a second check is typically issued after the work is completed. Read every line and ask questions — we're happy to help you interpret the paperwork.</p>
+
+    <h2>Don't Forget Your Gutters</h2>
+    <p>Hail and windblown debris are hard on gutters. Dented or separated gutters can't channel water away from your foundation properly, leading to basement flooding, foundation erosion, and — in winter — ice dams that push water back under your shingles. Make sure any comprehensive storm damage assessment includes a full gutter inspection.</p>
+
+  </div>
+
+  <div class="cta-box">
+    <span class="eyebrow">Storm Damage? We're Ready.</span>
+    <h3>Get Your Free Inspection Scheduled Today</h3>
+    <p>We serve Akron and all of Northeast Ohio. Our team can typically schedule an inspection within 24–48 hours of a storm event.</p>
+    <div class="cta-box-btns">
+      <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn btn-primary">Get an Instant Estimate</a>
+      <a href="tel:3302031666" class="btn btn-ghost-white">Call (330) 203-1666</a>
+    </div>
+  </div>
+</main>
+
+<section class="related">
+  <div class="related-inner">
+    <h2>More From the Blog</h2>
+    <div class="related-grid">
+      <a href="blog-roof-installation.html" class="rel-card">
+        <div class="rel-card-img"><img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=600&q=80&auto=format&fit=crop" alt="Roof installation" loading="lazy" /></div>
+        <div class="rel-card-body">
+          <span class="cat-badge">Roofing Process</span>
+          <h3>Your Roof Installation, Demystified: Our Honest, Step-by-Step Process</h3>
+          <span class="read-link">Read Article <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+      <a href="blog-siding-gutters.html" class="rel-card">
+        <div class="rel-card-img"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80&auto=format&fit=crop" alt="Siding and gutters" loading="lazy" /></div>
+        <div class="rel-card-body">
+          <span class="cat-badge">Siding &amp; Gutters</span>
+          <h3>Boost Your Curb Appeal and Home Value: The Power of Siding and Gutters</h3>
+          <span class="read-link">Read Article <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+      <a href="blog-ice-dams.html" class="rel-card">
+        <div class="rel-card-img"><img src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=600&q=80&auto=format&fit=crop" alt="Ice dams winter roof" loading="lazy" /></div>
+        <div class="rel-card-body">
+          <span class="cat-badge">Winter Tips</span>
+          <h3>Your Guide to Preventing Ice Dams and Snow Load Damage This Winter</h3>
+          <span class="read-link">Read Article <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-brand-logo"><div class="footer-logo-mark">🏠</div><span class="footer-logo-name">MidWestern Construction</span></a>
+        <p>Northeast Ohio's trusted roofing partner. Licensed, insured, and committed to quality workmanship with honest pricing.</p>
+        <div class="footer-social"><a href="#" class="social-btn" aria-label="Facebook">f</a><a href="#" class="social-btn" aria-label="Google">G</a></div>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="/#services">Roof Installation</a></li><li><a href="/#services">Roof Repairs</a></li><li><a href="/#services">Storm Damage</a></li><li><a href="/#services">Siding</a></li><li><a href="/#services">Gutters</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="/#why">About Us</a></li><li><a href="gallery.html">Our Work</a></li><li><a href="blog.html">Blog</a></li><li><a href="/#areas">Service Areas</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:3302031666">(330) 203-1666</a></li><li><a href="mailto:support@midwestern.construction">support@midwestern.construction</a></li><li><span style="color:#6B7280">Akron, OH 44305</span></li><li><span style="color:#6B7280">Mon–Sun, Open 24/7</span></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 MidWestern Construction. All rights reserved. Licensed &amp; Insured in Ohio.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+</script>
+</body>
+</html>
