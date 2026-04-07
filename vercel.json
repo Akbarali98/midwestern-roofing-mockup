@@ -6,6 +6,11 @@
   },
   "routes": [
     { "src": "/upload", "dest": "/upload.html" },
+    { "src": "/blog", "dest": "/blog.html" },
+    { "src": "/blog/your-roof-installation-demystified-our-honest-step-by-step-process", "dest": "/blog-roof-installation.html" },
+    { "src": "/blog/after-the-storm-a-homeowners-guide-to-roof-damage-and-insurance-claims", "dest": "/blog-after-storm.html" },
+    { "src": "/blog/boost-your-curb-appeal-and-home-value-the-power-of-siding-and-gutters", "dest": "/blog-siding-gutters.html" },
+    { "src": "/blog/your-guide-to-preventing-ice-dams-and-snow-load-damage-this-winter", "dest": "/blog-ice-dams.html" },
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
