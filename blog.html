@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | MidWestern Construction — Akron Roofing &amp; Home Care</title>
+  <meta name="description" content="Expert roofing tips, storm damage guides, and seasonal home care advice for Northeast Ohio homeowners. From Midwestern Construction, Akron's trusted roofer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #E07318; --orange-dark: #B85C10; --orange-light: #FEF3EA; --orange-mid: #FDDFC4;
+      --text: #111111; --text-muted: #6B7280; --text-light: #9CA3AF;
+      --bg: #FFFFFF; --bg-alt: #F5F5F5; --bg-dark: #111111;
+      --border: #E5E7EB;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06); --shadow: 0 4px 24px rgba(0,0,0,0.08); --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --radius: 8px; --container: 1240px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* UTILITY */
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    h1, h2, h3, h4 { font-family: 'DM Sans', sans-serif; line-height: 1.15; }
+    .section-title { font-size: clamp(30px,4vw,52px); font-weight: 900; color: var(--text); letter-spacing: -0.5px; }
+    .section-title span { color: var(--orange); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.2px; padding: 15px 32px; border-radius: var(--radius); text-decoration: none; border: 2px solid transparent; transition: all 0.2s; cursor: pointer; white-space: nowrap; }
+    .btn-primary { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .btn-primary:hover { background: var(--orange-dark); border-color: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(224,115,24,0.3); }
+    .btn-outline { background: transparent; color: var(--orange); border-color: var(--orange); }
+    .btn-outline:hover { background: var(--orange); color: #fff; transform: translateY(-1px); }
+    .btn-ghost-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+    .btn-ghost-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.98); border-bottom: 1px solid transparent; transition: border-color 0.3s, box-shadow 0.3s; }
+    nav.scrolled { border-color: var(--border); box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    .nav-inner { max-width: var(--container); margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-mark { width: 42px; height: 42px; background: var(--orange); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-name { font-size: 16px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; line-height: 1.1; }
+    .nav-logo-sub { font-size: 10px; font-weight: 600; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color 0.2s; position: relative; padding-bottom: 2px; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--orange); transform: scaleX(0); transition: transform 0.2s; transform-origin: left; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-actions { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { display: flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 700; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .nav-phone svg { color: var(--orange); }
+    .nav-phone:hover { color: var(--orange); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; border-radius: 2px; transition: all 0.3s; }
+
+    /* PAGE HERO */
+    .page-hero { background: var(--bg-dark); padding: 140px 32px 80px; text-align: center; }
+    .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 24px; }
+    .breadcrumb a { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--orange); }
+    .breadcrumb-sep { color: rgba(255,255,255,0.25); font-size: 13px; }
+    .breadcrumb-cur { font-size: 13px; font-weight: 600; color: var(--orange); }
+    .page-hero .eyebrow { color: var(--orange); }
+    .page-hero h1 { font-size: clamp(32px,5vw,60px); font-weight: 900; color: #fff; letter-spacing: -1px; line-height: 1.1; margin-bottom: 20px; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .page-hero p { font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.8; max-width: 620px; margin: 0 auto; }
+
+    /* BLOG GRID */
+    .blog-section { padding: 80px 32px 100px; }
+    .blog-inner { max-width: var(--container); margin: 0 auto; }
+
+    /* Featured card */
+    .featured-card { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 0; background: #fff; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 40px; box-shadow: var(--shadow); transition: box-shadow 0.3s, transform 0.3s; text-decoration: none; color: inherit; }
+    .featured-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .featured-card-img { aspect-ratio: 16/10; overflow: hidden; }
+    .featured-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+    .featured-card:hover .featured-card-img img { transform: scale(1.03); }
+    .featured-card-body { padding: 52px 48px; display: flex; flex-direction: column; justify-content: center; }
+    .cat-badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); background: var(--orange-light); padding: 5px 12px; border-radius: 100px; margin-bottom: 20px; width: fit-content; }
+    .featured-card-body h2 { font-size: clamp(22px,2.5vw,32px); font-weight: 900; letter-spacing: -0.4px; margin-bottom: 16px; line-height: 1.2; }
+    .featured-card-body p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 28px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .article-meta span { font-size: 13px; font-weight: 600; color: var(--text-light); }
+    .article-meta .dot-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+    .read-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--orange); text-decoration: none; letter-spacing: 0.3px; transition: gap 0.2s; }
+    .read-link:hover { gap: 12px; }
+    .read-link svg { transition: transform 0.2s; }
+    .read-link:hover svg { transform: translateX(3px); }
+
+    /* 3-card grid */
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .blog-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.3s, transform 0.3s; display: flex; flex-direction: column; }
+    .blog-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .blog-card-img { aspect-ratio: 16/9; overflow: hidden; }
+    .blog-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .blog-card:hover .blog-card-img img { transform: scale(1.04); }
+    .blog-card-body { padding: 28px 28px 32px; display: flex; flex-direction: column; flex: 1; }
+    .blog-card-body h3 { font-size: 18px; font-weight: 800; letter-spacing: -0.2px; margin-bottom: 12px; line-height: 1.3; flex: 1; }
+    .blog-card-body p { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 20px; }
+    .blog-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+
+    /* CTA STRIP */
+    .cta-strip { background: var(--orange); padding: 80px 32px; text-align: center; }
+    .cta-strip h2 { font-size: clamp(26px,3.5vw,44px); font-weight: 900; color: #fff; letter-spacing: -0.5px; margin-bottom: 14px; }
+    .cta-strip p { font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 36px; }
+    .cta-strip-btns { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-white { background: #fff; color: var(--text); border: 2px solid #fff; }
+    .btn-white:hover { background: var(--orange-dark); color: #fff; border-color: var(--orange-dark); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer { background: var(--bg-dark); padding: 80px 32px 36px; }
+    .footer-inner { max-width: var(--container); margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 20px; }
+    .footer-logo-mark { width: 40px; height: 40px; background: var(--orange); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .footer-logo-name { font-size: 15px; font-weight: 800; color: #fff; }
+    .footer-brand p { font-size: 14px; color: #6B7280; line-height: 1.8; margin-bottom: 24px; max-width: 260px; }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: #6B7280; text-decoration: none; font-size: 13px; font-weight: 700; transition: all 0.2s; }
+    .social-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 22px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col ul a { font-size: 14px; color: #6B7280; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 13px; color: #4B5563; }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { font-size: 13px; color: #4B5563; text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--orange); }
+
+    /* MOBILE */
+    .mobile-menu { display: none; background: #fff; border-top: 1px solid var(--border); padding: 20px 32px 24px; flex-direction: column; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 13px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--orange); }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-phone { display: none; }
+      .hamburger { display: block; }
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-card-img { aspect-ratio: 16/9; }
+      .featured-card-body { padding: 32px 28px; }
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+    @media (max-width: 600px) {
+      .page-hero { padding: 120px 20px 60px; }
+      .blog-section { padding: 52px 20px 72px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .nav-inner { padding: 0 20px; height: 64px; }
+      .nav-logo-name { font-size: 14px; }
+      .nav-logo-sub { display: none; }
+      .nav-actions .btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">🏠</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">MIDWESTERN</span>
+        <span class="nav-logo-sub">Construction</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#contact">Contact Us</a></li>
+      <li><a href="/#why">About Us</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="gallery.html">Our Work</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:3302031666" class="nav-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (330) 203-1666
+      </a>
+      <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn btn-primary" style="padding:11px 22px;font-size:13px;">Get an Instant Estimate</a>
+    </div>
+    <button class="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#contact">Contact Us</a>
+    <a href="/#why">About Us</a>
+    <a href="/#services">Services</a>
+    <a href="gallery.html">Our Work</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" style="color:var(--orange);">Get an Instant Estimate →</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-cur">Blog</span>
+  </div>
+  <span class="eyebrow">Expert Insights</span>
+  <h1>Your Guide to Akron Roofing &amp; Home Care</h1>
+  <p>Trusted advice from Northeast Ohio's roofing experts — covering everything from storm damage and insurance claims to seasonal maintenance and curb appeal upgrades.</p>
+</section>
+
+<!-- BLOG POSTS -->
+<section class="blog-section">
+  <div class="blog-inner">
+
+    <!-- Featured Article -->
+    <a href="blog-roof-installation.html" class="featured-card reveal">
+      <div class="featured-card-img">
+        <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=900&q=85&auto=format&fit=crop" alt="Roof installation process" loading="lazy" />
+      </div>
+      <div class="featured-card-body">
+        <span class="cat-badge">Roofing Process</span>
+        <div class="article-meta">
+          <span>March 28, 2026</span>
+          <div class="dot-sep"></div>
+          <span>6 min read</span>
+        </div>
+        <h2>Your Roof Installation, Demystified: Our Honest, Step-by-Step Process</h2>
+        <p>A roof replacement is one of the biggest investments you'll make as a homeowner. We walk you through every step — from free inspection and material selection all the way to final walk-through and warranty — with complete transparency.</p>
+        <span class="read-link">
+          Read Article
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- 3-Card Grid -->
+    <div class="blog-grid">
+
+      <a href="blog-after-storm.html" class="blog-card reveal">
+        <div class="blog-card-img">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&auto=format&fit=crop" alt="Storm damage roof inspection" loading="lazy" />
+        </div>
+        <div class="blog-card-body">
+          <span class="cat-badge">Storm Damage</span>
+          <div class="article-meta" style="margin-bottom:12px;">
+            <span>March 28, 2026</span>
+            <div class="dot-sep"></div>
+            <span>5 min read</span>
+          </div>
+          <h3>After the Storm: A Homeowner's Guide to Roof Damage and Insurance Claims</h3>
+          <p>Northeast Ohio weather is unpredictable. Learn how to spot damage, document it correctly, and navigate the insurance claim process with confidence.</p>
+          <div class="blog-card-footer">
+            <span class="read-link">
+              Read Article
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-siding-gutters.html" class="blog-card reveal">
+        <div class="blog-card-img">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80&auto=format&fit=crop" alt="New siding and gutters on home" loading="lazy" />
+        </div>
+        <div class="blog-card-body">
+          <span class="cat-badge">Siding &amp; Gutters</span>
+          <div class="article-meta" style="margin-bottom:12px;">
+            <span>March 28, 2026</span>
+            <div class="dot-sep"></div>
+            <span>5 min read</span>
+          </div>
+          <h3>Boost Your Curb Appeal and Home Value: The Power of Siding and Gutters</h3>
+          <p>Often overlooked, new siding and gutters deliver strong ROI while shielding your home from Ohio's freeze-thaw cycles and heavy rainfall.</p>
+          <div class="blog-card-footer">
+            <span class="read-link">
+              Read Article
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-ice-dams.html" class="blog-card reveal">
+        <div class="blog-card-img">
+          <img src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=600&q=80&auto=format&fit=crop" alt="Ice dam prevention winter roof" loading="lazy" />
+        </div>
+        <div class="blog-card-body">
+          <span class="cat-badge">Winter Tips</span>
+          <div class="article-meta" style="margin-bottom:12px;">
+            <span>March 28, 2026</span>
+            <div class="dot-sep"></div>
+            <span>5 min read</span>
+          </div>
+          <h3>Your Guide to Preventing Ice Dams and Snow Load Damage This Winter</h3>
+          <p>Northeast Ohio winters are brutal. Discover how ice dams form, what snow load can do to your roof, and the proactive steps that protect your home.</p>
+          <div class="blog-card-footer">
+            <span class="read-link">
+              Read Article
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <h2>Have Roofing Questions?</h2>
+  <p>Our team is available 24/7. Get your free, no-obligation inspection today.</p>
+  <div class="cta-strip-btns">
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn btn-white">Get an Instant Estimate</a>
+    <a href="tel:3302031666" class="btn btn-ghost-white">Call (330) 203-1666</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-brand-logo">
+          <div class="footer-logo-mark">🏠</div>
+          <span class="footer-logo-name">MidWestern Construction</span>
+        </a>
+        <p>Northeast Ohio's trusted roofing partner. Licensed, insured, and committed to quality workmanship with honest pricing.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="Google">G</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="/#services">Roof Installation</a></li>
+          <li><a href="/#services">Roof Repairs</a></li>
+          <li><a href="/#services">Storm Damage</a></li>
+          <li><a href="/#services">Siding</a></li>
+          <li><a href="/#services">Gutters</a></li>
+          <li><a href="/#services">Home Renovations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="/#why">About Us</a></li>
+          <li><a href="gallery.html">Our Work</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="/#areas">Service Areas</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:3302031666">(330) 203-1666</a></li>
+          <li><a href="mailto:support@midwestern.construction">support@midwestern.construction</a></li>
+          <li><a href="/#areas">Akron, OH 44305</a></li>
+          <li><a href="/#contact">Mon–Sun, Open 24/7</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 MidWestern Construction. All rights reserved. Licensed &amp; Insured in Ohio.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  const obs = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  }), { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Stagger blog cards
+  document.querySelectorAll('.blog-card').forEach((c, i) => c.style.transitionDelay = `${i * 0.1}s`);
+</script>
+</body>
+</html>
