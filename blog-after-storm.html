@@ -201,7 +201,7 @@
 </header>
 
 <div class="article-hero-img">
-  <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&q=85&auto=format&fit=crop" alt="Roofers assessing storm damage" />
+  <img id="article-hero-img" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&q=85&auto=format&fit=crop" alt="Roofers assessing storm damage" />
 </div>
 
 <main class="article-wrap">
@@ -315,6 +315,21 @@
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+</script>
+<script>
+  (function() {
+    var PROJECT = 'ot1ams1m', DATASET = 'production', SLUG = 'after-storm';
+    var q = encodeURIComponent('*[_type=="blogPost"&&slug.current=="'+SLUG+'"][0]{heroImage{asset->{url}}}');
+    fetch('https://'+PROJECT+'.api.sanity.io/v2021-10-21/data/query/'+DATASET+'?query='+q)
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var img = d && d.result && d.result.heroImage && d.result.heroImage.asset && d.result.heroImage.asset.url;
+        if (img) {
+          var el = document.getElementById('article-hero-img');
+          if (el) { el.style.opacity='0'; el.onload=function(){el.style.opacity='1';el.style.transition='opacity 0.3s';}; el.src=img; }
+        }
+      }).catch(function(){});
+  })();
 </script>
 </body>
 </html>
