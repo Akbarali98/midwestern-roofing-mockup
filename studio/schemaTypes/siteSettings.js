@@ -33,6 +33,13 @@ export default defineType({
       type: 'string',
       description: 'Shown in the contact section',
     }),
+    defineField({
+      name: 'logo',
+      title: 'Logo Image',
+      type: 'image',
+      description: 'Upload your logo. Displayed in the nav and footer. Recommended: square PNG with transparent background.',
+      options: {hotspot: true},
+    }),
   ],
   preview: {
     select: { title: 'companyName' },
