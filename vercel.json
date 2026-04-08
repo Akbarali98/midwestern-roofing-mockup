@@ -2,7 +2,8 @@
   "version": 2,
   "functions": {
     "api/gallery.js": { "memory": 512, "maxDuration": 10 },
-    "api/auth.js":    { "memory": 128, "maxDuration": 5 }
+    "api/auth.js":    { "memory": 128, "maxDuration": 5 },
+    "api/content.js": { "memory": 128, "maxDuration": 5 }
   },
   "routes": [
     { "src": "/upload", "dest": "/upload.html" },
@@ -11,6 +12,12 @@
     { "src": "/blog/after-the-storm-a-homeowners-guide-to-roof-damage-and-insurance-claims", "dest": "/blog-after-storm.html" },
     { "src": "/blog/boost-your-curb-appeal-and-home-value-the-power-of-siding-and-gutters", "dest": "/blog-siding-gutters.html" },
     { "src": "/blog/your-guide-to-preventing-ice-dams-and-snow-load-damage-this-winter", "dest": "/blog-ice-dams.html" },
+    { "src": "/services/roof-installation", "dest": "/service-roof-installation.html" },
+    { "src": "/services/roof-repairs", "dest": "/service-roof-repairs.html" },
+    { "src": "/services/siding", "dest": "/service-siding.html" },
+    { "src": "/services/storm-damage-repairs", "dest": "/service-storm-damage.html" },
+    { "src": "/services/gutters", "dest": "/service-gutters.html" },
+    { "src": "/services/home-renovations", "dest": "/service-home-renovations.html" },
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
