@@ -225,7 +225,7 @@
 
 <!-- HERO IMAGE -->
 <div class="article-hero-img">
-  <img id="article-hero-img" src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=1200&q=85&auto=format&fit=crop" alt="Roofing installation in progress" />
+  <img id="article-hero-img" src="https://cdn.sanity.io/images/ot1ams1m/production/65b83eb02014fd9aff1d8633f2d2029597b9ddbb-1432x960.jpg" alt="Roofing installation in progress" />
 </div>
 
 <!-- ARTICLE BODY -->
@@ -392,14 +392,12 @@
           var url = post.heroImage && post.heroImage.asset && post.heroImage.asset.url;
           if (!url) return;
           var s = post.slug && post.slug.current;
-          // Update hero if this post matches current page
           if (s === SLUG) {
             var hero = document.getElementById('article-hero-img');
-            if (hero) { hero.style.opacity='0'; hero.onload=function(){hero.style.opacity='1';hero.style.transition='opacity 0.3s';}; hero.src=url; }
+            if (hero) hero.src = url;
           }
-          // Update related card images
           var rel = document.getElementById('rel-img-'+s);
-          if (rel) { rel.src=url; }
+          if (rel) rel.src = url;
         });
       }).catch(function(){});
   })();
