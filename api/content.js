@@ -12,7 +12,8 @@ module.exports = async (req, res) => {
 
   const query = `{
     "settings": *[_type == "siteSettings"][0] {
-      companyName, phone, email, address
+      companyName, phone, email, address,
+      "logoUrl": logo.asset->url
     },
     "home": *[_type == "homePage"][0] {
       heroEyebrow, heroHeadline, heroHeadlineAccent, heroSubheadline,
