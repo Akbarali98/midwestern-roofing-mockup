@@ -585,11 +585,7 @@
 <nav id="navbar">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      <div class="nav-logo-mark" id="nav-logo-mark">🏠<img id="nav-logo-img" src="" alt="Logo" style="display:none;width:100%;height:100%;object-fit:contain;border-radius:var(--radius);" /></div>
-      <div class="nav-logo-text">
-        <span class="nav-logo-name" id="nav-logo-name">MIDWESTERN</span>
-        <span class="nav-logo-sub">Construction</span>
-      </div>
+      <img id="nav-logo-img" src="https://cdn.agencyengine.ai/logos/mr_2zeb0krpfhwqzk/logo_d1fd6ed6c7bb.2xs.png" alt="MidWestern Construction" style="height:48px;width:auto;display:block;object-fit:contain;" />
     </a>
     <ul class="nav-links">
       <li><a href="#contact">Contact Us</a></li>
@@ -1091,16 +1087,9 @@
         setPhone(settings.phone);
         setEmail(settings.email);
         setText('contact-address', settings.address);
-        if (settings.companyName) setText('nav-logo-name', settings.companyName);
         if (settings.logoUrl) {
           const logoImg = document.getElementById('nav-logo-img');
-          const logoMark = document.getElementById('nav-logo-mark');
-          if (logoImg && logoMark) {
-            logoImg.src = settings.logoUrl;
-            logoImg.style.display = 'block';
-            logoMark.textContent = '';
-            logoMark.appendChild(logoImg);
-          }
+          if (logoImg) logoImg.src = settings.logoUrl;
         }
       }
 
