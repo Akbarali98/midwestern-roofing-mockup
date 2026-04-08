@@ -8,6 +8,7 @@
   <meta property="og:title" content="MidWestern Construction | Top-Rated Roofing in Northeast Ohio" />
   <meta property="og:description" content="Your trusted roofing partner in Northeast Ohio. Free inspections, honest pricing, lifetime warranty." />
   <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="https://cdn.agencyengine.ai/logos/mr_2zeb0krpfhwqzk/logo_d1fd6ed6c7bb.2xs.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet" />
@@ -132,6 +133,33 @@
     .mobile-menu a { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 13px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
     .mobile-menu a:last-child { border-bottom: none; }
     .mobile-menu a:hover { color: var(--orange); }
+
+    /* ── MOBILE CTA BAR ── */
+    .mobile-cta-bar { display: none; }
+    @media (max-width: 768px) {
+      .mobile-cta-bar {
+        display: block;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        padding: 10px 20px 12px;
+      }
+      .mobile-cta-phone {
+        display: flex; align-items: center; justify-content: center;
+        gap: 7px; font-size: 16px; font-weight: 800;
+        color: var(--text); text-decoration: none;
+        margin-bottom: 10px; transition: color 0.2s;
+      }
+      .mobile-cta-phone svg { color: var(--orange); }
+      .mobile-cta-phone:hover { color: var(--orange); }
+      .mobile-cta-btn {
+        display: block; width: 100%; text-align: center;
+        background: var(--orange); color: #fff;
+        font-family: 'DM Sans', sans-serif; font-weight: 800;
+        font-size: 15px; padding: 14px; border-radius: var(--radius);
+        text-decoration: none; transition: background 0.2s;
+      }
+      .mobile-cta-btn:hover { background: var(--orange-dark); }
+    }
 
     /* ── HERO ── */
     .hero {
@@ -605,13 +633,19 @@
     <button class="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#contact">Contact Us</a>
-    <a href="#why">About Us</a>
-    <a href="#services">Services</a>
+    <a href="#contact" onclick="closeMenu()">Contact Us</a>
+    <a href="#why" onclick="closeMenu()">About Us</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
     <a href="gallery.html">Our Work</a>
     <a href="blog.html">Blog</a>
-    <a href="#areas">Service Areas</a>
-    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" style="color:var(--orange);">Get an Instant Estimate →</a>
+    <a href="#areas" onclick="closeMenu()">Service Areas</a>
+  </div>
+  <div class="mobile-cta-bar">
+    <a href="tel:3302031666" class="mobile-cta-phone">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      (330) 203-1666
+    </a>
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="mobile-cta-btn">Get My Free Estimate</a>
   </div>
 </nav>
 
@@ -1022,6 +1056,7 @@
 
   // Mobile menu
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 
   // Reveal
   const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.1 });
