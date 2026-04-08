@@ -1164,14 +1164,21 @@
       }
 
       // Services
-      const ESTIMATE_URL = 'https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question';
+      const SERVICE_SLUGS = {
+        'Roof Installation':    '/services/roof-installation',
+        'Roof Repairs':         '/services/roof-repairs',
+        'Siding':               '/services/siding',
+        'Storm Damage Repairs': '/services/storm-damage-repairs',
+        'Gutters':              '/services/gutters',
+        'Home Renovations':     '/services/home-renovations',
+      };
       if (home.services && home.services.length) {
         document.getElementById('services-grid').innerHTML = home.services.map(s => `
           <div class="service-card reveal">
             <div class="service-num">${s.number || ''}</div>
             <h3>${s.title || ''}</h3>
             <p>${s.description || ''}</p>
-            <a href="${ESTIMATE_URL}" target="_blank" rel="noopener" class="service-arrow">Get a Free Quote →</a>
+            <a href="${SERVICE_SLUGS[s.title] || '/services/roof-installation'}" class="service-arrow">Learn More →</a>
           </div>`).join('');
         document.querySelectorAll('#services-grid .service-card').forEach((c, i) => { c.style.transitionDelay = `${i * 0.07}s`; obs.observe(c); });
       }
