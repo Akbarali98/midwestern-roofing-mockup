@@ -113,7 +113,7 @@
     .footer-bottom-links a { font-size: 13px; color: #4B5563; text-decoration: none; transition: color 0.2s; }
     .footer-bottom-links a:hover { color: var(--orange); }
     @media (max-width: 900px) {
-      .nav-links, .nav-phone { display: none; }
+      .nav-links { display: none; }
       .hamburger { display: block; }
       .related-grid { grid-template-columns: 1fr 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
@@ -132,6 +132,24 @@
       .nav-logo-sub { display: none; }
       .nav-actions .btn { display: none; }
     }
+  
+    /* ── MOBILE NAV (single bar) ── */
+    .mobile-cta-bar { display: none !important; }
+    .mobile-menu-cta {
+      display: block; margin-top: 8px;
+      background: var(--orange); color: #fff !important;
+      text-align: center; border-radius: var(--radius);
+      padding: 14px 0 !important; border-bottom: none !important;
+      font-size: 13px !important; letter-spacing: 1px;
+    }
+    .mobile-menu-cta:hover { background: var(--orange-dark) !important; }
+    @media (max-width: 768px) {
+      .nav-inner { height: 64px; padding: 0 16px; }
+      .nav-links { display: none; }
+      .nav-actions .btn { display: none; }
+      .nav-phone { display: flex !important; font-size: 13px; gap: 5px; }
+      .hamburger { display: block; }
+    }
   </style>
 </head>
 <body>
@@ -139,11 +157,7 @@
 <nav id="navbar">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      <div class="nav-logo-mark">🏠</div>
-      <div class="nav-logo-text">
-        <span class="nav-logo-name">MIDWESTERN</span>
-        <span class="nav-logo-sub">Construction</span>
-      </div>
+      <img src="https://cdn.agencyengine.ai/logos/mr_2zeb0krpfhwqzk/logo_d1fd6ed6c7bb.2xs.png" alt="MidWestern Construction" style="height:48px;width:auto;display:block;object-fit:contain;" />
     </a>
     <ul class="nav-links">
       <li><a href="/#contact">Contact Us</a></li>
@@ -168,6 +182,7 @@
     <a href="gallery.html">Our Work</a>
     <a href="blog.html">Blog</a>
     <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" style="color:var(--orange);">Get an Instant Estimate →</a>
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="mobile-menu-cta">Get My Free Estimate →</a>
   </div>
 </nav>
 
