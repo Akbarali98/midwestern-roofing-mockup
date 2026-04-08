@@ -54,7 +54,6 @@
     .mobile-menu a { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 13px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
     .mobile-menu a:last-child { border-bottom: none; }
     .mobile-menu a:hover { color: var(--orange); }
-    .mobile-cta-bar { display: none; }
 
     /* PAGE HERO */
     .page-hero { padding: 120px 32px 80px; background: var(--bg-dark); text-align: center; }
@@ -134,14 +133,11 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .nav-links, .nav-phone { display: none; }
+      .nav-links { display: none; }
       .nav-actions .btn { display: none; }
       .hamburger { display: block; }
       .nav-inner { height: 64px; padding: 0 20px; }
-      .mobile-cta-bar { display: block; background: #fff; border-top: 1px solid var(--border); padding: 10px 20px 12px; }
-      .mobile-cta-phone { display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 16px; font-weight: 800; color: var(--text); text-decoration: none; margin-bottom: 10px; }
       .mobile-cta-phone svg { color: var(--orange); }
-      .mobile-cta-btn { display: block; width: 100%; text-align: center; background: var(--orange); color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 800; font-size: 15px; padding: 14px; border-radius: var(--radius); text-decoration: none; }
       .benefits { padding: 64px 20px; }
       .benefits-grid { grid-template-columns: 1fr; }
       .process { padding: 64px 20px; }
@@ -162,6 +158,24 @@
     }
     @media (max-width: 480px) {
       .process-steps { grid-template-columns: 1fr; }
+    }
+  
+    /* ── MOBILE NAV (single bar) ── */
+    .mobile-cta-bar { display: none !important; }
+    .mobile-menu-cta {
+      display: block; margin-top: 8px;
+      background: var(--orange); color: #fff !important;
+      text-align: center; border-radius: var(--radius);
+      padding: 14px 0 !important; border-bottom: none !important;
+      font-size: 13px !important; letter-spacing: 1px;
+    }
+    .mobile-menu-cta:hover { background: var(--orange-dark) !important; }
+    @media (max-width: 768px) {
+      .nav-inner { height: 64px; padding: 0 16px; }
+      .nav-links { display: none; }
+      .nav-actions .btn { display: none; }
+      .nav-phone { display: flex !important; font-size: 13px; gap: 5px; }
+      .hamburger { display: block; }
     }
   </style>
 </head>
@@ -197,13 +211,7 @@
     <a href="gallery.html">Our Work</a>
     <a href="blog.html">Blog</a>
     <a href="/#areas" onclick="closeMenu()">Service Areas</a>
-  </div>
-  <div class="mobile-cta-bar">
-    <a href="tel:3302031666" class="mobile-cta-phone">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      (330) 203-1666
-    </a>
-    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="mobile-cta-btn">Get My Free Estimate</a>
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="mobile-menu-cta">Get My Free Estimate →</a>
   </div>
 </nav>
 
