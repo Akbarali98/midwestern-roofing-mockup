@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | MidWestern Construction</title>
+  <meta name="description" content="Privacy Policy for MidWestern Construction. Learn how we collect, use, and protect your information." />
+  <link rel="icon" type="image/png" href="https://cdn.agencyengine.ai/logos/mr_2zeb0krpfhwqzk/logo_d1fd6ed6c7bb.2xs.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #E07318; --orange-dark: #B85C10; --orange-light: #FEF3EA;
+      --text: #111111; --text-muted: #6B7280; --text-light: #9CA3AF;
+      --bg: #FFFFFF; --bg-alt: #F5F5F5; --bg-dark: #111111;
+      --border: #E5E7EB; --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --radius: 8px; --container: 1240px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; padding: 15px 32px; border-radius: var(--radius); text-decoration: none; border: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+    .btn-primary { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--border); box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+    .nav-inner { max-width: var(--container); margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .nav-phone { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .nav-phone svg { color: var(--orange); }
+    .nav-phone:hover { color: var(--orange); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; border-radius: 2px; }
+    .mobile-menu { display: none; background: #fff; border-top: 1px solid var(--border); padding: 20px 32px 24px; flex-direction: column; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 13px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--orange); }
+    .mobile-menu-cta { display: block; margin-top: 8px; background: var(--orange); color: #fff !important; text-align: center; border-radius: var(--radius); padding: 14px 0 !important; border-bottom: none !important; font-size: 13px !important; }
+    .mobile-menu-cta:hover { background: var(--orange-dark) !important; }
+
+    /* PAGE HERO */
+    .page-hero { padding: 120px 32px 64px; background: var(--bg-dark); }
+    .page-hero-inner { max-width: 800px; margin: 0 auto; }
+    .page-hero h1 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; color: #fff; letter-spacing: -0.7px; line-height: 1.15; margin-bottom: 12px; }
+    .page-hero p { font-size: 15px; color: #6B7280; }
+
+    /* CONTENT */
+    .policy-body { max-width: 800px; margin: 0 auto; padding: 64px 32px 100px; }
+    .policy-body h2 { font-size: 22px; font-weight: 800; color: var(--text); margin-top: 48px; margin-bottom: 14px; letter-spacing: -0.2px; border-top: 2px solid var(--orange-light); padding-top: 36px; }
+    .policy-body h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .policy-body p { font-size: 16px; color: #374151; line-height: 1.85; margin-bottom: 16px; }
+    .policy-body ul { margin: 8px 0 16px 24px; }
+    .policy-body li { font-size: 16px; color: #374151; line-height: 1.8; margin-bottom: 8px; }
+    .policy-body strong { color: var(--text); font-weight: 700; }
+    .policy-body a { color: var(--orange); text-decoration: none; }
+    .policy-body a:hover { text-decoration: underline; }
+    .last-updated { display: inline-block; font-size: 13px; font-weight: 600; color: var(--text-muted); background: var(--bg-alt); border: 1px solid var(--border); border-radius: 100px; padding: 4px 14px; margin-bottom: 40px; }
+
+    /* FOOTER */
+    footer { background: var(--bg-dark); padding: 36px 32px; border-top: 1px solid rgba(255,255,255,0.07); }
+    .footer-bottom { max-width: var(--container); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { display: flex; align-items: center; text-decoration: none; }
+    .footer-copy { font-size: 13px; color: #4B5563; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: #4B5563; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--orange); }
+
+    /* MOBILE NAV (single bar) */
+    .mobile-cta-bar { display: none !important; }
+    @media (max-width: 768px) {
+      .nav-inner { height: 64px; padding: 0 16px; }
+      .nav-links { display: none; }
+      .nav-actions .btn { display: none; }
+      .nav-phone { display: flex !important; font-size: 13px; gap: 5px; }
+      .hamburger { display: block; }
+      .page-hero { padding: 100px 20px 48px; }
+      .policy-body { padding: 48px 20px 80px; }
+      footer { padding: 28px 20px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="https://cdn.agencyengine.ai/logos/mr_2zeb0krpfhwqzk/logo_d1fd6ed6c7bb.2xs.png" alt="MidWestern Construction" style="height:48px;width:auto;display:block;object-fit:contain;" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#contact">Contact Us</a></li>
+      <li><a href="/#why">About Us</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="gallery.html">Our Work</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="/#areas">Service Areas</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:3302031666" class="nav-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (330) 203-1666
+      </a>
+      <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn btn-primary" style="padding:11px 22px;font-size:13px;">Get an Instant Estimate</a>
+    </div>
+    <button class="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#contact" onclick="closeMenu()">Contact Us</a>
+    <a href="/#why" onclick="closeMenu()">About Us</a>
+    <a href="/#services" onclick="closeMenu()">Services</a>
+    <a href="gallery.html">Our Work</a>
+    <a href="blog.html">Blog</a>
+    <a href="/#areas" onclick="closeMenu()">Service Areas</a>
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="mobile-menu-cta">Get My Free Estimate →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: June 18, 2025</p>
+  </div>
+</div>
+
+<div class="policy-body">
+  <span class="last-updated">Last Updated: June 18, 2025</span>
+
+  <h2>Introduction</h2>
+  <p>This Privacy Policy outlines Midwestern Construction's practices with respect to information collected from users who access our website at <a href="https://midwestern.construction">midwestern.construction</a> ("the Site"). By using the Site, you consent to the data practices described in this policy.</p>
+
+  <h2>Grounds for Data Collection</h2>
+  <p>We process personal information to fulfill our contractual obligations to you, to protect our legitimate business interests, and to comply with applicable legal requirements. By using our Site, you consent to our collection and use of your information as described here.</p>
+
+  <h2>Types of Information We Collect</h2>
+  <p><strong>Non-Personal Information:</strong> We collect aggregated usage data and technical information including browser type, operating system, language preferences, and activity tracking such as pages viewed, clicks, and actions taken on the Site.</p>
+  <p><strong>Personal Information:</strong> We may collect the following personal information:</p>
+  <ul>
+    <li><strong>Device Information:</strong> Geolocation data, IP address, and unique device identifiers</li>
+    <li><strong>Registration Information:</strong> Full name, email address, and physical address when voluntarily submitted</li>
+  </ul>
+
+  <h2>Information Sources</h2>
+  <p>Data is collected from:</p>
+  <ul>
+    <li>Voluntary submissions by users (contact forms, estimate requests)</li>
+    <li>Site usage and browsing behavior</li>
+    <li>Third-party providers including analytics vendors</li>
+  </ul>
+
+  <h2>How We Use Your Information</h2>
+  <p>We use collected information for the following purposes:</p>
+  <ul>
+    <li>Communications and service updates</li>
+    <li>Responding to estimate requests and inquiries</li>
+    <li>Marketing and promotional materials (with opt-out available)</li>
+    <li>Statistical analysis to improve our services</li>
+  </ul>
+  <p>Information may be shared with subsidiaries, affiliated companies, and trusted third parties for hosting, service delivery, marketing, and analytics purposes.</p>
+
+  <h2>Disclosure of Information</h2>
+  <p>We may disclose your information when required to comply with applicable law, enforce our policies, prevent fraud, defend legal claims, or protect the safety and rights of our users and the public.</p>
+
+  <h2>Your Rights</h2>
+  <p>You may request confirmation of how we process your data, access copies of your information, rectification of inaccurate data, erasure of your data, or restrictions on processing. These rights are not absolute and may be subject to our legitimate interests. To exercise your rights, contact us at <a href="mailto:support@midwestern.construction">support@midwestern.construction</a> or call <a href="tel:3302031666">(330) 203-1666</a>.</p>
+
+  <h2>Data Retention</h2>
+  <p>We retain your data for as long as necessary to provide our services and comply with legal obligations. We may correct or remove incomplete or inaccurate information at any time.</p>
+
+  <h2>Cookies</h2>
+  <p>Our Site uses session cookies, persistent cookies, and third-party cookies. Google tracking tools may collect usage data in accordance with Google's terms of service and privacy policy. You can control cookie settings through your browser preferences.</p>
+
+  <h2>Third-Party Information Collection</h2>
+  <p>This policy does not cover the practices of third-party websites or services linked from our Site. We encourage you to review the privacy policies of any third-party services you use.</p>
+
+  <h2>Data Security</h2>
+  <p>We take great care in implementing and maintaining the security of the Site and your information. However, no internet transmission is completely secure, and we cannot guarantee absolute security of data transmitted to or from the Site.</p>
+
+  <h2>EEA Data Transfers</h2>
+  <p>Data may be transferred outside the European Economic Area only to jurisdictions with adequate protection or with appropriate legal safeguards in place.</p>
+
+  <h2>Marketing Communications</h2>
+  <p>You may receive promotional materials from us. You can unsubscribe from marketing lists at any time while continuing to receive necessary administrative communications.</p>
+
+  <h2>Corporate Transactions</h2>
+  <p>In the event of a merger, acquisition, or asset sale, your information may be transferred to the acquiring entity, which will be obligated to honor this Privacy Policy.</p>
+
+  <h2>Minors</h2>
+  <p>This Site is not designed for children. If you are a minor, parental or guardian consent is required to use this Site. We do not knowingly collect personal information from children under 13.</p>
+
+  <h2>Policy Updates</h2>
+  <p>We may update this Privacy Policy from time to time. Material changes take effect immediately upon display on the Site. Continued use of the Site constitutes acceptance of any updated policy.</p>
+
+  <h2>Contact Us</h2>
+  <p>If you have questions about this Privacy Policy or how we handle your data, please contact us:</p>
+  <ul>
+    <li>Email: <a href="mailto:support@midwestern.construction">support@midwestern.construction</a></li>
+    <li>Phone: <a href="tel:3302031666">(330) 203-1666</a></li>
+    <li>Address: Akron, OH 44305</li>
+  </ul>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <a href="/" class="footer-logo">
+      <img src="https://cdn.agencyengine.ai/logos/mr_2zeb0krpfhwqzk/logo_d1fd6ed6c7bb.2xs.png" alt="MidWestern Construction" style="height:40px;width:auto;display:block;object-fit:contain;" />
+    </a>
+    <span class="footer-copy">© 2026 MidWestern Construction. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="/">Back to Home</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+</script>
+</body>
+</html>
