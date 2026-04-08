@@ -234,7 +234,7 @@
     <!-- Featured Article -->
     <a href="blog-roof-installation.html" class="featured-card reveal">
       <div class="featured-card-img">
-        <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=900&q=85&auto=format&fit=crop" alt="Roof installation process" loading="lazy" />
+        <img id="blog-img-roof-installation" src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=900&q=85&auto=format&fit=crop" alt="Roof installation process" loading="lazy" />
       </div>
       <div class="featured-card-body">
         <span class="cat-badge">Roofing Process</span>
@@ -257,7 +257,7 @@
 
       <a href="blog-after-storm.html" class="blog-card reveal">
         <div class="blog-card-img">
-          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80&auto=format&fit=crop" alt="Storm damage roof inspection" loading="lazy" />
+          <img id="blog-img-after-storm" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80&auto=format&fit=crop" alt="Storm damage roof inspection" loading="lazy" />
         </div>
         <div class="blog-card-body">
           <span class="cat-badge">Storm Damage</span>
@@ -279,7 +279,7 @@
 
       <a href="blog-siding-gutters.html" class="blog-card reveal">
         <div class="blog-card-img">
-          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80&auto=format&fit=crop" alt="New siding and gutters on home" loading="lazy" />
+          <img id="blog-img-siding-gutters" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80&auto=format&fit=crop" alt="New siding and gutters on home" loading="lazy" />
         </div>
         <div class="blog-card-body">
           <span class="cat-badge">Siding &amp; Gutters</span>
@@ -301,7 +301,7 @@
 
       <a href="blog-ice-dams.html" class="blog-card reveal">
         <div class="blog-card-img">
-          <img src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=600&q=80&auto=format&fit=crop" alt="Ice dam prevention winter roof" loading="lazy" />
+          <img id="blog-img-ice-dams" src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=600&q=80&auto=format&fit=crop" alt="Ice dam prevention winter roof" loading="lazy" />
         </div>
         <div class="blog-card-body">
           <span class="cat-badge">Winter Tips</span>
@@ -403,6 +403,24 @@
 
   // Stagger blog cards
   document.querySelectorAll('.blog-card').forEach((c, i) => c.style.transitionDelay = `${i * 0.1}s`);
+</script>
+<script>
+  (function() {
+    var PROJECT = 'ot1ams1m', DATASET = 'production';
+    var q = encodeURIComponent('*[_type=="blogPost"]{slug,heroImage{asset->{url}}}');
+    fetch('https://'+PROJECT+'.api.sanity.io/v2021-10-21/data/query/'+DATASET+'?query='+q)
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if (!d || !d.result) return;
+        d.result.forEach(function(post) {
+          var imgUrl = post.heroImage && post.heroImage.asset && post.heroImage.asset.url;
+          if (!imgUrl) return;
+          var slug = post.slug && post.slug.current;
+          var el = document.getElementById('blog-img-' + slug);
+          if (el) { el.style.opacity='0'; el.onload=function(){el.style.opacity='1';el.style.transition='opacity 0.3s';}; el.src=imgUrl; }
+        });
+      }).catch(function(){});
+  })();
 </script>
 </body>
 </html>
