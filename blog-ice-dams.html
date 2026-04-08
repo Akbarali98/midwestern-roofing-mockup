@@ -346,14 +346,12 @@
           var url = post.heroImage && post.heroImage.asset && post.heroImage.asset.url;
           if (!url) return;
           var s = post.slug && post.slug.current;
-          // Update hero if this post matches current page
           if (s === SLUG) {
             var hero = document.getElementById('article-hero-img');
-            if (hero) { hero.style.opacity='0'; hero.onload=function(){hero.style.opacity='1';hero.style.transition='opacity 0.3s';}; hero.src=url; }
+            if (hero) hero.src = url;
           }
-          // Update related card images
           var rel = document.getElementById('rel-img-'+s);
-          if (rel) { rel.src=url; }
+          if (rel) rel.src = url;
         });
       }).catch(function(){});
   })();
