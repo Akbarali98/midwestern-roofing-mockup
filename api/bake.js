@@ -4,12 +4,25 @@
 
 const https = require('https');
 
-const PROJECT_ID = 'ot1ams1m';
-const DATASET    = 'production';
-const REPO       = 'Akbarali98/midwestern-roofing-mockup';
-const GH_TOKEN   = process.env.GH_TOKEN; // set in Vercel env vars
+const PROJECT_ID   = 'ot1ams1m';
+const DATASET      = 'production';
+const REPO         = 'Akbarali98/midwestern-roofing-mockup';
+const GH_TOKEN     = process.env.GH_TOKEN;
+const DEPLOY_HOOK  = 'https://api.vercel.com/v1/integrations/deploy/prj_qrqkKRvXL80JY5N1rAITYzkJJwll/tWN4ioLZAR';
 
 // ── helpers ──────────────────────────────────────────────────────────────────
+function triggerDeploy() {
+  return new Promise((resolve) => {
+    const u = new URL(DEPLOY_HOOK);
+    const req = https.request({ hostname: u.hostname, path: u.pathname, method: 'GET' }, res => {
+      res.on('data', () => {});
+      res.on('end', () => { console.log('Deploy hook fired:', res.statusCode); resolve(); });
+    });
+    req.on('error', e => { console.error('Deploy hook error:', e); resolve(); });
+    req.end();
+  });
+}
+
 function httpsGet(url) {
   return new Promise((resolve, reject) => {
     https.get(url, { headers: { 'User-Agent': 'midwestern-bake/1.0' } }, res => {
@@ -90,45 +103,40 @@ async function bake() {
     let changed = false;
 
     if (imgs[slug]) {
-      const updated = html.replace(
-        /(<img id="article-hero-img" src=")[^"]+(")/,
+      html = html.replace(
+        /(<img id="article-hero-img" src=")[^"]*(")/,
         `$1${imgs[slug]}$2`
       );
-      if (updated !== html) { html = updated; changed = true; }
     }
     for (const rslug of related) {
       if (imgs[rslug]) {
-        const updated = html.replace(
-          new RegExp(`(<img id="rel-img-${rslug}" src=")[^"]+(")`, 'g'),
+        html = html.replace(
+          new RegExp(`(<img id="rel-img-${rslug}" src=")[^"]*(")`,'g'),
           `$1${imgs[rslug]}$2`
         );
-        if (updated !== html) { html = updated; changed = true; }
       }
     }
-    if (changed) {
-      await pushFile(fname, html, `[sanity-bake] Update images in ${fname}`);
-      results.push(fname);
-    }
+    await pushFile(fname, html, `[sanity-bake] Update images in ${fname}`);
+    results.push(fname);
   }
 
   // blog.html listing
   const blogRes = await githubRequest('GET', 'blog.html');
   if (blogRes.status === 200) {
     let html = Buffer.from(blogRes.body.content, 'base64').toString('utf-8');
-    let changed = false;
     for (const [slug, url] of Object.entries(imgs)) {
       if (!url) continue;
-      const updated = html.replace(
-        new RegExp(`(<img id="blog-img-${slug}" src=")[^"]+(")`, 'g'),
+      html = html.replace(
+        new RegExp(`(<img id="blog-img-${slug}" src=")[^"]*(")`,'g'),
         `$1${url}$2`
       );
-      if (updated !== html) { html = updated; changed = true; }
     }
-    if (changed) {
-      await pushFile('blog.html', html, '[sanity-bake] Update blog listing images');
-      results.push('blog.html');
-    }
+    await pushFile('blog.html', html, '[sanity-bake] Update blog listing images');
+    results.push('blog.html');
   }
+
+  // Trigger Vercel redeploy so changes go live immediately
+  await triggerDeploy();
 
   return results;
 }
