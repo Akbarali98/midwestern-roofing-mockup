@@ -336,27 +336,5 @@
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 </script>
-<script>
-  (function() {
-    var PROJECT = 'ot1ams1m', DATASET = 'production', SLUG = 'siding-gutters';
-    var q = encodeURIComponent('*[_type=="blogPost"]{slug,heroImage{asset->{url}}}');
-    fetch('https://'+PROJECT+'.api.sanity.io/v2021-10-21/data/query/'+DATASET+'?query='+q)
-      .then(function(r){return r.json();})
-      .then(function(d){
-        if (!d || !d.result) return;
-        d.result.forEach(function(post) {
-          var url = post.heroImage && post.heroImage.asset && post.heroImage.asset.url;
-          if (!url) return;
-          var s = post.slug && post.slug.current;
-          if (s === SLUG) {
-            var hero = document.getElementById('article-hero-img');
-            if (hero) hero.src = url;
-          }
-          var rel = document.getElementById('rel-img-'+s);
-          if (rel) rel.src = url;
-        });
-      }).catch(function(){});
-  })();
-</script>
 </body>
 </html>
