@@ -9,6 +9,14 @@
   "crons": [
     { "path": "/api/bake", "schedule": "0 * * * *" }
   ],
+  "headers": [
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    }
+  ],
   "routes": [
     { "src": "/upload", "dest": "/upload.html" },
     { "src": "/blog", "dest": "/blog.html" },
