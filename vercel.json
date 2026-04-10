@@ -6,9 +6,6 @@
     "api/content.js": { "memory": 128, "maxDuration": 5 },
     "api/bake.js":    { "memory": 256, "maxDuration": 30 }
   },
-  "crons": [
-    { "path": "/api/bake", "schedule": "0 * * * *" }
-  ],
   "headers": [
     {
       "source": "/(.*)\\.html",
