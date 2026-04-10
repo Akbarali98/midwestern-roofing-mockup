@@ -28,6 +28,7 @@
     { "src": "/services/gutters", "dest": "/service-gutters.html" },
     { "src": "/services/home-renovations", "dest": "/service-home-renovations.html" },
     { "src": "/privacy-policy", "dest": "/privacy-policy.html" },
+    { "src": "/service-areas", "dest": "/service-areas.html" },
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
