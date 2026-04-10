@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Areas | MidWestern Construction</title>
+  <meta name="description" content="MidWestern Construction serves 19 communities across Northeast Ohio. Akron, Cleveland, Canton, Medina, and more." />
+  <link rel="icon" type="image/png" href="https://cdn.agencyengine.ai/logos/mr_2zeb0krpfhwqzk/logo_d1fd6ed6c7bb.2xs.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #E07318; --orange-dark: #B85C10; --orange-light: #FEF3EA;
+      --text: #111111; --text-muted: #6B7280;
+      --bg: #FFFFFF; --bg-alt: #F9FAFB; --bg-dark: #111111;
+      --border: #E5E7EB; --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --radius: 8px; --container: 1240px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--border); box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+    .nav-inner { max-width: var(--container); margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .nav-phone { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700; color: var(--text); text-decoration: none; }
+    .nav-phone svg { color: var(--orange); }
+    .nav-phone:hover { color: var(--orange); }
+    .btn { display: inline-flex; align-items: center; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 13px; padding: 11px 22px; border-radius: var(--radius); text-decoration: none; border: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+    .btn-primary { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .btn-primary:hover { background: var(--orange-dark); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; border-radius: 2px; }
+    .mobile-menu { display: none; background: #fff; border-top: 1px solid var(--border); padding: 20px 32px 24px; flex-direction: column; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 13px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--orange); }
+    .mobile-menu-cta { display: block; margin-top: 8px; background: var(--orange); color: #fff !important; text-align: center; border-radius: var(--radius); padding: 14px 0 !important; border-bottom: none !important; font-size: 13px !important; letter-spacing: 1px; }
+    .mobile-menu-cta:hover { background: var(--orange-dark) !important; }
+
+    /* ── PAGE HERO ── */
+    .page-hero { padding: 120px 32px 56px; background: var(--bg-dark); text-align: center; }
+    .page-hero .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); display: block; margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 900; color: #fff; letter-spacing: -1px; margin-bottom: 16px; }
+    .page-hero p { font-size: 17px; color: #9CA3AF; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── MAP SECTION ── */
+    .map-section { display: grid; grid-template-columns: 380px 1fr; min-height: calc(100vh - 76px); }
+
+    /* Left panel */
+    .areas-panel { border-right: 1px solid var(--border); overflow-y: auto; max-height: calc(100vh - 76px); position: sticky; top: 76px; }
+    .areas-panel-header { padding: 28px 28px 16px; border-bottom: 1px solid var(--border); }
+    .areas-panel-header h2 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+    .areas-panel-header p { font-size: 13px; color: var(--text-muted); }
+    .area-item { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; text-decoration: none; color: var(--text); }
+    .area-item:hover { background: var(--bg-alt); }
+    .area-item.active { background: var(--orange-light); border-left: 3px solid var(--orange); }
+    .area-item.active .area-name { color: var(--orange); }
+    .area-left { display: flex; align-items: center; gap: 14px; }
+    .area-dot { width: 10px; height: 10px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+    .area-item.active .area-dot { background: var(--orange); box-shadow: 0 0 0 3px var(--orange-light); }
+    .area-name { font-size: 15px; font-weight: 700; }
+    .area-state { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .area-arrow { color: var(--text-muted); font-size: 18px; transition: transform 0.2s; }
+    .area-item:hover .area-arrow, .area-item.active .area-arrow { transform: translateX(3px); color: var(--orange); }
+
+    /* Right map */
+    .map-container { position: sticky; top: 76px; height: calc(100vh - 76px); }
+    #map { width: 100%; height: 100%; }
+
+    /* Custom marker */
+    .custom-marker { background: var(--orange); border: 3px solid #fff; border-radius: 50%; width: 16px; height: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .custom-marker.active-marker { background: var(--orange-dark); width: 22px; height: 22px; }
+
+    /* Leaflet popup custom style */
+    .leaflet-popup-content-wrapper { border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); border: none; padding: 0; overflow: hidden; }
+    .leaflet-popup-content { margin: 0; }
+    .popup-inner { padding: 16px 20px; }
+    .popup-inner h3 { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .popup-inner p { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+    .popup-inner a { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; background: var(--orange); color: #fff; text-decoration: none; padding: 7px 14px; border-radius: 6px; display: inline-block; }
+    .leaflet-popup-tip { background: #fff; }
+
+    /* CTA strip */
+    .cta-strip { background: var(--orange); padding: 56px 32px; text-align: center; }
+    .cta-strip h2 { font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+    .cta-strip p { font-size: 16px; color: rgba(255,255,255,0.85); margin-bottom: 28px; }
+    .cta-strip-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: #fff; color: var(--orange); font-weight: 700; padding: 14px 32px; border-radius: var(--radius); text-decoration: none; font-size: 15px; transition: all 0.2s; }
+    .btn-white:hover { background: #f3f4f6; }
+    .btn-outline-white { border: 2px solid rgba(255,255,255,0.6); color: #fff; font-weight: 700; padding: 12px 28px; border-radius: var(--radius); text-decoration: none; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.2s; }
+    .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+    /* Footer */
+    footer { background: var(--bg-dark); }
+    .footer-bottom-simple { max-width: var(--container); margin: 0 auto; padding: 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { display: flex; align-items: center; text-decoration: none; }
+    .footer-copy { font-size: 13px; color: #4B5563; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: #4B5563; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--orange); }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .map-section { grid-template-columns: 1fr; }
+      .areas-panel { position: static; max-height: 380px; border-right: none; border-bottom: 1px solid var(--border); }
+      .map-container { position: static; height: 420px; }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { height: 64px; padding: 0 16px; }
+      .nav-links { display: none; }
+      .nav-actions .btn { display: none; }
+      .nav-phone { display: flex !important; font-size: 13px; gap: 5px; }
+      .hamburger { display: block; }
+      .footer-bottom-simple { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="https://cdn.agencyengine.ai/logos/mr_2zeb0krpfhwqzk/logo_d1fd6ed6c7bb.2xs.png" alt="MidWestern Construction" style="height:48px;width:auto;display:block;object-fit:contain;" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#contact">Contact Us</a></li>
+      <li><a href="/#why">About Us</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="gallery.html">Our Work</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="service-areas.html" class="active">Service Areas</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:3302031666" class="nav-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-1.37 1.9 19.86 19.86 0 01-8.55-3.04 19.6 19.6 0 01-6-6 19.86 19.86 0 01-3.04-8.6A2 2 0 014.92 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.91 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (330) 203-1666
+      </a>
+      <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn btn-primary">Get an Instant Estimate</a>
+    </div>
+    <button class="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#contact" onclick="closeMenu()">Contact Us</a>
+    <a href="/#why" onclick="closeMenu()">About Us</a>
+    <a href="/#services" onclick="closeMenu()">Services</a>
+    <a href="gallery.html">Our Work</a>
+    <a href="blog.html">Blog</a>
+    <a href="service-areas.html">Service Areas</a>
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="mobile-menu-cta">Get My Free Estimate →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <span class="eyebrow">Where We Work</span>
+  <h1>Serving Northeast Ohio</h1>
+  <p>From Akron to Cleveland, we serve 19 communities across Northeast Ohio with top-rated roofing and exterior services.</p>
+</div>
+
+<div class="map-section">
+  <!-- Left: city list -->
+  <div class="areas-panel" id="areas-panel">
+    <div class="areas-panel-header">
+      <h2>19 Service Areas</h2>
+      <p>Click any city to view it on the map</p>
+    </div>
+    <!-- Cities injected by JS -->
+  </div>
+
+  <!-- Right: map -->
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+</div>
+
+<div class="cta-strip">
+  <h2>Not Sure If We Cover Your Area?</h2>
+  <p>Call us — we'll let you know right away and get you a free estimate.</p>
+  <div class="cta-strip-btns">
+    <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn-white">Get an Instant Estimate</a>
+    <a href="tel:3302031666" class="btn-outline-white">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-1.37 1.9 19.86 19.86 0 01-8.55-3.04 19.6 19.6 0 01-6-6 19.86 19.86 0 01-3.04-8.6A2 2 0 014.92 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.91 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call (330) 203-1666
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom-simple">
+    <a href="/" class="footer-logo">
+      <img src="https://cdn.agencyengine.ai/logos/mr_2zeb0krpfhwqzk/logo_d1fd6ed6c7bb.2xs.png" alt="MidWestern Construction" style="height:40px;width:auto;object-fit:contain;" />
+    </a>
+    <span class="footer-copy">© 2026 MidWestern Construction. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/">Back to Home</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const AREAS = [
+    { name: 'Akron',          state: 'OH 44305', lat: 41.0814, lng: -81.5190 },
+    { name: 'Cleveland',      state: 'OH 44101', lat: 41.4993, lng: -81.6944 },
+    { name: 'Canton',         state: 'OH 44702', lat: 40.7989, lng: -81.3784 },
+    { name: 'Cuyahoga Falls', state: 'OH 44221', lat: 41.1334, lng: -81.4846 },
+    { name: 'Medina',         state: 'OH 44256', lat: 41.1384, lng: -81.8638 },
+    { name: 'Youngstown',     state: 'OH 44501', lat: 41.0998, lng: -80.6495 },
+    { name: 'Massillon',      state: 'OH 44646', lat: 40.7967, lng: -81.5215 },
+    { name: 'Kent',           state: 'OH 44240', lat: 41.1534, lng: -81.3579 },
+    { name: 'Hudson',         state: 'OH 44236', lat: 41.2400, lng: -81.4407 },
+    { name: 'Westlake',       state: 'OH 44145', lat: 41.4553, lng: -81.9179 },
+    { name: 'Wooster',        state: 'OH 44691', lat: 40.8051, lng: -81.9346 },
+    { name: 'Brunswick',      state: 'OH 44212', lat: 41.2381, lng: -81.8418 },
+    { name: 'Twinsburg',      state: 'OH 44087', lat: 41.3120, lng: -81.4401 },
+    { name: 'Alliance',       state: 'OH 44601', lat: 40.9153, lng: -81.1051 },
+    { name: 'Green',          state: 'OH 44232', lat: 40.9459, lng: -81.4729 },
+    { name: 'Aurora',         state: 'OH 44202', lat: 41.3145, lng: -81.3457 },
+    { name: 'Ravenna',        state: 'OH 44266', lat: 41.1578, lng: -81.2424 },
+    { name: 'Lake Milton',    state: 'OH 44429', lat: 41.1009, lng: -80.9773 },
+    { name: 'Brecksville',    state: 'OH 44141', lat: 41.3145, lng: -81.6268 },
+  ];
+
+  // Init map centered on Northeast Ohio
+  const map = L.map('map', { zoomControl: true, scrollWheelZoom: true })
+    .setView([41.05, -81.5], 9);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap © CARTO',
+    subdomains: 'abcd', maxZoom: 19
+  }).addTo(map);
+
+  // Custom icon factory
+  function makeIcon(active) {
+    return L.divIcon({
+      className: '',
+      html: `<div style="width:${active?18:13}px;height:${active?18:13}px;background:#E07318;border:2.5px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.25);transition:all 0.2s;"></div>`,
+      iconSize: [active?18:13, active?18:13],
+      iconAnchor: [active?9:6.5, active?9:6.5],
+    });
+  }
+
+  let activeIndex = null;
+  const markers = [];
+  const listItems = [];
+
+  // Build city list + markers
+  const panel = document.getElementById('areas-panel');
+  const ESTIMATE_URL = 'https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question';
+
+  AREAS.forEach((area, i) => {
+    // List item
+    const item = document.createElement('div');
+    item.className = 'area-item';
+    item.innerHTML = `
+      <div class="area-left">
+        <div class="area-dot"></div>
+        <div>
+          <div class="area-name">${area.name}</div>
+          <div class="area-state">${area.state}</div>
+        </div>
+      </div>
+      <span class="area-arrow">›</span>`;
+    item.addEventListener('click', () => selectArea(i));
+    panel.appendChild(item);
+    listItems.push(item);
+
+    // Marker
+    const marker = L.marker([area.lat, area.lng], { icon: makeIcon(false) })
+      .addTo(map)
+      .bindPopup(`
+        <div class="popup-inner">
+          <h3>${area.name}, Ohio</h3>
+          <p>MidWestern Construction serves the ${area.name} area with expert roofing, siding, and gutter services.</p>
+          <a href="${ESTIMATE_URL}" target="_blank" rel="noopener">Get Free Estimate →</a>
+        </div>`, { maxWidth: 240, offset: [0, -6] });
+    marker.on('click', () => selectArea(i));
+    markers.push(marker);
+  });
+
+  function selectArea(i) {
+    // Reset previous
+    if (activeIndex !== null) {
+      listItems[activeIndex].classList.remove('active');
+      markers[activeIndex].setIcon(makeIcon(false));
+    }
+    // Set new active
+    activeIndex = i;
+    listItems[i].classList.add('active');
+    listItems[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    markers[i].setIcon(makeIcon(true));
+    map.flyTo([AREAS[i].lat, AREAS[i].lng], 12, { duration: 0.8 });
+    markers[i].openPopup();
+  }
+
+  // Select Akron by default
+  selectArea(0);
+
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+</script>
+</body>
+</html>
