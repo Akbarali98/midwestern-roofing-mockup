@@ -429,29 +429,26 @@
     .contact-item-text a, .contact-item-text p { font-size: 16px; font-weight: 700; color: var(--text); text-decoration: none; transition: color 0.2s; }
     .contact-item-text a:hover { color: var(--orange); }
 
-    .roofr-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 16px; padding: 52px; }
-    .roofr-card h3 { font-size: 26px; font-weight: 900; letter-spacing: -0.4px; margin-bottom: 8px; }
-    .roofr-card .sub { font-size: 15px; color: var(--text-muted); margin-bottom: 36px; line-height: 1.7; }
-    .roofr-main {
-      background: #fff; border: 1.5px solid var(--border); border-radius: 12px;
-      padding: 40px; text-align: center; margin-bottom: 20px;
+    .contact-form-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 16px; padding: 48px; }
+    .contact-form-card h3 { font-size: 24px; font-weight: 900; letter-spacing: -0.4px; margin-bottom: 6px; }
+    .contact-form-card .sub { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.7; }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .cf-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .cf-field label { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); }
+    .cf-field input, .cf-field select, .cf-field textarea {
+      width: 100%; padding: 13px 16px; border: 1.5px solid var(--border);
+      border-radius: 10px; font-size: 15px; font-family: inherit;
+      color: var(--text); background: #fff; transition: border-color 0.2s;
+      box-sizing: border-box;
     }
-    .roofr-main-icon { font-size: 52px; margin-bottom: 16px; display: block; }
-    .roofr-main h4 { font-size: 19px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.2px; }
-    .roofr-main p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
-    .roofr-main .btn { width: 100%; justify-content: center; font-size: 16px; padding: 17px; }
-    .roofr-main .note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
-    .roofr-alts { display: flex; flex-direction: column; gap: 12px; }
-    .roofr-alt {
-      display: flex; align-items: center; gap: 14px;
-      padding: 16px 20px; border-radius: 10px; text-decoration: none;
+    .cf-field input:focus, .cf-field select:focus, .cf-field textarea:focus {
+      outline: none; border-color: var(--orange);
     }
-    .roofr-alt.phone { background: var(--orange-light); }
-    .roofr-alt.email { background: #fff; border: 1px solid var(--border); }
-    .roofr-alt-icon { font-size: 20px; flex-shrink: 0; }
-    .roofr-alt-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 2px; }
-    .roofr-alt-val { font-size: 16px; font-weight: 800; color: var(--text); }
-    .roofr-alt.phone .roofr-alt-val { color: var(--orange); }
+    .cf-field textarea { resize: vertical; min-height: 100px; }
+    .cf-submit { width: 100%; justify-content: center; font-size: 16px; padding: 17px; margin-top: 4px; border: none; cursor: pointer; }
+    .cf-msg { display: none; margin-top: 16px; padding: 14px 18px; border-radius: 10px; font-size: 14px; font-weight: 600; }
+    .cf-msg.success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .cf-msg.error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
 
     /* ── FOOTER ── */
     footer { background: var(--bg-dark); padding: 80px 32px 36px; }
@@ -563,8 +560,8 @@
 
       /* Contact */
       .contact { padding: 72px 20px; }
-      .roofr-card { padding: 24px; }
-      .roofr-main { padding: 28px 20px; }
+      .contact-form-card { padding: 28px 20px; }
+      .cf-row { grid-template-columns: 1fr; }
 
       /* Footer */
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
@@ -960,32 +957,44 @@
         </div>
       </div>
     </div>
-    <div class="roofr-card reveal-right">
-      <h3>Get an Instant Estimate</h3>
-      <p class="sub">Our smart estimator gives you a real roofing estimate in under 2 minutes — no waiting, no pressure.</p>
-      <div class="roofr-main">
-        <span class="roofr-main-icon">📋</span>
-        <h4>Instant Online Estimator</h4>
-        <p>Answer a few quick questions about your roof and get your estimate immediately. Powered by Roofr.</p>
-        <a href="https://app.roofr.com/instant-estimator/d5adbab8-0718-44f5-a11e-8b19d56469f3/MidwesternConstruction/welcome-question" target="_blank" rel="noopener" class="btn btn-primary">Get My Instant Estimate →</a>
-        <p class="note">Takes less than 2 minutes · No obligation</p>
-      </div>
-      <div class="roofr-alts">
-        <a href="tel:3302031666" class="roofr-alt phone" id="roofr-phone">
-          <span class="roofr-alt-icon">📞</span>
-          <div>
-            <span class="roofr-alt-label">Prefer to call?</span>
-            <span class="roofr-alt-val" id="roofr-phone-text">(330) 203-1666</span>
+    <div class="contact-form-card reveal-right">
+      <h3>Send Us a Message</h3>
+      <p class="sub">Fill out the form and we'll get back to you within a few hours — no obligation.</p>
+      <form id="contact-form" onsubmit="submitContactForm(event)">
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cf-name">Full Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="John Smith" required />
           </div>
-        </a>
-        <a href="mailto:support@midwestern.construction" class="roofr-alt email" id="roofr-email">
-          <span class="roofr-alt-icon">✉️</span>
-          <div>
-            <span class="roofr-alt-label">Send an email</span>
-            <span class="roofr-alt-val" id="roofr-email-text">support@midwestern.construction</span>
+          <div class="cf-field">
+            <label for="cf-phone">Phone Number</label>
+            <input type="tel" id="cf-phone" name="phone" placeholder="(330) 000-0000" required />
           </div>
-        </a>
-      </div>
+        </div>
+        <div class="cf-field">
+          <label for="cf-email">Email Address</label>
+          <input type="email" id="cf-email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="cf-field">
+          <label for="cf-service">Service Needed</label>
+          <select id="cf-service" name="service" required>
+            <option value="" disabled selected>Select a service...</option>
+            <option>Roof Installation</option>
+            <option>Roof Repairs</option>
+            <option>Storm Damage Repairs</option>
+            <option>Siding</option>
+            <option>Gutters</option>
+            <option>Home Renovations</option>
+            <option>Not Sure / Free Inspection</option>
+          </select>
+        </div>
+        <div class="cf-field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" placeholder="Tell us about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary cf-submit" id="cf-submit-btn">Send Message →</button>
+        <div class="cf-msg" id="cf-msg"></div>
+      </form>
     </div>
   </div>
 </section>
@@ -1230,6 +1239,43 @@
       });
     }
   })();
+
+  async function submitContactForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('cf-submit-btn');
+    const msg = document.getElementById('cf-msg');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    msg.style.display = 'none';
+    const data = {
+      name:    document.getElementById('cf-name').value,
+      phone:   document.getElementById('cf-phone').value,
+      email:   document.getElementById('cf-email').value,
+      service: document.getElementById('cf-service').value,
+      message: document.getElementById('cf-message').value,
+    };
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        msg.className = 'cf-msg success';
+        msg.textContent = 'Message sent! We\'ll be in touch within a few hours.';
+        msg.style.display = 'block';
+        document.getElementById('contact-form').reset();
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      msg.className = 'cf-msg error';
+      msg.textContent = 'Something went wrong. Please call us at (330) 203-1666.';
+      msg.style.display = 'block';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Send Message →';
+  }
 
 </script>
 </body>
