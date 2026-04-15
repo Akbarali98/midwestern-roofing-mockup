@@ -1100,10 +1100,13 @@
 
       function setText(id, val) { if (val && document.getElementById(id)) document.getElementById(id).textContent = val; }
       function setHref(id, val) { if (val && document.getElementById(id)) document.getElementById(id).href = val; }
-      function setImg(id, url) {
+      function setImg(id, url, width) {
         const el = document.getElementById(id);
         if (!el) return;
-        const src = url || el.src;
+        let src = url || el.src;
+        if (url && url.includes('cdn.sanity.io')) {
+          src = url + '?w=' + (width || '1200') + '&auto=format';
+        }
         el.src = src;
         el.onload = () => el.style.opacity = '1';
         el.onerror = () => el.style.opacity = '1';
@@ -1143,7 +1146,7 @@
       setText('hero-h1-main', home.heroHeadline ? home.heroHeadline + ' ' : null);
       setText('hero-h1-accent', home.heroHeadlineAccent);
       setText('hero-subheadline', home.heroSubheadline);
-      setImg('hero-img', home.heroImageUrl || null);
+      setImg('hero-img', home.heroImageUrl || null, 1400);
       if (home.heroTrustItems && home.heroTrustItems.length) {
         document.getElementById('hero-trust').innerHTML = home.heroTrustItems
           .map(t => `<div class="hero-trust-item">${DOT_SVG}${t}</div>`).join('');
@@ -1158,7 +1161,7 @@
       setText('why-body2', home.whyBody2);
       setText('why-stat-num', home.whyStatNumber);
       setText('why-stat-lbl', home.whyStatLabel);
-      setImg('why-img', home.whyImageUrl || null);
+      setImg('why-img', home.whyImageUrl || null, 800);
 
       // Values
       const VALUE_ICONS = {
