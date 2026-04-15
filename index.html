@@ -90,12 +90,9 @@
     nav.scrolled { border-color: var(--border); box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
     .nav-inner {
       max-width: var(--container); margin: 0 auto; padding: 0 32px;
-      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+      display: flex; align-items: center; justify-content: space-between;
       height: 76px;
     }
-    .nav-links { justify-self: center; }
-    .nav-actions { justify-self: end; }
-    .hamburger { justify-self: end; }
     .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-logo-mark {
       width: 42px; height: 42px; background: var(--orange); border-radius: var(--radius);
