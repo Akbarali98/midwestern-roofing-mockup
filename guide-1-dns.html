@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 1 — DNS Settings</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #1a1a1a; background: #fff; }
+
+    .cover { background: #111827; color: #fff; padding: 60px; }
+    .cover-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #E85D04; margin-bottom: 12px; }
+    .cover h1 { font-size: 32px; font-weight: 900; line-height: 1.1; margin-bottom: 8px; }
+    .cover p { font-size: 14px; color: #9CA3AF; margin-top: 6px; }
+
+    .content { padding: 48px 60px; max-width: 900px; }
+
+    h2 { font-size: 18px; font-weight: 900; color: #111827; margin-top: 48px; margin-bottom: 6px; padding-bottom: 10px; border-bottom: 2px solid #E85D04; }
+    h2:first-of-type { margin-top: 0; }
+    h3 { font-size: 14px; font-weight: 800; color: #111827; margin-top: 28px; margin-bottom: 10px; }
+    p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 8px; }
+
+    .step { display: flex; gap: 14px; margin-bottom: 12px; align-items: flex-start; }
+    .step-num { min-width: 26px; height: 26px; background: #E85D04; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 14px; color: #374151; line-height: 1.7; }
+    .step-text strong { color: #111827; }
+
+    .info-box { background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 8px; padding: 12px 16px; margin: 14px 0; font-size: 13px; color: #1E40AF; line-height: 1.6; }
+    .warning-box { background: #FEF3C7; border: 1.5px solid #FCD34D; border-radius: 8px; padding: 12px 16px; margin: 14px 0; font-size: 13px; color: #92400E; line-height: 1.6; }
+
+    .dns-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; border-radius: 8px; overflow: hidden; border: 1px solid #E5E7EB; }
+    .dns-table th { background: #111827; color: #fff; padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+    .dns-table td { padding: 10px 14px; border-bottom: 1px solid #F3F4F6; font-family: 'Courier New', monospace; font-size: 12px; }
+    .dns-table tr:last-child td { border-bottom: none; }
+    .dns-table .type { font-weight: 800; color: #E85D04; }
+
+    .section-divider { height: 1px; background: #F3F4F6; margin: 40px 0; }
+
+    /* MOCKUP */
+    .mockup-wrap { margin: 20px 0 28px; }
+    .mockup-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6B7280; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .mockup-label::after { content: ''; flex: 1; height: 1px; background: #E5E7EB; }
+
+    .ui-window { border: 1.5px solid #E5E7EB; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .ui-titlebar { background: #F3F4F6; border-bottom: 1px solid #E5E7EB; padding: 8px 14px; display: flex; align-items: center; gap: 6px; }
+    .ui-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .ui-dot.r { background: #FF5F57; }
+    .ui-dot.y { background: #FFBD2E; }
+    .ui-dot.g { background: #28CA41; }
+    .ui-url { margin-left: 10px; background: #fff; border: 1px solid #D1D5DB; border-radius: 4px; padding: 3px 12px; font-size: 12px; color: #6B7280; font-family: monospace; }
+
+    .ui-body { background: #fff; }
+    .ui-main { padding: 20px 24px; }
+
+    .ui-nav-sq { background: #000; padding: 0 24px; display: flex; align-items: center; gap: 24px; height: 52px; }
+    .ui-nav-sq-logo { color: #fff; font-weight: 900; font-size: 15px; letter-spacing: -0.5px; }
+    .ui-nav-sq-item { color: #888; font-size: 12px; }
+
+    .ui-sidebar { background: #F9FAFB; border-right: 1px solid #E5E7EB; padding: 12px 0; width: 190px; flex-shrink: 0; }
+    .ui-sidebar-item { padding: 9px 16px; font-size: 12px; color: #6B7280; }
+    .ui-sidebar-item.active { background: #FFF4ED; color: #E85D04; font-weight: 700; border-left: 3px solid #E85D04; }
+    .ui-row { display: flex; }
+
+    .hl-box { position: relative; display: inline-block; }
+    .hl-box::after { content: ''; position: absolute; inset: -4px; border: 2.5px solid #E85D04; border-radius: 6px; pointer-events: none; }
+
+    .hl-row { position: relative; }
+    .hl-row::after { content: ''; position: absolute; inset: -2px 0; border: 2px solid #E85D04; border-radius: 4px; pointer-events: none; }
+
+    .arrow-label { display: flex; align-items: center; gap: 8px; padding: 8px 16px 14px; }
+    .arrow-label .arr { color: #E85D04; font-size: 16px; font-weight: 900; }
+    .arrow-label .lbl { font-size: 12px; font-weight: 700; color: #E85D04; background: #FFF4ED; padding: 3px 10px; border-radius: 20px; border: 1px solid #FED7AA; }
+
+    .ui-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: default; }
+    .ui-btn.dark { background: #111827; color: #fff; }
+    .ui-btn.outline { background: #fff; color: #374151; border: 1px solid #D1D5DB; }
+    .ui-btn.orange { background: #E85D04; color: #fff; }
+
+    .ui-input { border: 1px solid #D1D5DB; border-radius: 6px; padding: 6px 10px; font-size: 12px; font-family: monospace; color: #374151; background: #fff; display: inline-block; }
+
+    .record-row { display: grid; grid-template-columns: 60px 140px 1fr 70px; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid #F3F4F6; }
+    .record-row:last-child { border-bottom: none; }
+    .record-row .type-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; background: #FFF4ED; color: #E85D04; border: 1px solid #FED7AA; }
+    .record-row .val { font-family: monospace; font-size: 11px; color: #374151; word-break: break-all; }
+    .record-row .host { font-family: monospace; font-size: 12px; color: #111827; font-weight: 700; }
+
+    @media print {
+      .content { padding: 36px 48px; }
+      .cover { padding: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">Step 1 of 3 — DNS Settings</div>
+  <h1>Adding DNS Records<br>in Squarespace</h1>
+  <p>Connect your domain to the website and activate the contact form email.</p>
+</div>
+
+<div class="content">
+
+  <h2>What You're Doing</h2>
+  <p>You're adding 6 DNS records to Squarespace. Think of DNS records like a forwarding address — they tell the internet where to send visitors when they type <strong>midwestern.construction</strong>.</p>
+  <p>Two records point your domain to the website (Vercel). Four records allow the contact form to send emails (Resend).</p>
+
+  <div class="warning-box"><strong>⚠ Important — Read Before Starting:</strong> Your current website is live on this domain. The moment you delete the old DNS records and add the new ones, your Squarespace site will go offline and the new site will go live. Only do this when you are fully ready to switch over.</div>
+
+  <div class="section-divider"></div>
+
+  <!-- CHECK EXISTING RECORDS -->
+  <h2>Part 1 — Check for Existing Records First</h2>
+  <p>Before adding anything, you need to check if there are existing A and CNAME records and delete them. Adding new records without removing the old ones will cause a conflict.</p>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Go to DNS Settings (see Part 2 below for navigation steps).</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">Look through all existing records for any <strong>A</strong> record with host <strong>@</strong> and any <strong>CNAME</strong> record with host <strong>www</strong>.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-text">If you find them — <strong>delete them first</strong> before adding the Vercel records.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">What old records look like — delete these first</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">account.squarespace.com/domains/dns</div></div>
+      <div class="ui-main">
+        <div style="font-size:13px;font-weight:800;margin-bottom:14px;">Existing Records</div>
+        <div style="border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:70px 120px 1fr 80px;gap:8px;padding:9px 12px;background:#F6F8FA;border-bottom:1px solid #E5E7EB;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;">
+            <div>Type</div><div>Host</div><div>Value</div><div></div>
+          </div>
+          <!-- Old A record to delete -->
+          <div style="display:grid;grid-template-columns:70px 120px 1fr 80px;gap:8px;padding:10px 12px;border-bottom:1px solid #F3F4F6;align-items:center;background:#FEF2F2;">
+            <div style="font-size:11px;font-weight:800;color:#E85D04;">A</div>
+            <div style="font-family:monospace;font-size:11px;">@</div>
+            <div style="font-family:monospace;font-size:11px;color:#6B7280;">198.185.159.144 <span style="color:#9CA3AF;">(Squarespace)</span></div>
+            <div class="hl-box">
+              <div style="background:#FEE2E2;color:#CF222E;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:700;border:1px solid #FECACA;cursor:default;">Delete</div>
+            </div>
+          </div>
+          <!-- Old CNAME record to delete -->
+          <div style="display:grid;grid-template-columns:70px 120px 1fr 80px;gap:8px;padding:10px 12px;align-items:center;background:#FEF2F2;">
+            <div style="font-size:11px;font-weight:800;color:#E85D04;">CNAME</div>
+            <div style="font-family:monospace;font-size:11px;">www</div>
+            <div style="font-family:monospace;font-size:11px;color:#6B7280;">ext-cust.squarespace.com <span style="color:#9CA3AF;">(Squarespace)</span></div>
+            <div class="hl-box">
+              <div style="background:#FEE2E2;color:#CF222E;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:700;border:1px solid #FECACA;cursor:default;">Delete</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:#CF222E;font-weight:700;">⚠ Delete any A record with @ and any CNAME record with www before adding new ones.</div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Delete old A and CNAME records first — then add the Vercel ones</span></div>
+    </div>
+  </div>
+
+  <div class="info-box">ℹ️ Squarespace may also have some locked/greyed-out built-in records — leave those alone. Only delete the editable A and CNAME records for @ and www.</div>
+
+  <div class="section-divider"></div>
+
+  <!-- NAVIGATE TO DNS -->
+  <h2>Part 2 — Get to DNS Settings</h2>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Go to <strong>squarespace.com</strong> and log in.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">In the left sidebar, click <strong>Domains</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Squarespace dashboard</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">account.squarespace.com</div></div>
+      <div class="ui-nav-sq">
+        <div class="ui-nav-sq-logo">Squarespace</div>
+      </div>
+      <div class="ui-row">
+        <div class="ui-sidebar">
+          <div class="ui-sidebar-item">Websites</div>
+          <div class="ui-sidebar-item">Commerce</div>
+          <div class="hl-box" style="display:block;width:100%;">
+            <div class="ui-sidebar-item active">Domains</div>
+          </div>
+          <div class="ui-sidebar-item">Email Campaigns</div>
+          <div class="ui-sidebar-item">Account</div>
+        </div>
+        <div class="ui-main">
+          <div style="font-size:13px;color:#9CA3AF;">Select Domains from the left menu</div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">←</span><span class="lbl">Click Domains in the left sidebar</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">3</div><div class="step-text">Click on <strong>midwestern.construction</strong></div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-text">Click <strong>DNS Settings</strong></div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Domain management page</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">account.squarespace.com/domains</div></div>
+      <div class="ui-main">
+        <div style="font-size:14px;font-weight:800;margin-bottom:16px;">Your Domains</div>
+        <div style="border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">
+          <div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #F3F4F6;">
+            <div>
+              <div style="font-size:14px;font-weight:800;">midwestern.construction</div>
+              <div style="font-size:12px;color:#6B7280;margin-top:2px;">Active · Renews yearly</div>
+            </div>
+            <div class="hl-box">
+              <div class="ui-btn outline">DNS Settings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click DNS Settings next to midwestern.construction</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">5</div><div class="step-text">Scroll down to <strong>Custom Records</strong></div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">DNS Settings page — scroll to Custom Records</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">account.squarespace.com/domains/dns</div></div>
+      <div class="ui-main">
+        <div style="font-size:14px;font-weight:800;margin-bottom:4px;">DNS Settings</div>
+        <div style="font-size:12px;color:#6B7280;margin-bottom:16px;">midwestern.construction</div>
+        <div style="border:1px solid #E5E7EB;border-radius:8px;padding:14px;margin-bottom:12px;background:#F9FAFB;">
+          <div style="font-size:11px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Squarespace Records (built-in)</div>
+          <div style="font-size:12px;color:#6B7280;">These are managed automatically — do not edit.</div>
+        </div>
+        <div style="border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">
+          <div class="hl-box" style="display:block;">
+            <div style="padding:14px 16px;background:#fff;display:flex;align-items:center;justify-content:space-between;">
+              <div style="font-size:13px;font-weight:800;color:#111827;">Custom Records</div>
+              <div class="ui-btn orange">+ Add Record</div>
+            </div>
+          </div>
+          <div style="padding:12px 16px;background:#F9FAFB;font-size:12px;color:#9CA3AF;">No custom records yet</div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Scroll down to Custom Records — this is where you add all 6 records</span></div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- VERCEL RECORDS -->
+  <h2>Part 3 — Add Vercel Records (Website)</h2>
+  <p>These 2 records point your domain to the website hosting.</p>
+
+  <table class="dns-table">
+    <thead><tr><th>Type</th><th>Name / Host</th><th>Value</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td class="type">A</td><td>@</td><td>76.76.21.21</td><td>—</td></tr>
+      <tr><td class="type">CNAME</td><td>www</td><td>cname.vercel-dns.com</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h3>How to add each record</h3>
+  <div class="step"><div class="step-num">1</div><div class="step-text">Click <strong>+ Add Record</strong> in the Custom Records section.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">A row appears — select the <strong>Type</strong>, enter the <strong>Host</strong>, enter the <strong>Value</strong>, then click <strong>Save</strong>.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-text">Repeat for each record in the table above.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Adding the A record</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">account.squarespace.com/domains/dns</div></div>
+      <div class="ui-main">
+        <div style="font-size:13px;font-weight:800;margin-bottom:14px;">Custom Records</div>
+        <div style="border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;background:#F6F8FA;border-bottom:1px solid #E5E7EB;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.5px;">
+            <div>Type</div><div>Host</div><div>Value</div><div></div>
+          </div>
+          <!-- New row being filled in -->
+          <div class="hl-row" style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;align-items:center;">
+            <div class="hl-box"><div style="background:#FFF4ED;border:1px solid #FED7AA;border-radius:4px;padding:5px 8px;font-size:12px;font-weight:800;color:#E85D04;">A</div></div>
+            <div class="hl-box"><div class="ui-input">@</div></div>
+            <div class="hl-box"><div class="ui-input" style="width:100%;max-width:180px;">76.76.21.21</div></div>
+            <div class="hl-box"><div class="ui-btn orange" style="padding:5px 10px;font-size:11px;">Save</div></div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:#6B7280;">After saving, click <strong>+ Add Record</strong> again to add the CNAME record.</div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Type = A, Host = @, Value = 76.76.21.21, then click Save</span></div>
+    </div>
+  </div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Adding the CNAME record</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">account.squarespace.com/domains/dns</div></div>
+      <div class="ui-main">
+        <div style="font-size:13px;font-weight:800;margin-bottom:14px;">Custom Records</div>
+        <div style="border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;background:#F6F8FA;border-bottom:1px solid #E5E7EB;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.5px;">
+            <div>Type</div><div>Host</div><div>Value</div><div></div>
+          </div>
+          <!-- Saved A record -->
+          <div style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;align-items:center;border-bottom:1px solid #F3F4F6;background:#FAFAFA;">
+            <div style="font-size:11px;font-weight:800;color:#6B7280;">A</div>
+            <div style="font-family:monospace;font-size:11px;">@</div>
+            <div style="font-family:monospace;font-size:11px;">76.76.21.21</div>
+            <div style="font-size:11px;color:#28CA41;font-weight:700;">✓ Saved</div>
+          </div>
+          <!-- New CNAME row -->
+          <div class="hl-row" style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;align-items:center;">
+            <div class="hl-box"><div style="background:#FFF4ED;border:1px solid #FED7AA;border-radius:4px;padding:5px 8px;font-size:12px;font-weight:800;color:#E85D04;">CNAME</div></div>
+            <div class="hl-box"><div class="ui-input">www</div></div>
+            <div class="hl-box"><div class="ui-input" style="width:100%;max-width:200px;">cname.vercel-dns.com</div></div>
+            <div class="hl-box"><div class="ui-btn orange" style="padding:5px 10px;font-size:11px;">Save</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Type = CNAME, Host = www, Value = cname.vercel-dns.com, then click Save</span></div>
+    </div>
+  </div>
+
+  <div class="info-box">✓ After adding both records, your domain will point to the website within a few minutes to 24 hours.</div>
+
+  <div class="section-divider"></div>
+
+  <!-- RESEND RECORDS -->
+  <h2>Part 4 — Add Resend Records (Contact Form Email)</h2>
+  <p>These 4 records allow the contact form to send emails to your inbox. Add them the same way as the Vercel records above.</p>
+
+  <table class="dns-table">
+    <thead><tr><th>Type</th><th>Name / Host</th><th>Value</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td class="type">TXT</td><td>resend._domainkey</td><td style="font-size:10px;word-break:break-all;">p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWDYGsMvFkstDXdlIm2Q8i23hAeW+1C4V2xOSq7XzKZ8VvRalsJV+VKthyOpLgAbOBKis2ZLyMSk9jbN4HcDaxOyu8cL4xvShaPMYsUHGL/i/m3CbmlAG3fwpNlEhqy5Hu683fwGeyDSBnLBFigUtVk0SR/bRQ2YCKRrG6kN0T4wIDAQAB</td><td>—</td></tr>
+      <tr><td class="type">MX</td><td>send</td><td>feedback-smtp.us-east-1.amazonses.com</td><td>10</td></tr>
+      <tr><td class="type">TXT</td><td>send</td><td>v=spf1 include:amazonses.com ~all</td><td>—</td></tr>
+      <tr><td class="type">TXT</td><td>_dmarc</td><td>v=DMARC1; p=none;</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">All 6 records added — what it looks like when done</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">account.squarespace.com/domains/dns</div></div>
+      <div class="ui-main">
+        <div style="font-size:13px;font-weight:800;margin-bottom:14px;">Custom Records</div>
+        <div style="border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;background:#F6F8FA;border-bottom:1px solid #E5E7EB;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;">
+            <div>Type</div><div>Host</div><div>Value</div>
+          </div>
+          <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;border-bottom:1px solid #F3F4F6;align-items:center;">
+            <div style="font-size:11px;font-weight:800;color:#E85D04;">A</div>
+            <div style="font-family:monospace;font-size:11px;">@</div>
+            <div style="font-family:monospace;font-size:11px;">76.76.21.21</div>
+          </div>
+          <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;border-bottom:1px solid #F3F4F6;align-items:center;">
+            <div style="font-size:11px;font-weight:800;color:#E85D04;">CNAME</div>
+            <div style="font-family:monospace;font-size:11px;">www</div>
+            <div style="font-family:monospace;font-size:11px;">cname.vercel-dns.com</div>
+          </div>
+          <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;border-bottom:1px solid #F3F4F6;align-items:center;">
+            <div style="font-size:11px;font-weight:800;color:#E85D04;">TXT</div>
+            <div style="font-family:monospace;font-size:11px;">resend._domainkey</div>
+            <div style="font-family:monospace;font-size:10px;word-break:break-all;color:#6B7280;">p=MIGfMA0GCSq...</div>
+          </div>
+          <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;border-bottom:1px solid #F3F4F6;align-items:center;">
+            <div style="font-size:11px;font-weight:800;color:#E85D04;">MX</div>
+            <div style="font-family:monospace;font-size:11px;">send</div>
+            <div style="font-family:monospace;font-size:11px;">feedback-smtp.us-east-1.amazonses.com</div>
+          </div>
+          <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;border-bottom:1px solid #F3F4F6;align-items:center;">
+            <div style="font-size:11px;font-weight:800;color:#E85D04;">TXT</div>
+            <div style="font-family:monospace;font-size:11px;">send</div>
+            <div style="font-family:monospace;font-size:11px;">v=spf1 include:amazonses.com ~all</div>
+          </div>
+          <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;align-items:center;">
+            <div style="font-size:11px;font-weight:800;color:#E85D04;">TXT</div>
+            <div style="font-family:monospace;font-size:11px;">_dmarc</div>
+            <div style="font-family:monospace;font-size:11px;">v=DMARC1; p=none;</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;display:flex;align-items:center;gap:6px;">
+          <div style="color:#28CA41;font-weight:800;font-size:13px;">✓</div>
+          <div style="font-size:12px;color:#374151;">All 6 records added. You're done with DNS.</div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">This is what it should look like when all 6 records are added</span></div>
+    </div>
+  </div>
+
+  <div class="info-box">ℹ️ DNS changes can take a few minutes to 24 hours to take effect. Once done, your website will be live at <strong>midwestern.construction</strong> and the contact form will send emails to your inbox.</div>
+
+  <div style="margin-top:56px;padding-top:20px;border-top:1px solid #E5E7EB;font-size:12px;color:#9CA3AF;">
+    <p>MidWestern Construction · Step 1 of 3 · Next: Sign Up →</p>
+  </div>
+
+</div>
+</body>
+</html>
