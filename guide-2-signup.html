@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 2 — Sign Up</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #1a1a1a; background: #fff; }
+
+    .cover { background: #111827; color: #fff; padding: 60px; }
+    .cover-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #E85D04; margin-bottom: 12px; }
+    .cover h1 { font-size: 32px; font-weight: 900; line-height: 1.1; margin-bottom: 8px; }
+    .cover p { font-size: 14px; color: #9CA3AF; margin-top: 6px; }
+
+    .content { padding: 48px 60px; max-width: 900px; }
+
+    h2 { font-size: 18px; font-weight: 900; color: #111827; margin-top: 48px; margin-bottom: 6px; padding-bottom: 10px; border-bottom: 2px solid #E85D04; }
+    h2:first-of-type { margin-top: 0; }
+    h3 { font-size: 14px; font-weight: 800; color: #111827; margin-top: 28px; margin-bottom: 10px; }
+    p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 8px; }
+
+    .step { display: flex; gap: 14px; margin-bottom: 12px; align-items: flex-start; }
+    .step-num { min-width: 26px; height: 26px; background: #E85D04; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 14px; color: #374151; line-height: 1.7; }
+    .step-text strong { color: #111827; }
+
+    .info-box { background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 8px; padding: 12px 16px; margin: 14px 0; font-size: 13px; color: #1E40AF; line-height: 1.6; }
+    .warning-box { background: #FEF3C7; border: 1.5px solid #FCD34D; border-radius: 8px; padding: 12px 16px; margin: 14px 0; font-size: 13px; color: #92400E; line-height: 1.6; }
+
+    .section-divider { height: 1px; background: #F3F4F6; margin: 40px 0; }
+
+    .mockup-wrap { margin: 20px 0 28px; }
+    .mockup-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6B7280; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .mockup-label::after { content: ''; flex: 1; height: 1px; background: #E5E7EB; }
+
+    .ui-window { border: 1.5px solid #E5E7EB; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .ui-titlebar { background: #F3F4F6; border-bottom: 1px solid #E5E7EB; padding: 8px 14px; display: flex; align-items: center; gap: 6px; }
+    .ui-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .ui-dot.r { background: #FF5F57; }
+    .ui-dot.y { background: #FFBD2E; }
+    .ui-dot.g { background: #28CA41; }
+    .ui-url { margin-left: 10px; background: #fff; border: 1px solid #D1D5DB; border-radius: 4px; padding: 3px 12px; font-size: 12px; color: #6B7280; font-family: monospace; }
+
+    .ui-main { padding: 20px 24px; }
+    .ui-row { display: flex; }
+
+    .hl-box { position: relative; display: inline-block; }
+    .hl-box::after { content: ''; position: absolute; inset: -4px; border: 2.5px solid #E85D04; border-radius: 6px; pointer-events: none; }
+
+    .arrow-label { display: flex; align-items: center; gap: 8px; padding: 8px 16px 14px; }
+    .arrow-label .arr { color: #E85D04; font-size: 16px; font-weight: 900; }
+    .arrow-label .lbl { font-size: 12px; font-weight: 700; color: #E85D04; background: #FFF4ED; padding: 3px 10px; border-radius: 20px; border: 1px solid #FED7AA; }
+
+    .ui-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: default; }
+    .ui-btn.gh-green { background: #1F883D; color: #fff; width: 100%; justify-content: center; }
+    .ui-btn.dark { background: #24292F; color: #fff; width: 100%; justify-content: center; font-size: 13px; }
+    .ui-btn.white { background: #fff; color: #24292F; border: 1px solid #D1D5DB; width: 100%; justify-content: center; }
+    .ui-btn.orange { background: #E85D04; color: #fff; }
+    .ui-btn.vercel-black { background: #000; color: #fff; width: 100%; justify-content: center; }
+
+    .ui-input { border: 1px solid #D1D5DB; border-radius: 6px; padding: 8px 12px; font-size: 13px; color: #374151; background: #fff; display: block; width: 100%; margin-bottom: 10px; }
+    .ui-input-label { font-size: 12px; font-weight: 700; color: #374151; margin-bottom: 4px; display: block; }
+
+    .ui-nav-gh { background: #24292F; padding: 0 16px; display: flex; align-items: center; gap: 16px; height: 48px; }
+    .ui-nav-gh-logo { color: #fff; font-size: 20px; }
+    .ui-nav-gh-item { color: #cdd9e5; font-size: 12px; }
+
+    .ui-nav-vr { background: #000; padding: 0 20px; display: flex; align-items: center; gap: 20px; height: 48px; }
+    .ui-nav-vr-logo { color: #fff; font-weight: 900; font-size: 16px; }
+    .ui-nav-vr-item { color: #888; font-size: 12px; }
+
+    .gh-signup-form { max-width: 340px; margin: 0 auto; }
+    .vr-signup-form { max-width: 360px; margin: 0 auto; text-align: center; }
+
+    .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 16px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 13px; font-weight: 600; color: #374151; background: #fff; margin-bottom: 10px; cursor: default; }
+    .divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; font-size: 12px; color: #9CA3AF; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #E5E7EB; }
+
+    @media print {
+      .content { padding: 36px 48px; }
+      .cover { padding: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">Step 2 of 3 — Sign Up</div>
+  <h1>Create Your Accounts<br>GitHub &amp; Vercel</h1>
+  <p>Two free accounts — takes about 5 minutes total.</p>
+</div>
+
+<div class="content">
+
+  <h2>Overview</h2>
+  <p>You need two accounts: <strong>GitHub</strong> first, then <strong>Vercel</strong>. Sign up for Vercel using your GitHub account — this links them automatically.</p>
+
+  <div class="section-divider"></div>
+
+  <!-- GITHUB SIGNUP -->
+  <h2>Part 1 — Sign Up on GitHub</h2>
+  <p>GitHub stores your website code.</p>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Go to <strong>github.com</strong> → click <strong>Sign Up</strong> in the top right corner.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">github.com homepage</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">github.com</div></div>
+      <div class="ui-nav-gh">
+        <div class="ui-nav-gh-logo">⊙</div>
+        <div class="ui-nav-gh-item">Product</div>
+        <div class="ui-nav-gh-item">Solutions</div>
+        <div class="ui-nav-gh-item">Pricing</div>
+        <div style="flex:1"></div>
+        <div class="ui-nav-gh-item" style="color:#cdd9e5;margin-right:8px;">Sign in</div>
+        <div class="hl-box">
+          <div style="background:#fff;color:#24292F;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;">Sign up</div>
+        </div>
+      </div>
+      <div style="padding:40px 24px;text-align:center;background:#0d1117;">
+        <div style="font-size:28px;font-weight:900;color:#fff;margin-bottom:8px;">Build and ship software</div>
+        <div style="font-size:14px;color:#8B949E;">Join the world's leading software platform</div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click Sign up in the top right corner</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">2</div><div class="step-text">Enter your <strong>email address</strong> → click <strong>Continue</strong> → create a <strong>password</strong> → choose a <strong>username</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">GitHub sign up form</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">github.com/signup</div></div>
+      <div style="background:#0d1117;padding:32px 24px;">
+        <div class="gh-signup-form">
+          <div style="text-align:center;margin-bottom:24px;">
+            <div style="font-size:22px;font-weight:900;color:#fff;">Create your account</div>
+          </div>
+          <div>
+            <div class="hl-box" style="display:block;margin-bottom:10px;">
+              <div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:10px 14px;font-size:13px;color:#8B949E;">Enter your email address</div>
+            </div>
+            <div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:10px 14px;font-size:13px;color:#8B949E;margin-bottom:10px;">Create a password</div>
+            <div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:10px 14px;font-size:13px;color:#8B949E;margin-bottom:16px;">Enter a username</div>
+            <div class="ui-btn gh-green">Continue</div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Fill in email, password, and username — then click Continue</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">3</div><div class="step-text">Verify your email address when GitHub sends you a confirmation email.</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-text">When asked about a plan, select <strong>Free</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Choose Free plan</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">github.com/signup</div></div>
+      <div style="padding:28px 24px;background:#0d1117;">
+        <div style="text-align:center;font-size:18px;font-weight:900;color:#fff;margin-bottom:20px;">Choose your plan</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:400px;margin:0 auto;">
+          <div class="hl-box" style="display:block;">
+            <div style="border:2px solid #E85D04;border-radius:10px;padding:16px;background:#161b22;text-align:center;">
+              <div style="font-size:16px;font-weight:900;color:#fff;margin-bottom:4px;">Free</div>
+              <div style="font-size:20px;font-weight:900;color:#E85D04;">$0</div>
+              <div style="font-size:11px;color:#8B949E;margin-top:4px;">Forever free</div>
+              <div style="margin-top:12px;background:#E85D04;color:#fff;padding:6px;border-radius:5px;font-size:12px;font-weight:700;">✓ Selected</div>
+            </div>
+          </div>
+          <div style="border:1px solid #30363d;border-radius:10px;padding:16px;background:#161b22;text-align:center;">
+            <div style="font-size:16px;font-weight:900;color:#fff;margin-bottom:4px;">Pro</div>
+            <div style="font-size:20px;font-weight:900;color:#8B949E;">$4/mo</div>
+            <div style="font-size:11px;color:#8B949E;margin-top:4px;">For professionals</div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Select Free — it's $0 forever</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">5</div><div class="step-text">Share your GitHub <strong>username</strong> with your developer so they can transfer the website repository to you.</div></div>
+  <div class="step"><div class="step-num">6</div><div class="step-text">You'll receive an email from GitHub — <strong>"Repository transfer request"</strong> — click <strong>Accept Transfer</strong>.</div></div>
+
+  <div class="section-divider"></div>
+
+  <!-- GITHUB TOKEN -->
+  <h2>Part 1b — Generate Your GitHub Token</h2>
+  <p>This token allows the website to update automatically when you change blog images in Sanity. You need to generate it from your own account.</p>
+
+  <div class="warning-box"><strong>⚠ Copy it immediately</strong> — GitHub only shows the token once. If you close the page without copying it, you'll need to generate a new one.</div>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Click your <strong>profile picture</strong> (top right) → click <strong>Settings</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Open Settings from your profile menu</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">github.com</div></div>
+      <div class="ui-nav-gh">
+        <div class="ui-nav-gh-logo">⊙</div>
+        <div style="flex:1"></div>
+        <div style="position:relative;">
+          <div style="width:32px;height:32px;background:#E85D04;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;">Y</div>
+          <div style="position:absolute;right:0;top:36px;background:#24292F;border:1px solid #444;border-radius:8px;width:160px;padding:6px 0;box-shadow:0 8px 20px rgba(0,0,0,0.4);z-index:10;">
+            <div style="padding:6px 14px;font-size:12px;color:#cdd9e5;">Your profile</div>
+            <div class="hl-box" style="display:block;">
+              <div style="padding:6px 14px;font-size:12px;font-weight:700;color:#fff;">⚙ Settings</div>
+            </div>
+            <div style="padding:6px 14px;font-size:12px;color:#cdd9e5;">Sign out</div>
+          </div>
+        </div>
+      </div>
+      <div style="height:40px;background:#0d1117;"></div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click your profile picture → then click Settings</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">2</div><div class="step-text">Scroll all the way to the bottom of the left sidebar → click <strong>Developer settings</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Developer settings — bottom of sidebar</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">github.com/settings</div></div>
+      <div class="ui-row">
+        <div style="width:200px;background:#F9FAFB;border-right:1px solid #E5E7EB;padding:12px 0;">
+          <div style="padding:8px 16px;font-size:12px;color:#6B7280;">Profile</div>
+          <div style="padding:8px 16px;font-size:12px;color:#6B7280;">Account</div>
+          <div style="padding:8px 16px;font-size:12px;color:#6B7280;">Emails</div>
+          <div style="padding:8px 16px;font-size:12px;color:#9CA3AF;font-style:italic;">· · ·</div>
+          <div style="border-top:1px solid #E5E7EB;margin-top:6px;padding-top:6px;">
+            <div class="hl-box" style="display:block;">
+              <div style="padding:8px 16px;font-size:12px;font-weight:700;color:#111827;">🔧 Developer settings</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:20px;flex:1;">
+          <div style="font-size:12px;color:#9CA3AF;">Scroll to the very bottom of the left sidebar</div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">←</span><span class="lbl">Scroll to the bottom of the sidebar and click Developer settings</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">3</div><div class="step-text">Click <strong>Personal access tokens</strong> → <strong>Tokens (classic)</strong> → <strong>Generate new token (classic)</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Personal access tokens page</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">github.com/settings/tokens</div></div>
+      <div class="ui-row">
+        <div style="width:200px;background:#F9FAFB;border-right:1px solid #E5E7EB;padding:12px 0;">
+          <div style="padding:8px 16px;font-size:12px;color:#6B7280;">GitHub Apps</div>
+          <div style="padding:8px 16px;font-size:12px;font-weight:700;color:#E85D04;background:#FFF4ED;border-left:3px solid #E85D04;">Personal access tokens</div>
+          <div style="padding:6px 24px;font-size:11px;color:#6B7280;">Fine-grained tokens</div>
+          <div class="hl-box" style="display:block;">
+            <div style="padding:6px 24px;font-size:11px;font-weight:700;color:#111827;">Tokens (classic)</div>
+          </div>
+        </div>
+        <div style="padding:20px;flex:1;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div style="font-size:13px;font-weight:800;">Personal access tokens (classic)</div>
+            <div class="hl-box">
+              <div class="ui-btn" style="background:#24292F;color:#fff;font-size:11px;">Generate new token ▾</div>
+            </div>
+          </div>
+          <div style="margin-top:8px;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 12px;font-size:11px;color:#856404;">
+            Click "Generate new token" then select <strong>"Generate new token (classic)"</strong>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click "Generate new token" → select "Generate new token (classic)"</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">4</div><div class="step-text">Fill in the form: any name (e.g. <strong>Vercel Bake</strong>), expiration = <strong>No expiration</strong>, and tick the <strong>repo</strong> checkbox.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">New token form — fill in these fields</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">github.com/settings/tokens/new</div></div>
+      <div style="padding:20px 24px;">
+        <div style="margin-bottom:14px;">
+          <div style="font-size:12px;font-weight:700;margin-bottom:5px;">Note <span style="color:#CF222E;">*</span></div>
+          <div class="hl-box" style="display:block;max-width:260px;">
+            <div style="border:1.5px solid #E85D04;border-radius:6px;padding:8px 12px;font-size:12px;color:#374151;">Vercel Bake</div>
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div style="font-size:12px;font-weight:700;margin-bottom:5px;">Expiration <span style="color:#CF222E;">*</span></div>
+          <div class="hl-box" style="display:inline-block;">
+            <div style="border:1.5px solid #E85D04;border-radius:6px;padding:8px 12px;font-size:12px;color:#374151;background:#FFF4ED;font-weight:700;">No expiration ▾</div>
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div style="font-size:12px;font-weight:700;margin-bottom:8px;">Select scopes</div>
+          <div class="hl-box" style="display:inline-block;">
+            <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:#FFF4ED;border:1px solid #FED7AA;border-radius:6px;">
+              <div style="width:14px;height:14px;background:#0969DA;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:900;">✓</div>
+              <strong style="font-size:12px;">repo</strong>
+              <span style="font-size:11px;color:#6B7280;">— Full control of private repositories</span>
+            </div>
+          </div>
+        </div>
+        <div class="ui-btn" style="background:#1F883D;color:#fff;margin-top:8px;">Generate token</div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Name it anything, set No expiration, tick repo, then click Generate token</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">5</div><div class="step-text">The token appears — it starts with <strong>ghp_</strong>. <strong>Copy it immediately</strong> and save it somewhere safe. You'll paste it into Vercel in Step 3.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Copy the token — you only get one chance</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">github.com/settings/tokens</div></div>
+      <div style="padding:20px 24px;">
+        <div style="background:#DFF7E3;border:1px solid #A7F3D0;border-radius:8px;padding:12px 16px;margin-bottom:12px;">
+          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:8px;">✓ Token generated successfully</div>
+          <div style="font-size:11px;color:#374151;margin-bottom:8px;">Make sure to copy your personal access token now. You won't be able to see it again.</div>
+          <div class="hl-box" style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #D1D5DB;border-radius:6px;padding:8px 12px;">
+            <div style="font-family:monospace;font-size:12px;color:#111827;flex:1;">ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+            <div style="background:#F3F4F6;border:1px solid #D1D5DB;border-radius:4px;padding:3px 8px;font-size:11px;font-weight:700;color:#374151;cursor:default;">Copy</div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click Copy and paste it somewhere safe — you cannot see it again</span></div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- VERCEL SIGNUP -->
+  <h2>Part 2 — Sign Up on Vercel</h2>
+  <p>Vercel hosts and publishes your website. Sign up using your GitHub account to link them automatically.</p>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Go to <strong>vercel.com</strong> → click <strong>Sign Up</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">vercel.com homepage</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">vercel.com</div></div>
+      <div class="ui-nav-vr">
+        <div class="ui-nav-vr-logo">▲ Vercel</div>
+        <div class="ui-nav-vr-item">Products</div>
+        <div class="ui-nav-vr-item">Solutions</div>
+        <div class="ui-nav-vr-item">Pricing</div>
+        <div style="flex:1"></div>
+        <div class="ui-nav-vr-item" style="color:#888;margin-right:8px;">Log In</div>
+        <div class="hl-box">
+          <div style="background:#fff;color:#000;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;">Sign Up</div>
+        </div>
+      </div>
+      <div style="padding:40px 24px;text-align:center;background:#000;">
+        <div style="font-size:26px;font-weight:900;color:#fff;margin-bottom:8px;">Deploy your website</div>
+        <div style="font-size:13px;color:#888;">The platform for frontend developers</div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click Sign Up in the top right corner</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">2</div><div class="step-text">Click <strong>Continue with GitHub</strong> — this links your Vercel account to GitHub automatically. Do NOT sign up with email.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Vercel sign up page</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">vercel.com/signup</div></div>
+      <div style="padding:32px 24px;background:#000;">
+        <div class="vr-signup-form">
+          <div style="font-size:22px;font-weight:900;color:#fff;margin-bottom:6px;">Create your account</div>
+          <div style="font-size:13px;color:#888;margin-bottom:24px;">Start deploying in seconds</div>
+          <div class="hl-box" style="display:block;">
+            <div class="social-btn" style="background:#24292F;border-color:#444;color:#fff;">
+              <span style="font-size:16px;">⊙</span> Continue with GitHub
+            </div>
+          </div>
+          <div class="social-btn" style="margin-top:8px;background:#1a1a1a;border-color:#333;color:#888;">
+            <span>G</span> Continue with Google
+          </div>
+          <div class="social-btn" style="background:#1a1a1a;border-color:#333;color:#888;">
+            <span>✉</span> Continue with Email
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click "Continue with GitHub" — not Google or Email</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">3</div><div class="step-text">GitHub will ask you to authorize Vercel — click <strong>Authorize Vercel</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">GitHub authorization screen</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">github.com/login/oauth/authorize</div></div>
+      <div style="background:#0d1117;padding:32px 24px;">
+        <div style="max-width:320px;margin:0 auto;text-align:center;">
+          <div style="font-size:28px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:12px;">
+            <span style="color:#fff;font-weight:900;">⊙</span>
+            <span style="color:#8B949E;font-size:20px;">→</span>
+            <span style="color:#fff;font-size:20px;">▲</span>
+          </div>
+          <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:8px;">Authorize Vercel</div>
+          <div style="font-size:12px;color:#8B949E;margin-bottom:20px;">Vercel is requesting access to your GitHub account to deploy your repositories.</div>
+          <div style="background:#1a7f37;color:#fff;padding:10px;border-radius:6px;font-size:13px;font-weight:700;margin-bottom:8px;">
+            <div class="hl-box" style="display:block;">Authorize Vercel</div>
+          </div>
+          <div style="background:#21262d;color:#8B949E;padding:10px;border-radius:6px;font-size:13px;">Cancel</div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click "Authorize Vercel" — this connects GitHub to Vercel</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">4</div><div class="step-text">When asked about a plan, select <strong>Hobby (Free)</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Choose Hobby plan</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">vercel.com/new</div></div>
+      <div style="padding:28px 24px;background:#000;">
+        <div style="text-align:center;font-size:18px;font-weight:900;color:#fff;margin-bottom:20px;">Choose a plan</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:400px;margin:0 auto;">
+          <div class="hl-box" style="display:block;">
+            <div style="border:2px solid #E85D04;border-radius:10px;padding:16px;background:#111;text-align:center;">
+              <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:4px;">Hobby</div>
+              <div style="font-size:20px;font-weight:900;color:#E85D04;">Free</div>
+              <div style="font-size:11px;color:#888;margin-top:4px;">For personal projects</div>
+              <div style="margin-top:12px;background:#E85D04;color:#fff;padding:6px;border-radius:5px;font-size:12px;font-weight:700;">✓ Select</div>
+            </div>
+          </div>
+          <div style="border:1px solid #333;border-radius:10px;padding:16px;background:#111;text-align:center;">
+            <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:4px;">Pro</div>
+            <div style="font-size:20px;font-weight:900;color:#888;">$20/mo</div>
+            <div style="font-size:11px;color:#888;margin-top:4px;">For teams</div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Select Hobby — it's completely free</span></div>
+    </div>
+  </div>
+
+  <div class="info-box">✓ You now have a GitHub account and a Vercel account linked together. Continue below to create your Sanity account.</div>
+
+  <div style="background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:8px;padding:14px 16px;margin:14px 0;font-size:13px;color:#92400E;line-height:1.7;">
+    <strong>📋 Action needed — send your Vercel username to your developer</strong><br>
+    Log in to <strong>vercel.com</strong>, go to <strong>Settings → Profile</strong>, and copy your <strong>username</strong>. Send it to your developer so they can transfer the website project to your account.
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SANITY SIGNUP -->
+  <h2>Part 3 — Sign Up on Sanity</h2>
+  <p>Sanity is your content editor. You'll use it to update blog post images without touching any code. Your developer will invite you as an admin — you just need an account to accept it.</p>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Go to <strong>sanity.io</strong> → click <strong>Get Started</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">sanity.io homepage</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">sanity.io</div></div>
+      <div style="background:#101010;padding:0 24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;height:52px;">
+          <div style="color:#fff;font-weight:900;font-size:16px;letter-spacing:-0.5px;">sanity</div>
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div style="color:#888;font-size:12px;">Docs</div>
+            <div style="color:#888;font-size:12px;">Pricing</div>
+            <div style="color:#888;font-size:12px;">Log in</div>
+            <div class="hl-box">
+              <div style="background:#F36458;color:#fff;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;">Get Started</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background:#101010;padding:40px 24px;text-align:center;">
+        <div style="font-size:26px;font-weight:900;color:#fff;margin-bottom:8px;">The content operating system</div>
+        <div style="font-size:13px;color:#888;">Build better digital experiences</div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click Get Started in the top right corner</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">2</div><div class="step-text">Sign up with your email, or use <strong>Continue with Google</strong> for faster setup.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Sanity sign up screen</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">sanity.io/login</div></div>
+      <div style="background:#101010;padding:32px 24px;">
+        <div style="max-width:320px;margin:0 auto;text-align:center;">
+          <div style="font-size:20px;font-weight:900;color:#fff;margin-bottom:4px;">Create your account</div>
+          <div style="font-size:12px;color:#888;margin-bottom:24px;">Free forever for small projects</div>
+          <div class="hl-box" style="display:block;margin-bottom:10px;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 16px;background:#fff;border-radius:8px;font-size:13px;font-weight:600;color:#374151;cursor:default;">
+              <span style="font-weight:900;">G</span> Continue with Google
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;margin:14px 0;font-size:12px;color:#555;">
+            <div style="flex:1;height:1px;background:#333;"></div>or<div style="flex:1;height:1px;background:#333;"></div>
+          </div>
+          <div style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:9px 12px;font-size:12px;color:#888;margin-bottom:10px;text-align:left;">Email address</div>
+          <div style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:9px 12px;font-size:12px;color:#888;margin-bottom:14px;text-align:left;">Password</div>
+          <div style="background:#F36458;color:#fff;padding:10px;border-radius:8px;font-size:13px;font-weight:700;">Create account</div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Sign up with Google or your email address</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">3</div><div class="step-text">Check your email for an invite from your developer — subject will be <strong>"You've been invited to a Sanity project"</strong>. Click <strong>Accept Invitation</strong>.</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Accept the invitation email</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">Your email inbox</div></div>
+      <div style="padding:24px;">
+        <div style="border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;max-width:480px;margin:0 auto;">
+          <div style="background:#101010;padding:20px 24px;text-align:center;">
+            <div style="color:#fff;font-weight:900;font-size:18px;letter-spacing:-0.5px;">sanity</div>
+          </div>
+          <div style="padding:24px;">
+            <div style="font-size:15px;font-weight:800;color:#111827;margin-bottom:8px;">You've been invited to a project</div>
+            <div style="font-size:13px;color:#6B7280;margin-bottom:20px;line-height:1.6;">You have been invited to join <strong>MidWestern Construction</strong> as an Administrator.</div>
+            <div class="hl-box" style="display:block;text-align:center;">
+              <div style="background:#F36458;color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;display:inline-block;">Accept Invitation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Click Accept Invitation in the email from Sanity</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">4</div><div class="step-text">Bookmark your content editor — you'll use this whenever you want to update blog images: <strong>midwestern-roofing.sanity.studio</strong></div></div>
+
+  <div style="background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:8px;padding:14px 16px;margin:14px 0;font-size:13px;color:#92400E;line-height:1.7;">
+    <strong>📋 Action needed — send your Sanity email to your developer</strong><br>
+    Send the <strong>email address</strong> you used to sign up on Sanity to your developer so they can give you admin access to the blog content editor.
+  </div>
+
+  <div class="info-box" style="margin-top:16px;">✓ You now have all three accounts set up — GitHub, Vercel, and Sanity. Proceed to Step 3 to finish the project setup in Vercel.</div>
+
+  <div style="margin-top:56px;padding-top:20px;border-top:1px solid #E5E7EB;font-size:12px;color:#9CA3AF;">
+    <p>MidWestern Construction · Step 2 of 3 · Next: Project Setup →</p>
+  </div>
+
+</div>
+</body>
+</html>
