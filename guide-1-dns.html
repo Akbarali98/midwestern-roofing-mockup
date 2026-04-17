@@ -242,23 +242,28 @@
 
   <!-- VERCEL RECORDS -->
   <h2>Part 3 — Add Vercel Records (Website)</h2>
-  <p>These 2 records point your domain to the website hosting.</p>
+  <p>These 2 records point your domain to the website hosting. <strong>Get the exact values from your Vercel project</strong> — they are unique to your account.</p>
+
+  <div style="background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:8px;padding:14px 16px;margin:14px 0;font-size:13px;color:#92400E;line-height:1.7;">
+    <strong>Where to find your values:</strong> Log in to <strong>vercel.com</strong> → open your project → go to <strong>Settings → Domains</strong> → click on <strong>midwestern.construction</strong>. Vercel will show you the exact A record value and CNAME value to use.
+  </div>
 
   <table class="dns-table">
     <thead><tr><th>Type</th><th>Name / Host</th><th>Value</th><th>Priority</th></tr></thead>
     <tbody>
-      <tr><td class="type">A</td><td>@</td><td>76.76.21.21</td><td>—</td></tr>
-      <tr><td class="type">CNAME</td><td>www</td><td>cname.vercel-dns.com</td><td>—</td></tr>
+      <tr><td class="type">A</td><td>@</td><td style="color:#9CA3AF;font-style:italic;">Copy from Vercel → Settings → Domains</td><td>—</td></tr>
+      <tr><td class="type">CNAME</td><td>www</td><td style="color:#9CA3AF;font-style:italic;">Copy from Vercel → Settings → Domains</td><td>—</td></tr>
     </tbody>
   </table>
 
   <h3>How to add each record</h3>
-  <div class="step"><div class="step-num">1</div><div class="step-text">Click <strong>+ Add Record</strong> in the Custom Records section.</div></div>
-  <div class="step"><div class="step-num">2</div><div class="step-text">A row appears — select the <strong>Type</strong>, enter the <strong>Host</strong>, enter the <strong>Value</strong>, then click <strong>Save</strong>.</div></div>
-  <div class="step"><div class="step-num">3</div><div class="step-text">Repeat for each record in the table above.</div></div>
+  <div class="step"><div class="step-num">1</div><div class="step-text">Log in to <strong>vercel.com</strong>, open your project, go to <strong>Settings → Domains</strong> and note the A and CNAME values shown there.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">Back in Squarespace, click <strong>+ Add Record</strong> in the Custom Records section.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-text">A row appears — select the <strong>Type</strong>, enter the <strong>Host</strong>, paste the <strong>Value</strong> from Vercel, then click <strong>Save</strong>.</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-text">Repeat for the second record.</div></div>
 
   <div class="mockup-wrap">
-    <div class="mockup-label">Adding the A record</div>
+    <div class="mockup-label">Adding the A record — paste value from Vercel</div>
     <div class="ui-window">
       <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">account.squarespace.com/domains/dns</div></div>
       <div class="ui-main">
@@ -267,22 +272,21 @@
           <div style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;background:#F6F8FA;border-bottom:1px solid #E5E7EB;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.5px;">
             <div>Type</div><div>Host</div><div>Value</div><div></div>
           </div>
-          <!-- New row being filled in -->
           <div class="hl-row" style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;align-items:center;">
             <div class="hl-box"><div style="background:#FFF4ED;border:1px solid #FED7AA;border-radius:4px;padding:5px 8px;font-size:12px;font-weight:800;color:#E85D04;">A</div></div>
             <div class="hl-box"><div class="ui-input">@</div></div>
-            <div class="hl-box"><div class="ui-input" style="width:100%;max-width:180px;">76.76.21.21</div></div>
+            <div class="hl-box"><div class="ui-input" style="width:100%;max-width:200px;color:#9CA3AF;font-style:italic;">paste from Vercel</div></div>
             <div class="hl-box"><div class="ui-btn orange" style="padding:5px 10px;font-size:11px;">Save</div></div>
           </div>
         </div>
         <div style="margin-top:10px;font-size:12px;color:#6B7280;">After saving, click <strong>+ Add Record</strong> again to add the CNAME record.</div>
       </div>
-      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Type = A, Host = @, Value = 76.76.21.21, then click Save</span></div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Type = A, Host = @, Value = paste from Vercel, then click Save</span></div>
     </div>
   </div>
 
   <div class="mockup-wrap">
-    <div class="mockup-label">Adding the CNAME record</div>
+    <div class="mockup-label">Adding the CNAME record — paste value from Vercel</div>
     <div class="ui-window">
       <div class="ui-titlebar"><div class="ui-dot r"></div><div class="ui-dot y"></div><div class="ui-dot g"></div><div class="ui-url">account.squarespace.com/domains/dns</div></div>
       <div class="ui-main">
@@ -291,23 +295,21 @@
           <div style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;background:#F6F8FA;border-bottom:1px solid #E5E7EB;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.5px;">
             <div>Type</div><div>Host</div><div>Value</div><div></div>
           </div>
-          <!-- Saved A record -->
           <div style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;align-items:center;border-bottom:1px solid #F3F4F6;background:#FAFAFA;">
             <div style="font-size:11px;font-weight:800;color:#6B7280;">A</div>
             <div style="font-family:monospace;font-size:11px;">@</div>
-            <div style="font-family:monospace;font-size:11px;">76.76.21.21</div>
+            <div style="font-family:monospace;font-size:11px;color:#9CA3AF;font-style:italic;">your Vercel value</div>
             <div style="font-size:11px;color:#28CA41;font-weight:700;">✓ Saved</div>
           </div>
-          <!-- New CNAME row -->
           <div class="hl-row" style="display:grid;grid-template-columns:90px 130px 1fr 80px;gap:8px;padding:10px 12px;align-items:center;">
             <div class="hl-box"><div style="background:#FFF4ED;border:1px solid #FED7AA;border-radius:4px;padding:5px 8px;font-size:12px;font-weight:800;color:#E85D04;">CNAME</div></div>
             <div class="hl-box"><div class="ui-input">www</div></div>
-            <div class="hl-box"><div class="ui-input" style="width:100%;max-width:200px;">cname.vercel-dns.com</div></div>
+            <div class="hl-box"><div class="ui-input" style="width:100%;max-width:200px;color:#9CA3AF;font-style:italic;">paste from Vercel</div></div>
             <div class="hl-box"><div class="ui-btn orange" style="padding:5px 10px;font-size:11px;">Save</div></div>
           </div>
         </div>
       </div>
-      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Type = CNAME, Host = www, Value = cname.vercel-dns.com, then click Save</span></div>
+      <div class="arrow-label"><span class="arr">↑</span><span class="lbl">Type = CNAME, Host = www, Value = paste from Vercel, then click Save</span></div>
     </div>
   </div>
 
@@ -342,12 +344,12 @@
           <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;border-bottom:1px solid #F3F4F6;align-items:center;">
             <div style="font-size:11px;font-weight:800;color:#E85D04;">A</div>
             <div style="font-family:monospace;font-size:11px;">@</div>
-            <div style="font-family:monospace;font-size:11px;">76.76.21.21</div>
+            <div style="font-size:11px;color:#9CA3AF;font-style:italic;">your Vercel value</div>
           </div>
           <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;border-bottom:1px solid #F3F4F6;align-items:center;">
             <div style="font-size:11px;font-weight:800;color:#E85D04;">CNAME</div>
             <div style="font-family:monospace;font-size:11px;">www</div>
-            <div style="font-family:monospace;font-size:11px;">cname.vercel-dns.com</div>
+            <div style="font-size:11px;color:#9CA3AF;font-style:italic;">your Vercel value</div>
           </div>
           <div style="display:grid;grid-template-columns:70px 160px 1fr;gap:8px;padding:9px 12px;border-bottom:1px solid #F3F4F6;align-items:center;">
             <div style="font-size:11px;font-weight:800;color:#E85D04;">TXT</div>
