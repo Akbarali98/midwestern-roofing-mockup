@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MidWestern Construction — Ownership Transfer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #1a1a1a; background: #fff; }
+
+    .cover { background: #111827; color: #fff; padding: 80px 60px; }
+    .cover-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #E85D04; margin-bottom: 16px; }
+    .cover h1 { font-size: 36px; font-weight: 900; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 10px; }
+    .cover p { font-size: 15px; color: #9CA3AF; margin-top: 8px; }
+    .cover p.date { margin-top: 24px; font-size: 12px; color: #6B7280; }
+
+    .content { padding: 48px 60px; max-width: 900px; }
+
+    h2 { font-size: 20px; font-weight: 900; color: #111827; margin-top: 56px; margin-bottom: 6px; padding-bottom: 10px; border-bottom: 2px solid #E85D04; }
+    h2:first-of-type { margin-top: 0; }
+    h3 { font-size: 15px; font-weight: 800; color: #111827; margin-top: 32px; margin-bottom: 12px; }
+
+    p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+
+    .step { display: flex; gap: 16px; margin-bottom: 14px; align-items: flex-start; }
+    .step-num { min-width: 28px; height: 28px; background: #E85D04; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .step-text { font-size: 14px; color: #374151; line-height: 1.7; }
+    .step-text strong { color: #111827; }
+
+    .warning-box { background: #FEF3C7; border: 1.5px solid #FCD34D; border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 13px; color: #92400E; line-height: 1.6; }
+    .info-box { background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 13px; color: #1E40AF; line-height: 1.6; }
+    .credential-box { background: #F9FAFB; border: 1.5px solid #E5E7EB; border-left: 4px solid #E85D04; border-radius: 8px; padding: 18px 20px; margin: 16px 0; }
+    .credential-box table { width: 100%; border-collapse: collapse; }
+    .credential-box td { padding: 7px 0; font-size: 13px; vertical-align: top; }
+    .credential-box td:first-child { color: #6B7280; font-weight: 700; width: 180px; }
+    .credential-box td:last-child { font-family: 'Courier New', monospace; color: #111827; word-break: break-all; }
+
+    .section-divider { height: 1px; background: #F3F4F6; margin: 56px 0; }
+
+    .platform-header { display: flex; align-items: center; gap: 12px; margin-top: 40px; margin-bottom: 6px; }
+    .platform-badge { background: #E85D04; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; }
+    .platform-url { font-size: 13px; color: #6B7280; font-family: monospace; }
+
+    .checklist { list-style: none; margin: 12px 0; }
+    .checklist li { font-size: 14px; color: #374151; padding: 9px 0; border-bottom: 1px solid #F3F4F6; display: flex; align-items: center; gap: 10px; }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before { content: '☐'; font-size: 16px; color: #D1D5DB; flex-shrink: 0; }
+
+    /* ── UI MOCKUP STYLES ── */
+    .mockup-wrap { margin: 24px 0 32px; }
+    .mockup-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6B7280; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .mockup-label::after { content: ''; flex: 1; height: 1px; background: #E5E7EB; }
+
+    .ui-window { border: 1.5px solid #E5E7EB; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .ui-titlebar { background: #F3F4F6; border-bottom: 1px solid #E5E7EB; padding: 8px 14px; display: flex; align-items: center; gap: 6px; }
+    .ui-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .ui-dot.red { background: #FF5F57; }
+    .ui-dot.yellow { background: #FFBD2E; }
+    .ui-dot.green { background: #28CA41; }
+    .ui-url { margin-left: 12px; background: #fff; border: 1px solid #D1D5DB; border-radius: 5px; padding: 3px 12px; font-size: 12px; color: #6B7280; font-family: monospace; flex: 1; max-width: 320px; }
+
+    .ui-body { background: #fff; padding: 0; }
+    .ui-sidebar { background: #F9FAFB; border-right: 1px solid #E5E7EB; padding: 16px 0; width: 180px; flex-shrink: 0; }
+    .ui-sidebar-item { padding: 8px 16px; font-size: 12px; color: #6B7280; cursor: default; }
+    .ui-sidebar-item.active { background: #FFF4ED; color: #E85D04; font-weight: 700; border-left: 3px solid #E85D04; }
+    .ui-main { flex: 1; padding: 24px; }
+    .ui-row { display: flex; }
+
+    /* Highlight overlay */
+    .hl { position: relative; display: inline-block; }
+    .hl-box { position: relative; }
+    .hl-box::after { content: ''; position: absolute; inset: -4px; border: 2.5px solid #E85D04; border-radius: 6px; pointer-events: none; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    .arrow-label { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+    .arrow-label .arrow { color: #E85D04; font-size: 18px; font-weight: 900; }
+    .arrow-label .lbl { font-size: 12px; font-weight: 700; color: #E85D04; background: #FFF4ED; padding: 3px 10px; border-radius: 20px; border: 1px solid #FED7AA; }
+
+    /* Generic UI elements */
+    .ui-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: default; }
+    .ui-btn.primary { background: #1F883D; color: #fff; }
+    .ui-btn.dark { background: #24292F; color: #fff; }
+    .ui-btn.orange { background: #E85D04; color: #fff; }
+    .ui-btn.outline { background: #fff; color: #374151; border: 1px solid #D1D5DB; }
+    .ui-btn.danger { background: #fff; color: #CF222E; border: 1px solid #CF222E; }
+
+    .ui-input { border: 1px solid #D1D5DB; border-radius: 6px; padding: 6px 10px; font-size: 12px; color: #374151; font-family: monospace; background: #fff; display: inline-block; }
+    .ui-input.focused { border-color: #0969DA; box-shadow: 0 0 0 3px rgba(9,105,218,0.15); }
+
+    .ui-checkbox { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #374151; margin: 4px 0; }
+    .ui-checkbox-box { width: 14px; height: 14px; border: 1.5px solid #D1D5DB; border-radius: 3px; background: #fff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .ui-checkbox-box.checked { background: #0969DA; border-color: #0969DA; }
+    .ui-checkbox-box.checked::after { content: '✓'; color: #fff; font-size: 9px; }
+
+    .ui-nav { background: #24292F; padding: 0 16px; display: flex; align-items: center; gap: 16px; height: 48px; }
+    .ui-nav-logo { color: #fff; font-weight: 900; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+    .ui-nav-item { color: #cdd9e5; font-size: 12px; }
+
+    .ui-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .ui-table th { background: #F6F8FA; border-bottom: 1px solid #D1D5DB; padding: 8px 12px; text-align: left; color: #57606A; font-weight: 600; }
+    .ui-table td { padding: 10px 12px; border-bottom: 1px solid #F3F4F6; color: #374151; }
+
+    .ui-tag { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+    .ui-tag.green { background: #DCFCE7; color: #166534; }
+    .ui-tag.blue { background: #DBEAFE; color: #1E40AF; }
+    .ui-tag.gray { background: #F3F4F6; color: #6B7280; }
+
+    .ui-section-title { font-size: 11px; font-weight: 700; color: #57606A; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #E5E7EB; }
+    .ui-field-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+    .ui-field-label { font-size: 12px; color: #374151; font-weight: 600; width: 110px; flex-shrink: 0; }
+
+    .ui-vercel-nav { background: #000; padding: 0 20px; display: flex; align-items: center; gap: 20px; height: 48px; }
+    .ui-vercel-logo { color: #fff; font-weight: 900; font-size: 16px; }
+    .ui-vercel-item { color: #888; font-size: 12px; }
+
+    .ui-card { border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+    .ui-card-icon { width: 36px; height: 36px; background: #F3F4F6; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .ui-card-name { font-size: 13px; font-weight: 700; color: #111827; }
+    .ui-card-sub { font-size: 11px; color: #9CA3AF; }
+
+    @media print {
+      .content { padding: 36px 48px; }
+      .cover { padding: 60px 48px; }
+      .hl-box::after { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">Part 1 of 2 — Ownership Transfer</div>
+  <h1>MidWestern Construction<br>Account Setup & Transfer</h1>
+  <p>Step-by-step guide with visual instructions for each platform.</p>
+  <p class="date">April 2026 · midwestern.construction</p>
+</div>
+
+<div class="content">
+
+  <h2>Overview</h2>
+  <p>Your website runs on three platforms. You need a free account on each one. This guide shows you exactly where to click on each platform.</p>
+  <div class="credential-box">
+    <table>
+      <tr><td>GitHub</td><td>Stores all the website code</td></tr>
+      <tr><td>Vercel</td><td>Hosts and publishes the website live</td></tr>
+      <tr><td>Sanity</td><td>Your content editor — update blog images and content</td></tr>
+    </table>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══ GITHUB ══ -->
+  <h2>Step 1 — GitHub (github.com)</h2>
+  <p>GitHub stores all your website code. Once you create an account, your developer transfers the repository to you.</p>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Go to <strong>github.com</strong> → click <strong>Sign Up</strong> → enter your email, password, and choose a username → select the <strong>Free</strong> plan.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">Share your GitHub username with your developer. They will initiate the transfer. You'll receive an email to accept it.</div></div>
+
+  <h3>Generating Your GitHub Token</h3>
+  <p>This token lets the website update automatically when you change blog images in Sanity. Follow the steps below exactly.</p>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Click your <strong>profile picture</strong> → <strong>Settings</strong></div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">What you'll see on GitHub</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot red"></div><div class="ui-dot yellow"></div><div class="ui-dot green"></div><div class="ui-url">github.com</div></div>
+      <div class="ui-nav">
+        <div class="ui-nav-logo">⊙ GitHub</div>
+        <div style="flex:1"></div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="ui-nav-item">+▾</div>
+          <div class="hl-box" style="border-radius:50%;">
+            <div style="width:32px;height:32px;background:#E85D04;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;">Y</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:#F6F8FA;border-top:1px solid #E5E7EB;padding:8px 16px;font-size:12px;display:flex;flex-direction:column;align-items:flex-end;gap:0;">
+        <div style="background:#fff;border:1px solid #D1D5DB;border-radius:8px;padding:8px 0;width:180px;box-shadow:0 8px 24px rgba(0,0,0,0.12);">
+          <div style="padding:6px 16px;font-size:12px;color:#374151;border-bottom:1px solid #F3F4F6;">Your profile</div>
+          <div class="hl-box" style="border-radius:0;">
+            <div style="padding:6px 16px;font-size:12px;font-weight:700;color:#111827;">⚙ Settings</div>
+          </div>
+          <div style="padding:6px 16px;font-size:12px;color:#374151;">Sign out</div>
+        </div>
+      </div>
+      <div class="arrow-label" style="padding:8px 16px 12px;"><span class="arrow">↑</span><span class="lbl">Click your profile picture, then click Settings</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">2</div><div class="step-text">Scroll all the way down the left sidebar → click <strong>Developer settings</strong></div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Settings sidebar</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot red"></div><div class="ui-dot yellow"></div><div class="ui-dot green"></div><div class="ui-url">github.com/settings</div></div>
+      <div class="ui-row">
+        <div class="ui-sidebar" style="width:200px;">
+          <div class="ui-sidebar-item">Profile</div>
+          <div class="ui-sidebar-item">Account</div>
+          <div class="ui-sidebar-item">Appearance</div>
+          <div style="padding:8px 16px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9CA3AF;margin-top:8px;">Access</div>
+          <div class="ui-sidebar-item">Emails</div>
+          <div class="ui-sidebar-item">Password and authentication</div>
+          <div style="border-top:1px solid #E5E7EB;margin-top:8px;padding-top:8px;">
+            <div class="hl-box">
+              <div class="ui-sidebar-item" style="font-weight:700;color:#111827;">🔧 Developer settings</div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-main">
+          <div style="color:#9CA3AF;font-size:13px;">Scroll to the bottom of the left menu and click Developer settings</div>
+        </div>
+      </div>
+      <div class="arrow-label" style="padding:8px 16px 12px;"><span class="arrow">←</span><span class="lbl">Scroll down and click Developer settings</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">3</div><div class="step-text">Click <strong>Personal access tokens</strong> → <strong>Tokens (classic)</strong> → <strong>Generate new token (classic)</strong></div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Developer settings page</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot red"></div><div class="ui-dot yellow"></div><div class="ui-dot green"></div><div class="ui-url">github.com/settings/tokens</div></div>
+      <div class="ui-row">
+        <div class="ui-sidebar" style="width:200px;">
+          <div class="ui-sidebar-item">GitHub Apps</div>
+          <div class="ui-sidebar-item active">Personal access tokens</div>
+          <div style="padding:4px 24px;font-size:11px;color:#6B7280;">Tokens (classic)</div>
+          <div style="padding:4px 24px;font-size:11px;color:#6B7280;">Fine-grained tokens</div>
+        </div>
+        <div class="ui-main">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <div style="font-size:14px;font-weight:800;">Personal access tokens (classic)</div>
+            <div class="hl-box">
+              <div class="ui-btn dark">Generate new token ▾</div>
+            </div>
+          </div>
+          <div style="font-size:12px;color:#6B7280;">Tokens you have generated that can be used to access the GitHub API.</div>
+        </div>
+      </div>
+      <div class="arrow-label" style="padding:8px 16px 12px;"><span class="arrow">↑</span><span class="lbl">Click "Generate new token" then choose "Generate new token (classic)"</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">4</div><div class="step-text">Fill in the form: give it any name, set expiration to <strong>No expiration</strong>, and tick the <strong>repo</strong> checkbox</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">New token form</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot red"></div><div class="ui-dot yellow"></div><div class="ui-dot green"></div><div class="ui-url">github.com/settings/tokens/new</div></div>
+      <div class="ui-main" style="padding:20px 24px;">
+        <div style="margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:700;margin-bottom:6px;">Note <span style="color:#CF222E;">*</span></div>
+          <div class="ui-input focused" style="width:260px;">Vercel Bake</div>
+          <div style="font-size:11px;color:#6B7280;margin-top:4px;">What's this token for?</div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:700;margin-bottom:6px;">Expiration <span style="color:#CF222E;">*</span></div>
+          <div class="hl-box" style="display:inline-block;">
+            <div class="ui-input">No expiration ▾</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;margin-bottom:8px;">Select scopes</div>
+          <div class="hl-box" style="display:inline-block;">
+            <div class="ui-checkbox"><div class="ui-checkbox-box checked"></div><strong>repo</strong> — Full control of private repositories</div>
+          </div>
+          <div style="padding-left:22px;margin-top:4px;">
+            <div class="ui-checkbox"><div class="ui-checkbox-box"></div><span style="color:#6B7280;">repo:status</span></div>
+            <div class="ui-checkbox"><div class="ui-checkbox-box"></div><span style="color:#6B7280;">repo_deployment</span></div>
+            <div class="ui-checkbox"><div class="ui-checkbox-box"></div><span style="color:#6B7280;">public_repo</span></div>
+          </div>
+        </div>
+        <div style="margin-top:20px;">
+          <div class="ui-btn primary">Generate token</div>
+        </div>
+      </div>
+      <div class="arrow-label" style="padding:8px 16px 12px;"><span class="arrow">↑</span><span class="lbl">Set "No expiration" and tick the "repo" checkbox, then click Generate token</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">5</div><div class="step-text">Copy the token immediately — it starts with <strong>ghp_</strong>. You will NOT be able to see it again after leaving this page.</div></div>
+
+  <div class="warning-box"><strong>⚠ Important:</strong> Copy and save the token before closing the page. GitHub only shows it once. Paste it somewhere safe — you'll need it in Step 2 (Vercel).</div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══ VERCEL ══ -->
+  <h2>Step 2 — Vercel (vercel.com)</h2>
+  <p>Vercel hosts your website and automatically publishes it every time the code changes on GitHub.</p>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Go to <strong>vercel.com</strong> → click <strong>Sign Up</strong> → choose <strong>Continue with GitHub</strong> → select <strong>Hobby (Free)</strong> plan.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">Click <strong>Add New Project</strong></div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Vercel dashboard</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot red"></div><div class="ui-dot yellow"></div><div class="ui-dot green"></div><div class="ui-url">vercel.com/dashboard</div></div>
+      <div class="ui-vercel-nav">
+        <div class="ui-vercel-logo">▲</div>
+        <div class="ui-vercel-item">Overview</div>
+        <div class="ui-vercel-item">Projects</div>
+        <div style="flex:1"></div>
+        <div class="hl-box">
+          <div class="ui-btn orange">+ Add New ▾</div>
+        </div>
+      </div>
+      <div class="ui-main">
+        <div style="font-size:13px;color:#9CA3AF;text-align:center;padding:20px 0;">Your projects will appear here</div>
+      </div>
+      <div class="arrow-label" style="padding:8px 16px 12px;"><span class="arrow">↑</span><span class="lbl">Click "Add New" → then select "Project"</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">3</div><div class="step-text">Find <strong>midwestern-roofing</strong> in the list and click <strong>Import</strong></div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Import repository</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot red"></div><div class="ui-dot yellow"></div><div class="ui-dot green"></div><div class="ui-url">vercel.com/new</div></div>
+      <div class="ui-main">
+        <div style="font-size:14px;font-weight:800;margin-bottom:16px;">Import Git Repository</div>
+        <div class="ui-card">
+          <div class="ui-card-icon">📁</div>
+          <div style="flex:1;">
+            <div class="ui-card-name">midwestern-roofing</div>
+            <div class="ui-card-sub">Updated recently</div>
+          </div>
+          <div class="hl-box">
+            <div class="ui-btn orange">Import</div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label" style="padding:8px 16px 12px;"><span class="arrow">↑</span><span class="lbl">Click Import next to midwestern-roofing</span></div>
+    </div>
+  </div>
+
+  <div class="step"><div class="step-num">4</div><div class="step-text">Leave all settings as default → click <strong>Deploy</strong> → wait for the green checkmark.</div></div>
+
+  <div class="step"><div class="step-num">5</div><div class="step-text">Go to <strong>Settings → Environment Variables</strong> and add the two variables below</div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Environment Variables settings</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot red"></div><div class="ui-dot yellow"></div><div class="ui-dot green"></div><div class="ui-url">vercel.com/your-project/settings/environment-variables</div></div>
+      <div class="ui-row">
+        <div class="ui-sidebar">
+          <div class="ui-sidebar-item">General</div>
+          <div class="ui-sidebar-item">Domains</div>
+          <div class="ui-sidebar-item">Integrations</div>
+          <div class="ui-sidebar-item active">Environment Variables</div>
+          <div class="ui-sidebar-item">Git</div>
+        </div>
+        <div class="ui-main">
+          <div class="ui-section-title">Add New</div>
+          <div style="margin-bottom:12px;">
+            <div class="ui-field-row">
+              <div class="ui-field-label">Key</div>
+              <div class="hl-box"><div class="ui-input" style="width:160px;">GH_TOKEN</div></div>
+            </div>
+            <div class="ui-field-row">
+              <div class="ui-field-label">Value</div>
+              <div class="ui-input" style="width:200px;color:#9CA3AF;">Paste your GitHub token here</div>
+            </div>
+            <div class="ui-field-row">
+              <div class="ui-field-label">Environments</div>
+              <div style="display:flex;gap:6px;">
+                <div class="ui-tag green">Production ✓</div>
+                <div class="ui-tag blue">Preview ✓</div>
+                <div class="ui-tag gray">Development ✓</div>
+              </div>
+            </div>
+            <div class="ui-btn orange" style="margin-top:8px;">Save</div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label" style="padding:8px 16px 12px;"><span class="arrow">↑</span><span class="lbl">Add both variables one at a time — GH_TOKEN and RESEND_API_KEY</span></div>
+    </div>
+  </div>
+
+  <div class="credential-box">
+    <table>
+      <tr><td style="color:#E85D04;font-family:monospace;font-weight:800;">GH_TOKEN</td><td>Paste the GitHub token you generated in Step 1</td></tr>
+      <tr><td style="color:#E85D04;font-family:monospace;font-weight:800;">RESEND_API_KEY</td><td>re_MXaWRdRG_FFaUjnBQX7AZhR3PoHD2EPS8</td></tr>
+    </table>
+  </div>
+
+  <div class="step"><div class="step-num">6</div><div class="step-text">Go to <strong>Deployments</strong> tab → click the <strong>three dots ···</strong> on the latest deployment → click <strong>Redeploy</strong></div></div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Redeploy after adding env vars</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot red"></div><div class="ui-dot yellow"></div><div class="ui-dot green"></div><div class="ui-url">vercel.com/your-project/deployments</div></div>
+      <div class="ui-main">
+        <div class="ui-section-title">Deployments</div>
+        <div class="ui-table" style="border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">
+          <table style="width:100%;border-collapse:collapse;">
+            <thead><tr style="background:#F6F8FA;"><th style="padding:8px 12px;font-size:11px;color:#57606A;text-align:left;">Deployment</th><th style="padding:8px 12px;font-size:11px;color:#57606A;text-align:left;">Status</th><th style="padding:8px 12px;font-size:11px;color:#57606A;text-align:left;"></th></tr></thead>
+            <tbody>
+              <tr style="border-top:1px solid #F3F4F6;">
+                <td style="padding:10px 12px;font-size:12px;font-family:monospace;">main — just now</td>
+                <td style="padding:10px 12px;"><span class="ui-tag green">● Ready</span></td>
+                <td style="padding:10px 12px;text-align:right;">
+                  <div class="hl-box" style="display:inline-block;">
+                    <div style="font-size:16px;cursor:default;color:#374151;font-weight:800;">···</div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:8px 0;width:140px;margin-top:4px;margin-left:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+          <div style="padding:6px 14px;font-size:12px;color:#374151;">View deployment</div>
+          <div style="padding:6px 14px;font-size:12px;color:#374151;">Copy URL</div>
+          <div class="hl-box"><div style="padding:6px 14px;font-size:12px;font-weight:700;color:#111827;">↺ Redeploy</div></div>
+        </div>
+      </div>
+      <div class="arrow-label" style="padding:8px 16px 12px;"><span class="arrow">↑</span><span class="lbl">Click ··· then Redeploy so the env vars take effect</span></div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══ SANITY ══ -->
+  <h2>Step 3 — Sanity (sanity.io)</h2>
+  <p>Sanity is your content editor. You use it to update blog post images without touching any code.</p>
+
+  <div class="step"><div class="step-num">1</div><div class="step-text">Go to <strong>sanity.io</strong> → click <strong>Get Started</strong> → sign up with your email.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">Check your email for an invite from your developer — click <strong>Accept Invitation</strong>.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-text">Your content editor is at: <strong>midwestern-roofing.sanity.studio</strong> — bookmark this.</div></div>
+
+  <h3>How to Update a Blog Image</h3>
+
+  <div class="mockup-wrap">
+    <div class="mockup-label">Sanity Studio — updating a blog image</div>
+    <div class="ui-window">
+      <div class="ui-titlebar"><div class="ui-dot red"></div><div class="ui-dot yellow"></div><div class="ui-dot green"></div><div class="ui-url">midwestern-roofing.sanity.studio</div></div>
+      <div class="ui-row">
+        <div class="ui-sidebar" style="width:180px;background:#1a1a2e;">
+          <div style="padding:16px;color:#fff;font-weight:800;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.1);">MidWestern</div>
+          <div style="padding:10px 16px;font-size:12px;color:#9CA3AF;">Site Settings</div>
+          <div style="padding:10px 16px;font-size:12px;color:#9CA3AF;">Home Page</div>
+          <div class="hl-box" style="background:rgba(232,93,4,0.15);">
+            <div style="padding:10px 16px;font-size:12px;color:#E85D04;font-weight:700;">Blog Post</div>
+          </div>
+          <div style="padding:10px 16px;font-size:12px;color:#9CA3AF;">Privacy Policy</div>
+        </div>
+        <div class="ui-main">
+          <div style="font-size:13px;font-weight:800;margin-bottom:16px;color:#111827;">Blog Post — After the Storm</div>
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Hero Image</div>
+            <div class="hl-box" style="display:inline-block;">
+              <div style="width:180px;height:100px;background:#F3F4F6;border:2px dashed #D1D5DB;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;">
+                <div style="font-size:20px;">📷</div>
+                <div style="font-size:11px;color:#6B7280;margin-top:4px;">Click to upload image</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="ui-btn orange">Publish</div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-label" style="padding:8px 16px 12px;"><span class="arrow">↑</span><span class="lbl">Click Blog Post → select a post → upload image → click Publish</span></div>
+    </div>
+  </div>
+
+  <div class="info-box">ℹ️ After publishing in Sanity, contact your developer to push the update live. This can be automated later so it updates instantly.</div>
+
+  <div class="section-divider"></div>
+
+  <!-- CHECKLIST -->
+  <h2>Completion Checklist</h2>
+  <ul class="checklist">
+    <li>GitHub account created</li>
+    <li>GitHub repository transfer accepted from developer</li>
+    <li>GitHub personal access token generated and saved</li>
+    <li>Vercel account created (signed up with GitHub)</li>
+    <li>midwestern-roofing imported into Vercel</li>
+    <li>GH_TOKEN added to Vercel environment variables</li>
+    <li>RESEND_API_KEY added to Vercel environment variables</li>
+    <li>Vercel deployment redeployed after adding env vars</li>
+    <li>Sanity account created and admin invite accepted</li>
+    <li>midwestern-roofing.sanity.studio bookmarked</li>
+  </ul>
+
+  <div style="margin-top:64px;padding-top:24px;border-top:1px solid #E5E7EB;font-size:12px;color:#9CA3AF;">
+    <p>MidWestern Construction · Part 1 of 2 · Questions? Contact your developer.</p>
+  </div>
+
+</div>
+</body>
+</html>
