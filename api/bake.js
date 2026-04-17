@@ -143,7 +143,7 @@ async function bake() {
 
 // ── Vercel handler ────────────────────────────────────────────────────────────
 module.exports = async (req, res) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'POST' && req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
   if (!GH_TOKEN) {
