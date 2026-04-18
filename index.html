@@ -972,21 +972,21 @@
         <div class="cf-row">
           <div class="cf-field">
             <label for="cf-name">Full Name</label>
-            <input type="text" id="cf-name" name="name" placeholder="John Smith" required />
+            <input type="text" id="cf-name" name="name" required />
           </div>
           <div class="cf-field">
             <label for="cf-phone">Phone Number</label>
-            <input type="tel" id="cf-phone" name="phone" placeholder="(330) 000-0000" required />
+            <input type="tel" id="cf-phone" name="phone" required />
           </div>
         </div>
         <div class="cf-field">
           <label for="cf-email">Email Address</label>
-          <input type="email" id="cf-email" name="email" placeholder="you@example.com" required />
+          <input type="email" id="cf-email" name="email" required />
         </div>
         <div class="cf-field">
           <label for="cf-service">Service Needed</label>
           <select id="cf-service" name="service" required>
-            <option value="" disabled selected>Select a service...</option>
+            <option value="" disabled selected></option>
             <option>Roof Installation</option>
             <option>Roof Repairs</option>
             <option>Storm Damage Repairs</option>
@@ -998,7 +998,7 @@
         </div>
         <div class="cf-field">
           <label for="cf-message">Message</label>
-          <textarea id="cf-message" name="message" placeholder="Tell us about your project..."></textarea>
+          <textarea id="cf-message" name="message" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary cf-submit" id="cf-submit-btn">Send Message →</button>
         <div class="cf-msg" id="cf-msg"></div>
