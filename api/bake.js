@@ -140,6 +140,11 @@ async function bake() {
     if (res.status !== 200) continue;
     let html = Buffer.from(res.body.content, 'base64').toString('utf-8');
     html = html.replace(
+      new RegExp(`(<img id="service-hero-img-${slug}" src=")[^"]*("[^>]*)style="opacity:0;"`),
+      `$1${url}?w=1400&auto=format$2style="opacity:1;"`
+    );
+    // fallback if opacity was already 1
+    html = html.replace(
       new RegExp(`(<img id="service-hero-img-${slug}" src=")[^"]*(")`),
       `$1${url}?w=1400&auto=format$2`
     );
