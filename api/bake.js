@@ -120,6 +120,33 @@ async function bake() {
     results.push(fname);
   }
 
+  // 3. Service page images
+  const serviceQuery = encodeURIComponent('*[_type=="servicePage"]{slug,heroImage{asset->{url}}}');
+  const serviceData  = await httpsGet(`https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${serviceQuery}`);
+  const SERVICE_FILES = {
+    'gutters':             'service-gutters.html',
+    'roof-installation':   'service-roof-installation.html',
+    'roof-repairs':        'service-roof-repairs.html',
+    'siding':              'service-siding.html',
+    'storm-damage-repairs':'service-storm-damage.html',
+    'home-renovations':    'service-home-renovations.html',
+  };
+  for (const p of (serviceData.result || [])) {
+    const slug = p.slug?.current;
+    const url  = p.heroImage?.asset?.url;
+    const fname = SERVICE_FILES[slug];
+    if (!slug || !url || !fname) continue;
+    const res = await githubRequest('GET', fname);
+    if (res.status !== 200) continue;
+    let html = Buffer.from(res.body.content, 'base64').toString('utf-8');
+    html = html.replace(
+      new RegExp(`(<img id="service-hero-img-${slug}" src=")[^"]*(")`),
+      `$1${url}?w=1400&auto=format$2`
+    );
+    await pushFile(fname, html, `[sanity-bake] Update service image in ${fname}`);
+    results.push(fname);
+  }
+
   // blog.html listing
   const blogRes = await githubRequest('GET', 'blog.html');
   if (blogRes.status === 200) {
