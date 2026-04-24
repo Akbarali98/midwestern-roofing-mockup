@@ -413,27 +413,12 @@
     });
   });
 
-  // Load service image from Sanity
+  // Hide service image section if no image baked
   (function() {
-    const PROJECT_ID = 'ot1ams1m', DATASET = 'production';
-    const query = encodeURIComponent('*[_type==servicePage&&slug.current==siding][0]{heroImage{asset->{url}}}');
-    fetch(`https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${query}`)
-      .then(r => r.json())
-      .then(d => {
-        const url = d.result?.heroImage?.asset?.url;
-        const img = document.getElementById('service-hero-img-siding');
-        if (url && img) {
-          img.src = url + '?w=1400&auto=format';
-          img.onload = () => img.style.opacity = '1';
-          img.onerror = () => img.closest('.service-img-section').style.display = 'none';
-        } else if (img) {
-          img.closest('.service-img-section').style.display = 'none';
-        }
-      })
-      .catch(() => {
-        const img = document.getElementById('service-hero-img-siding');
-        if (img) img.closest('.service-img-section').style.display = 'none';
-      });
+    var img = document.getElementById('service-hero-img-siding');
+    if (img && (!img.src || img.src === window.location.href)) {
+      img.closest('.service-img-section').style.display = 'none';
+    }
   })();
 </script>
 </body>
